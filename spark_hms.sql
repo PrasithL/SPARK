@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 20, 2016 at 10:36 PM
+-- Generation Time: Jan 22, 2016 at 10:37 PM
 -- Server version: 5.5.46-0ubuntu0.14.04.2
 -- PHP Version: 5.5.9-1ubuntu4.14
 
@@ -19,8 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `spark_hms`
 --
-CREATE DATABASE IF NOT EXISTS `spark_hms` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `spark_hms`;
 
 -- --------------------------------------------------------
 
@@ -38,6 +36,13 @@ CREATE TABLE IF NOT EXISTS `users` (
   `removedDate` date DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `empId`, `username`, `password`, `status`, `createdDate`, `removedDate`) VALUES
+(1, '01', 'admin', 'aaa', 'active', '2016-01-20', NULL);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
