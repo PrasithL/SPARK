@@ -81,7 +81,7 @@
 					<ul class="nav ace-nav">
 						<li class="grey">
 							<a data-toggle="dropdown" class="dropdown-toggle" href="#">
-								<i class="ace-icon fa fa-tasks"></i>
+								<i class="ace-icon fa fa-list"></i>
 								<span class="badge badge-grey">4</span>
 							</a>
 
@@ -245,8 +245,8 @@
 
 					<li class="">
 						<a href="#" class="dropdown-toggle">
-							<i class="menu-icon fa fa-desktop"></i>
-							<span class="menu-text"> Menu Item </span>
+							<i class="menu-icon fa fa-database"></i>
+							<span class="menu-text"> Data Management </span>
 
 							<b class="arrow fa fa-angle-down"></b>
 						</a>
@@ -257,22 +257,104 @@
 							<li class="">
 								<a href="#">
 									<i class="menu-icon fa fa-caret-right"></i>
-									Elements
+									Room Details
 								</a>
 
 								<b class="arrow"></b>
 							</li>
 
 							<li class="">
-								<a href="buttons.html">
+								<a href="#">
 									<i class="menu-icon fa fa-caret-right"></i>
-									Buttons &amp; Icons
+									Computer Details
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+
+							<li class="">
+								<a href="#">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Software List
 								</a>
 
 								<b class="arrow"></b>
 							</li>
 						</ul>
 					</li>
+
+					<li class="">
+						<a href="#">
+							<i class="menu-icon fa fa-sitemap"></i>
+							<span class="menu-text"> SPARK Explorer </span>
+						</a>
+
+						<b class="arrow"></b>
+					</li>
+
+					<li class="">
+						<a href="#">
+							<i class="menu-icon fa fa-exclamation-circle"></i>
+							<span class="menu-text"> Issues </span>
+						</a>
+
+						<b class="arrow"></b>
+					</li>
+
+					<li class="">
+						<a href="#">
+							<i class="menu-icon fa fa-briefcase"></i>
+							<span class="menu-text"> Inventory </span>
+						</a>
+
+						<b class="arrow"></b>
+					</li>
+
+					<li class="">
+						<a href="#">
+							<i class="menu-icon fa fa-calendar"></i>
+							<span class="menu-text"> Maintenance History </span>
+						</a>
+
+						<b class="arrow"></b>
+					</li>
+
+					<li class="">
+						<a href="#">
+							<i class="menu-icon fa fa-clock-o"></i>
+							<span class="menu-text"> Scheduling </span>
+						</a>
+
+						<b class="arrow"></b>
+					</li>
+
+					<li class="">
+						<a href="#">
+							<i class="menu-icon fa fa-list"></i>
+							<span class="menu-text"> To-do List </span>
+						</a>
+
+						<b class="arrow"></b>
+					</li>
+
+					<li class="">
+						<a href="#">
+							<i class="menu-icon fa fa-users"></i>
+							<span class="menu-text"> User Management </span>
+						</a>
+
+						<b class="arrow"></b>
+					</li>
+
+					<li class="">
+						<a href="#">
+							<i class="menu-icon fa fa-line-chart"></i>
+							<span class="menu-text"> Reports </span>
+						</a>
+
+						<b class="arrow"></b>
+					</li>
+
 				</ul><!-- /.nav-list -->
 
 				<!-- #section:basics/sidebar.layout.minimize -->
