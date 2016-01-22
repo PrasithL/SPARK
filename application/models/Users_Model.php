@@ -4,7 +4,7 @@
 	/**
 	* @author: Prasith Lakshan
 	*/
-	class Login_Model extends CI_model
+	class Users_Model extends CI_model
 	{
 		
 		function __construct()

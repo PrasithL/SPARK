@@ -29,8 +29,8 @@ class Login extends CI_Controller {
 		$username = $this->input->post("username");
 		$password = $this->input->post("password");
 
-		$this->load->model("Login_Model");
-		$result = $this->Login_Model->validate_login($username, $password);
+		$this->load->model("Users_Model");
+		$result = $this->Users_Model->validate_login($username, $password);
 
 		if ($result) {
 			// set session data
