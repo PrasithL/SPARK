@@ -42,7 +42,7 @@
 
 	<body class="no-skin">
 		<!-- #section:basics/navbar.layout -->
-		<div id="navbar" class="navbar navbar-default">
+		<div id="navbar" class="navbar navbar-default navbar-fixed-top">
 			<script type="text/javascript">
 				try{ace.settings.check('navbar' , 'fixed')}catch(e){}
 			</script>
@@ -195,7 +195,7 @@
 		<!-- /section:basics/navbar.layout -->
 		<div class="main-container" id="main-container">
 			<!-- #section:basics/sidebar -->
-			<div id="sidebar" class="sidebar                  responsive">
+			<div id="sidebar" class="sidebar responsive sidebar-fixed">
 				<script type="text/javascript">
 					try{ace.settings.check('sidebar' , 'fixed')}catch(e){}
 				</script>
@@ -244,6 +244,24 @@
 					</li>
 
 					<li class="">
+						<a href="<?php echo base_url();?>index.php/User_Management/">
+							<i class="menu-icon fa fa-users"></i>
+							<span class="menu-text"> User Management </span>
+						</a>
+
+						<b class="arrow"></b>
+					</li>
+
+					<li class="">
+						<a href="<?php echo base_url();?>index.php/Dashboard/">
+							<i class="menu-icon fa fa-sitemap"></i>
+							<span class="menu-text"> SPARK Explorer </span>
+						</a>
+
+						<b class="arrow"></b>
+					</li>
+
+					<li class="">
 						<a href="#" class="dropdown-toggle">
 							<i class="menu-icon fa fa-database"></i>
 							<span class="menu-text"> Data Management </span>
@@ -284,21 +302,43 @@
 					</li>
 
 					<li class="">
-						<a href="#">
-							<i class="menu-icon fa fa-sitemap"></i>
-							<span class="menu-text"> SPARK Explorer </span>
+						<a href="#" class="dropdown-toggle">
+							<i class="menu-icon fa fa-wrench"></i>
+							<span class="menu-text"> Maintenance </span>
+
+							<b class="arrow fa fa-angle-down"></b>
 						</a>
 
 						<b class="arrow"></b>
-					</li>
 
-					<li class="">
-						<a href="#">
-							<i class="menu-icon fa fa-exclamation-circle"></i>
-							<span class="menu-text"> Issues </span>
-						</a>
+						<ul class="submenu">
+							<li class="">
+								<a href="#">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Issues
+								</a>
 
-						<b class="arrow"></b>
+								<b class="arrow"></b>
+							</li>
+
+							<li class="">
+								<a href="#">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Maintenance History
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+
+							<li class="">
+								<a href="#">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Maintenance Schedule
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+						</ul>
 					</li>
 
 					<li class="">
@@ -311,36 +351,40 @@
 					</li>
 
 					<li class="">
-						<a href="#">
-							<i class="menu-icon fa fa-calendar"></i>
-							<span class="menu-text"> Maintenance History </span>
+						<a href="#" class="dropdown-toggle">
+							<i class="menu-icon fa fa-hdd-o"></i>
+							<span class="menu-text"> Backups </span>
+
+							<b class="arrow fa fa-angle-down"></b>
 						</a>
 
 						<b class="arrow"></b>
-					</li>
 
-					<li class="">
-						<a href="#">
-							<i class="menu-icon fa fa-clock-o"></i>
-							<span class="menu-text"> Scheduling </span>
-						</a>
+						<ul class="submenu">
+							<li class="">
+								<a href="#">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Backup History
+								</a>
 
-						<b class="arrow"></b>
+								<b class="arrow"></b>
+							</li>
+
+							<li class="">
+								<a href="#">
+									<i class="menu-icon fa fa-caret-right"></i>
+									backup Schedule
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+						</ul>
 					</li>
 
 					<li class="">
 						<a href="#">
 							<i class="menu-icon fa fa-list"></i>
-							<span class="menu-text"> To-do List </span>
-						</a>
-
-						<b class="arrow"></b>
-					</li>
-
-					<li class="">
-						<a href="#">
-							<i class="menu-icon fa fa-users"></i>
-							<span class="menu-text"> User Management </span>
+							<span class="menu-text"> To-do Tasks </span>
 						</a>
 
 						<b class="arrow"></b>
