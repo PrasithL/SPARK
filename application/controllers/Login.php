@@ -17,6 +17,7 @@ class Login extends CI_Controller {
 	 */
 	public function index($msg = null)
 	{
+		$this->check_login();
 		$data['msg'] = $msg;
 		$this->load->view('login_view', $data);
 	}
@@ -48,4 +49,17 @@ class Login extends CI_Controller {
 			$this->index($msg);
 		}
 	}
+
+	/**
+		 * Checks if user is logged in by looking at session data.
+		 * if user is already logged in, redirects to the home page
+		 * 
+		 * @return null
+		 */
+		private function check_login()
+		{
+			if ( $this->session->userdata('username')) {
+				redirect('index.php/Dashboard');
+			}
+		}
 }
