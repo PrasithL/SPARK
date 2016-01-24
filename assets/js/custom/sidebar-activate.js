@@ -1,12 +1,72 @@
+// this array has the IDs and the parents of the menu items in the sidebar
 var menu_list = {
-    'dashboard' : {
+    'Dashboard' : {
        'parent' : 'none'
-   },
+    },
 
-    'user_management' : {
+    'User Management' : {
         'parent' : 'none'
-    }
+    },
 
+    'SPARK Explorer' : {
+        'parent' : 'none'
+    },
+
+    'Data Management' : {
+        'parent' : 'none'
+    },
+
+        'Room Details' : {
+           'parent' : 'Data Management'
+        },
+
+        'Computer Details' : {
+           'parent' : 'Data Management'
+        },
+
+        'Software List' : {
+           'parent' : 'Data Management'
+        },
+
+    'Maintenance' : {
+       'parent' : 'none'
+    },
+
+        'Issues' : {
+           'parent' : 'Maintenance'
+        },
+
+        'Maintenance History' : {
+           'parent' : 'Maintenance'
+        },
+
+        'Maintenance Schedule' : {
+           'parent' : 'Maintenance'
+        },
+
+    'Inventory' : {
+       'parent' : 'none'
+    },
+
+    'Backups' : {
+       'parent' : 'none'
+    },
+
+        'Backup History' : {
+           'parent' : 'Backups'
+        },
+
+        'Backup Schedule' : {
+           'parent' : 'Backups'
+        },
+
+    'To-do Tasks' : {
+       'parent' : 'none'
+    },
+
+    'Reports' : {
+       'parent' : 'none'
+    },
  };
 
 // current page name is stored as a JS variable in the page itself
@@ -41,7 +101,5 @@ for(var id in menu_list) if(menu_list.hasOwnProperty(id)) {
   //...
   //print other parts of menu item
 }
-console.log(output);
-console.log(current_page);
 
 //now we also have a list of breadcrumb items to print later
