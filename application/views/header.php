@@ -8,35 +8,36 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 
 		<!-- bootstrap & fontawesome -->
-		<link rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/bootstrap.css" />
-		<link rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/font-awesome.css" />
+		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bootstrap.css" />
+		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/font-awesome.css" />
 
-		<!-- page specific plugin styles -->
+		<script src="<?php echo base_url(); ?>assets/jquery.min.js"></script>
+		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/jquery-ui.custom.css" />
 
 		<!-- text fonts -->
-		<link rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/ace-fonts.css" />
+		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/ace-fonts.css" />
 
 		<!-- ace styles -->
-		<link rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/ace.css" class="ace-main-stylesheet" id="main-ace-style" />
+		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/ace.css" class="ace-main-stylesheet" id="main-ace-style" />
 
 		<!--[if lte IE 9]>
-			<link rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/ace-part2.css" class="ace-main-stylesheet" />
+			<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/ace-part2.css" class="ace-main-stylesheet" />
 		<![endif]-->
 
 		<!--[if lte IE 9]>
-		  <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/ace-ie.css" />
+		  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/ace-ie.css" />
 		<![endif]-->
 
 		<!-- inline styles related to this page -->
 
 		<!-- ace settings handler -->
-		<script src="<?php echo base_url(); ?>/assets/js/ace-extra.js"></script>
+		<script src="<?php echo base_url(); ?>assets/js/ace-extra.js"></script>
 
 		<!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
 
 		<!--[if lte IE 8]>
-		<script src="<?php echo base_url(); ?>/assets/js/html5shiv.js"></script>
-		<script src="<?php echo base_url(); ?>/assets/js/respond.js"></script>
+		<script src="<?php echo base_url(); ?>assets/js/html5shiv.js"></script>
+		<script src="<?php echo base_url(); ?>assets/js/respond.js"></script>
 		<![endif]-->
 	</head>
 
@@ -234,7 +235,7 @@
 				</div> -->
 
 				<ul class="nav nav-list">
-					<li class="">
+					<li class="" id="Dashboard">
 						<a href="<?php echo base_url();?>index.php/Dashboard/">
 							<i class="menu-icon fa fa-tachometer"></i>
 							<span class="menu-text"> Dashboard </span>
@@ -243,7 +244,7 @@
 						<b class="arrow"></b>
 					</li>
 
-					<li class="">
+					<li class="" id="User Management">
 						<a href="<?php echo base_url();?>index.php/User_Management/">
 							<i class="menu-icon fa fa-users"></i>
 							<span class="menu-text"> User Management </span>
@@ -252,7 +253,7 @@
 						<b class="arrow"></b>
 					</li>
 
-					<li class="">
+					<li class="" id="SPARK Explorer">
 						<a href="<?php echo base_url();?>index.php/Dashboard/">
 							<i class="menu-icon fa fa-sitemap"></i>
 							<span class="menu-text"> SPARK Explorer </span>
@@ -261,7 +262,7 @@
 						<b class="arrow"></b>
 					</li>
 
-					<li class="">
+					<li class="" id="Data Management">
 						<a href="#" class="dropdown-toggle">
 							<i class="menu-icon fa fa-database"></i>
 							<span class="menu-text"> Data Management </span>
@@ -272,7 +273,7 @@
 						<b class="arrow"></b>
 
 						<ul class="submenu">
-							<li class="">
+							<li class="" id="Room Details">
 								<a href="#">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Room Details
@@ -281,7 +282,7 @@
 								<b class="arrow"></b>
 							</li>
 
-							<li class="">
+							<li class="" id="Computer Details">
 								<a href="#">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Computer Details
@@ -290,7 +291,7 @@
 								<b class="arrow"></b>
 							</li>
 
-							<li class="">
+							<li class="" id="Software List">
 								<a href="#">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Software List
@@ -301,7 +302,7 @@
 						</ul>
 					</li>
 
-					<li class="">
+					<li class="" id="Maintenance">
 						<a href="#" class="dropdown-toggle">
 							<i class="menu-icon fa fa-wrench"></i>
 							<span class="menu-text"> Maintenance </span>
@@ -312,7 +313,7 @@
 						<b class="arrow"></b>
 
 						<ul class="submenu">
-							<li class="">
+							<li class="" id="Issues">
 								<a href="#">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Issues
@@ -321,7 +322,7 @@
 								<b class="arrow"></b>
 							</li>
 
-							<li class="">
+							<li class="" id="Maintenance History">
 								<a href="#">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Maintenance History
@@ -330,7 +331,7 @@
 								<b class="arrow"></b>
 							</li>
 
-							<li class="">
+							<li class="" id="Maintenance Schedule">
 								<a href="#">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Maintenance Schedule
@@ -341,7 +342,7 @@
 						</ul>
 					</li>
 
-					<li class="">
+					<li class="" id="Inventory">
 						<a href="#">
 							<i class="menu-icon fa fa-briefcase"></i>
 							<span class="menu-text"> Inventory </span>
@@ -350,7 +351,7 @@
 						<b class="arrow"></b>
 					</li>
 
-					<li class="">
+					<li class="" id="Backups">
 						<a href="#" class="dropdown-toggle">
 							<i class="menu-icon fa fa-hdd-o"></i>
 							<span class="menu-text"> Backups </span>
@@ -361,7 +362,7 @@
 						<b class="arrow"></b>
 
 						<ul class="submenu">
-							<li class="">
+							<li class="" id="Backup History">
 								<a href="#">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Backup History
@@ -370,10 +371,10 @@
 								<b class="arrow"></b>
 							</li>
 
-							<li class="">
+							<li class="" id="Backup Schedule">
 								<a href="#">
 									<i class="menu-icon fa fa-caret-right"></i>
-									backup Schedule
+									Backup Schedule
 								</a>
 
 								<b class="arrow"></b>
@@ -381,7 +382,7 @@
 						</ul>
 					</li>
 
-					<li class="">
+					<li class="" id="To-do Tasks">
 						<a href="#">
 							<i class="menu-icon fa fa-list"></i>
 							<span class="menu-text"> To-do Tasks </span>
@@ -390,7 +391,7 @@
 						<b class="arrow"></b>
 					</li>
 
-					<li class="">
+					<li class="" id="Reports">
 						<a href="#">
 							<i class="menu-icon fa fa-line-chart"></i>
 							<span class="menu-text"> Reports </span>
@@ -415,6 +416,6 @@
 			<!-- /section:basics/sidebar -->
 			<div class="main-content">
 				<div class="page-content">
-					<div class="row">
+					<div class="row" style="overflow:hidden;">
 						<div class="col-xs-12">
 							<!-- PAGE CONTENT BEGINS -->
