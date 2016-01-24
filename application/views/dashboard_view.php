@@ -1,5 +1,5 @@
 dashboard
 
 <script type="text/javascript">
-    var current_page = 'dashboard';
+    var current_page = 'Dashboard';
 </script>

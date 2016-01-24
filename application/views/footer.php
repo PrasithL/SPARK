@@ -14,13 +14,12 @@
 			if('ontouchstart' in document.documentElement) document.write("<script src='<?php echo base_url(); ?>assets/js/jquery.mobile.custom.js'>"+"<"+"/script>");
 		</script>
 		<script src="<?php echo base_url(); ?>assets/js/bootstrap.js"></script>
-		<script src="<?php echo base_url(); ?>assets/js/jquery-ui.custom.js"></script>
 
 		<!-- DataTables -->
 		<script src="<?php echo base_url(); ?>assets/plugins/datatables/jquery.dataTables.min.js"></script>
 		<script src="<?php echo base_url(); ?>assets/plugins/datatables/dataTables.bootstrap.min.js"></script>
 
-		<script src="<?php echo base_url(); ?>assets/js/custom/sidebar-activate.js"></script>
+		<script src="<?php echo base_url(); ?>assets/js/custom/sidebar-activate.js"></script>-]
 
 		<!-- ace scripts -->
 		<script src="<?php echo base_url(); ?>assets/js/ace/elements.scroller.js"></script>

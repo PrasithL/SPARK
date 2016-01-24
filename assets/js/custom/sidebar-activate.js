@@ -66,7 +66,7 @@ var menu_list = {
 
     'Reports' : {
        'parent' : 'none'
-    },
+    }
  };
 
 // current page name is stored as a JS variable in the page itself
