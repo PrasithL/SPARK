@@ -113,7 +113,7 @@
 
 									</div><!-- /.widget-body -->
 								</div><!-- /.login-box -->
-								
+
 							</div><!-- /.position-relative -->
 
 						</div>
@@ -150,9 +150,7 @@
 				$(target).addClass('visible');//show target
 			 });
 			});
-			
-			
-			
+
 			//changing background to use white theme
 			$(function() {
 				$('body').attr('class', 'login-layout light-login');

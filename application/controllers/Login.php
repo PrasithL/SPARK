@@ -10,7 +10,7 @@ class Login extends CI_Controller {
 	 * 		http://SPARK/
 	 *	- or -
 	 * 		http://SPARK/index.php/Login/index
-	 *	
+	 *
 	 *
 	 * @param Error message to show if login failed
 	 * @see http://codeigniter.com/user_guide/general/urls.html
@@ -23,7 +23,7 @@ class Login extends CI_Controller {
 	}
 
 	/**
-	 * Data submitted from Login form in login_view.php is captured here and 
+	 * Data submitted from Login form in login_view.php is captured here and
 	 * validate against the DB records to redirect the user according to the result
 	 * 
 	 * @return null
@@ -53,7 +53,7 @@ class Login extends CI_Controller {
 	/**
 		 * Checks if user is logged in by looking at session data.
 		 * if user is already logged in, redirects to the home page
-		 * 
+		 *
 		 * @return null
 		 */
 		private function check_login()
