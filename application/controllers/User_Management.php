@@ -26,6 +26,11 @@
 				$data['result'] = $this->session->flashdata('result');
 			}
 
+			// result of the password change operation
+			if (null !== $this->session->flashdata('change_pass_result')) {
+				$data['change_pass_result'] = $this->session->flashdata('change_pass_result');
+			}
+
 			// loading the page
 			$this->load->view("header");
 			$this->load->view('user_management_view', $data);
@@ -102,8 +107,10 @@
 			$password	= $this->input->post("new_password_show");
 
 			$this->load->model("Users_Model");
-			$this->Users_Model->change_password($emp_id, $password);
+			$change_pass_result = $this->Users_Model->change_password($emp_id, $password);
 
+			// reload the page with result
+			$this->session->set_flashdata('change_pass_result', $change_pass_result);
 			redirect('index.php/User_Management');
 		}
 

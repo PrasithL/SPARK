@@ -93,11 +93,32 @@
 			$this->db->update('users');
 		}
 
+		/**
+		*	Updates the password of a given user
+		*
+		*	@param Employee ID
+		*	@param New Password
+		*
+		*	@return -1 - Update failed
+		*	@return 1  - Successs
+		**/
 		public function change_password($emp_id, $password)
 		{
 			$this->db->set('password', $password);
 			$this->db->where('emp_id', $emp_id);
 			$this->db->update('users');
+
+			// get the password from the DB
+			$result = $this->db->get_where('users', array('emp_id' => $emp_id));
+			$user = $result->result();
+
+			// check the retrieved password against the old one to if it's really changed
+			if ($user->password == $password) {
+				return -1; // nope
+			} else {
+				return 1; // changed
+			}
+
 		}
 	}
 

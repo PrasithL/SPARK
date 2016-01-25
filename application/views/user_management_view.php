@@ -1,4 +1,4 @@
-<div class="page-header">
+	<div class="page-header">
 	<h1>
 		User Management
 	</h1>
@@ -99,6 +99,57 @@
 					</strong>
 
 					User creation successful.
+					<br />
+				</div>
+			</div>
+<?php
+		}
+	}
+?>
+
+
+<?php
+	// Notification for password update ERROR
+	if (isset($change_pass_result)) {
+		if ($change_pass_result == -1) {
+?>
+			<div class="col-md-6 col-md-offset-3">
+				<div class="alert alert-danger">
+					<button type="button" class="close" data-dismiss="alert">
+						<i class="ace-icon fa fa-times"></i>
+					</button>
+
+					<strong>
+						<i class="ace-icon fa fa-times"></i>
+						Error!
+					</strong>
+
+					Password update failed!
+					<br />
+				</div>
+			</div>
+<?php
+		}
+	}
+?>
+
+<?php
+	// Notification for password update SUCCESS
+	if (isset($change_pass_result)) {
+		if ($change_pass_result == 1) {
+?>
+			<div class="col-md-6 col-md-offset-3">
+				<div class="alert alert-success">
+					<button type="button" class="close" data-dismiss="alert">
+						<i class="ace-icon fa fa-times"></i>
+					</button>
+
+					<strong>
+						<i class="ace-icon fa fa-times"></i>
+						Done!
+					</strong>
+
+					Password updated successfully.
 					<br />
 				</div>
 			</div>
