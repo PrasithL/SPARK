@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 	if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
@@ -7,7 +7,7 @@
 	*/
 	class Dashboard extends CI_Controller
 	{
-		
+
 		function __construct()
 		{
 			parent::__construct();
@@ -26,7 +26,7 @@
 		/**
 		 * Checks if user is logged in by looking at session data.
 		 * if user is not logged in, redirects to the login page.
-		 * 
+		 *
 		 * @return null
 		 */
 		private function check_login()
@@ -39,7 +39,7 @@
 
 		/**
 		 *	Destroys the current session and logs the user out.
-		 * 
+		 *
 		 * @return null
 		 */
 		public function logout()
@@ -47,7 +47,7 @@
 			$this->session->sess_destroy();
 			redirect('index.php/Login');
 		}
-		
+
 	}
 
 ?>
