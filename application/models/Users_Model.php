@@ -106,18 +106,20 @@
 		{
 			$this->db->set('password', $password);
 			$this->db->where('emp_id', $emp_id);
-			$this->db->update('users');
+			!$this->db->update('users');
 
 			// get the password from the DB
 			$result = $this->db->get_where('users', array('emp_id' => $emp_id));
-			$user = $result->result();
 
 			// check the retrieved password against the old one to if it's really changed
-			if ($user->password == $password) {
-				return -1; // nope
-			} else {
-				return 1; // changed
+			foreach ($result->result() as $user) {
+				if ($user->password !== $password) {
+					return -1; // nope
+				} else {
+					return 1; // changed
+				}
 			}
+
 
 		}
 	}
