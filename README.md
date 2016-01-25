@@ -1,7 +1,9 @@
 # SPARK
 Hardware Management System
+* Still under development
+* A small project to create a system to manage computer hardware maintenance and inventory in a computer school.
 
-Before running this, 
+Before running this,
 * change the DB username and password in `application/config/database.php`
 * Restore the DB with the DB script
 * Login details.
