@@ -4,62 +4,93 @@
 	</h1>
 </div><!-- /.page-header -->
 
+<!-- User creation form toggle button -->
+<div id="form_toggle" class="col-md-5 col-md-offset-4">
+	<button type="button" class="btn btn-primary btn-sm pull-right" onclick="show_form()">
+		<i class="fa fa-plus"></i>&nbsp; Add User
+	</button>
+</div>
+<div class="space-10"></div>
 
-				<form class="form-horizontal" role="form"  method="POST" action="<?php echo base_url();?>index.php/User_Management/add_user">
-					<!-- Empoyee ID -->
-					<div class="form-group">
-						<label class="col-sm-3 col-sm-offset-2 control-label no-padding-right" for="emp_id"> Employee ID </label>
+<!-- form is wrapped in this widget -->
+<div id="form_widget" class="row">
+	<div class="col-sm-6 col-sm-offset-3 widget-container-col ui-sortable">
+		<!-- #section:custom/widget-box.options.transparent -->
+		<div class="widget-box transparentx ui-sortable-handle">
+			<div class="widget-header">
+				<h4 class="widget-title lighter">Create New User</h4>
 
-						<div class="col-sm-5">
-							<input type="text" id="emp_id" name="emp_id" placeholder="Enter here..." required />
-							<span class="text-danger">*</span>
+				<div class="widget-toolbar no-border">
+					<a href="#" onclick="show_button()">
+						<i class="ace-icon fa fa-times"></i>
+					</a>
+				</div>
+			</div>
+
+			<div class="widget-body">
+				<div class="widget-main padding-6 no-padding-left no-padding-right">
+
+					<form class="form-horizontal" id="form" role="form"  method="POST" action="<?php echo base_url();?>index.php/User_Management/add_user">
+						<!-- Empoyee ID -->
+						<div class="form-group">
+							<label class="col-sm-3 col-sm-offset-1 control-label no-padding-right" for="emp_id"> Employee ID </label>
+
+							<div class="col-sm-5">
+								<input type="text" id="emp_id" name="emp_id" placeholder="Enter here..." required />
+								<span class="text-danger">*</span>
+							</div>
+
 						</div>
 
-					</div>
+						<!-- Username -->
+						<div class="form-group">
+							<label class="col-sm-3 col-sm-offset-1 control-label no-padding-right" for="username"> Username </label>
 
-					<!-- Username -->
-					<div class="form-group">
-						<label class="col-sm-3 col-sm-offset-2 control-label no-padding-right" for="username"> Username </label>
-
-						<div class="col-sm-5">
-							<input type="text" id="username" name="username" placeholder="Enter here..." required />
-							<span class="text-danger">*</span>
+							<div class="col-sm-5">
+								<input type="text" id="username" name="username" placeholder="Enter here..." required />
+								<span class="text-danger">*</span>
+							</div>
 						</div>
-					</div>
 
-					<!-- Password -->
-					<div class="form-group">
-						<label class="col-sm-3 col-sm-offset-2 control-label no-padding-right" for="password"> Password </label>
+						<!-- Password -->
+						<div class="form-group">
+							<label class="col-sm-3 col-sm-offset-1 control-label no-padding-right" for="password"> Password </label>
 
-						<div class="col-sm-5">
-							<input type="password" id="password" name="password" placeholder="****" required/>
-							<span class="text-danger">*</span>
+							<div class="col-sm-5">
+								<input type="password" id="password" name="password" placeholder="****" required/>
+								<span class="text-danger">*</span>
+							</div>
 						</div>
-					</div>
 
-					<!-- Buttons -->
-					<div class="clearfix">
-						<div class="col-md-offset-5 col-md-8">
-							<button class="btn btn-info btn-sm" type="submit">
-								<i class="ace-icon fa fa-check bigger-110"></i>
-								Submit
-							</button>
+						<!-- Buttons -->
+						<div class="clearfix">
+							<div class="col-md-offset-4 col-md-8">
+								<button class="btn btn-info btn-sm" type="submit">
+									<i class="ace-icon fa fa-check bigger-110"></i>
+									Submit
+								</button>
 
-							&nbsp; &nbsp;
-							<button class="btn btn-sm" type="reset">
-								<i class="ace-icon fa fa-undo bigger-110"></i>
-								Reset
-							</button>
+								&nbsp; &nbsp;
+								<button class="btn btn-sm" type="reset">
+									<i class="ace-icon fa fa-undo bigger-110"></i>
+									Reset
+								</button>
+							</div>
 						</div>
-					</div>
 
-				</form>
-
-
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="space-10"></div>
+		<!-- /section:custom/widget-box.options.transparent -->
+	</div>
+</div>
 
 <div class="space-10"></div>
 
 <?php
+	// Notification for user creation ERROR
 	if (isset($result)) {
 		if ($result == 0) {
 ?>
@@ -84,6 +115,7 @@
 ?>
 
 <?php
+	// Notification for user creation SUCCESS
 	if (isset($result)) {
 		if ($result == 1) {
 ?>
@@ -163,7 +195,7 @@
 
 <div class="row">
 	<div class="col-md-6 col-md-offset-3">
-		<table id="table" class="table table-striped table-hover table-bordered ">
+		<table id="table" class="table table-striped table-hover table-borderedx ">
 			<thead>
 				<tr>
 					<th>Employee ID</th>
@@ -243,6 +275,8 @@
 	var current_page = "User Management"
 
 	jQuery(function () {
+		$('#form_widget').hide();
+
 		$('#table').DataTable({
 		"paging": true,
 		"lengthChange": true,
@@ -264,5 +298,15 @@
 
 	function confirm_disable() {
 		return confirm("Disable user?")
+	}
+
+	function show_form() {
+		$('#form_toggle').hide();
+		$('#form_widget').slideDown();
+	}
+
+	function show_button() {
+		$('#form_widget').hide();
+		$('#form_toggle').fadeIn();
 	}
 </script>
