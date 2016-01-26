@@ -1,16 +1,26 @@
-	<div class="page-header">
+<!-- @author Prasith Lakshan -->
+<style media="screen">
+	.col-sm-12 {
+		/* to align the table with the header and footer added by DataTables */
+		padding: 0;
+	}
+</style>
+
+<div class="page-header">
 	<h1>
 		User Management
 	</h1>
 </div><!-- /.page-header -->
 
 <!-- User creation form toggle button -->
-<div id="form_toggle" class="col-md-5 col-md-offset-4">
-	<button type="button" class="btn btn-primary btn-sm pull-right" onclick="show_form()">
-		<i class="fa fa-plus"></i>&nbsp; Add User
-	</button>
+<div class="row">
+	<div id="form_toggle" class="col-md-5 col-md-offset-4">
+		<button type="button" class="btn btn-primary btn-sm pull-right" onclick="show_form()">
+			<i class="fa fa-plus"></i>&nbsp; Add User
+		</button>
+	</div>
 </div>
-<div class="space-10"></div>
+
 
 <!-- form is wrapped in this widget -->
 <div id="form_widget" class="row">
@@ -126,7 +136,7 @@
 					</button>
 
 					<strong>
-						<i class="ace-icon fa fa-times"></i>
+						<i class="ace-icon fa fa-check"></i>
 						Done!
 					</strong>
 
@@ -177,7 +187,7 @@
 					</button>
 
 					<strong>
-						<i class="ace-icon fa fa-times"></i>
+						<i class="ace-icon fa fa-check"></i>
 						Done!
 					</strong>
 
@@ -191,7 +201,7 @@
 ?>
 
 
-<div class="space-20"></div>
+<div class="space-10"></div>
 
 <div class="row">
 	<div class="col-md-6 col-md-offset-3">
