@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 22, 2016 at 10:37 PM
+-- Generation Time: Jan 26, 2016 at 11:44 PM
 -- Server version: 5.5.46-0ubuntu0.14.04.2
 -- PHP Version: 5.5.9-1ubuntu4.14
 
@@ -28,21 +28,23 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `empId` varchar(15) NOT NULL,
+  `emp_id` varchar(15) NOT NULL,
   `username` varchar(20) NOT NULL,
   `password` varchar(50) NOT NULL,
   `status` varchar(10) NOT NULL,
-  `createdDate` date NOT NULL,
-  `removedDate` date DEFAULT NULL,
+  `created_date` date NOT NULL,
+  `removed_date` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `empId`, `username`, `password`, `status`, `createdDate`, `removedDate`) VALUES
-(1, '01', 'admin', 'aaa', 'active', '2016-01-20', NULL);
+INSERT INTO `users` (`id`, `emp_id`, `username`, `password`, `status`, `created_date`, `removed_date`) VALUES
+(1, '01', 'admin', 'aaa', 'active', '2016-01-20', NULL),
+(5, '121', 'ss', 'sdfsdf', 'active', '2016-01-24', NULL),
+(14, '32', 'test', 'cvcvc', 'active', '2016-01-25', NULL);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
