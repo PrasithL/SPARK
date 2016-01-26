@@ -66,7 +66,7 @@
 					<a href="#" class="navbar-brand">
 						<small>
 							<i class="fa fa-cubes"></i>
-							<b>SPARK</b> HMS
+							<b>SPARK</b> Hardware Management System
 						</small>
 					</a>
 
@@ -283,7 +283,7 @@
 							</li>
 
 							<li class="" id="Computer Details">
-								<a href="#">
+								<a href="<?php echo base_url();?>index.php/Computer_Details/">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Computer Details
 								</a>
