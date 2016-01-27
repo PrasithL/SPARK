@@ -1,0 +1,145 @@
+
+<div class="col-sm-offset-1">
+    <button type="button" class="btn btn-primary" onclick="hide_detail_view()">
+        <i class="fa fa-arrow-left"></i>
+        Go back
+    </button>
+</div>
+<?php
+        $view=false;
+        if(isset($computer)) {
+            $view=true;
+            $computer = $computer[0];
+        }
+?>
+<!-- FORM -->
+    <form class="form-horizontal" id="form" role="form"  method="POST" action="<?php echo base_url();?>index.php/Computer_Details/add_computer">
+        <!-- computer ID -->
+        <div class="form-group">
+            <label class="col-sm-3 col-sm-offset-2 control-label no-padding-right" for="computer_id"> Computer ID </label>
+
+            <div class="col-sm-2">
+                <input type="text" class="form-control" id="computer_id" name="computer_id" placeholder="CMP00" value="<?php if($view) echo ($computer->computer_id);  ?>" required />
+            </div>
+            <span class="text-danger">*</span>
+        </div>
+
+        <!-- Location -->
+        <div class="form-group">
+            <label class="col-sm-3 col-sm-offset-2 control-label no-padding-right" for="location"> Room Code </label>
+
+            <div class="col-sm-2">
+                <input type="text" class="form-control" id="location" name="location" placeholder="LAB01" value="<?php if($view) echo ($computer->location);  ?>" required />
+
+            </div>
+            <span class="text-danger">*</span>
+        </div>
+
+        <!-- Processor -->
+        <div class="form-group">
+            <label class="col-sm-3 col-sm-offset-2 control-label no-padding-right" for="processor"> Processor Details </label>
+
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="processor" name="processor" placeholder="intel i3(4010) 2.0Ghz" value="<?php if($view) echo ($computer->processor);  ?>" required />
+
+            </div>
+            <span class="text-danger">*</span>
+        </div>
+
+        <!-- motherboard -->
+        <div class="form-group">
+            <label class="col-sm-3 col-sm-offset-2 control-label no-padding-right" for="motherboard"> Motherboard Details </label>
+
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="motherboard" name="motherboard" placeholder="Asus Z97-A" value="<?php if($view) echo ($computer->motherboard);  ?>" required />
+
+            </div>
+            <span class="text-danger">*</span>
+        </div>
+
+        <!-- RAM -->
+        <div class="form-group">
+            <label class="col-sm-3 col-sm-offset-2 control-label no-padding-right" for="ram"> RAM Details </label>
+
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="ram" name="ram" placeholder="Kingston 4GB 1600MHz DDR3" value="<?php if($view) echo ($computer->ram);  ?>" required />
+
+            </div>
+            <span class="text-danger">*</span>
+        </div>
+
+        <!-- Hard Drive -->
+        <div class="form-group">
+            <label class="col-sm-3 col-sm-offset-2 control-label no-padding-right" for="hdd"> HDD Capacity </label>
+
+            <div class="col-sm-3">
+                <input type="text" class="form-control" id="hdd" name="hdd" placeholder="500GB" value="<?php if($view) echo ($computer->hdd);  ?>" required />
+
+            </div>
+            <span class="text-danger">*</span>
+        </div>
+
+        <!-- Peripherals -->
+        <div class="form-group">
+            <label class="col-sm-3 col-sm-offset-2 control-label no-padding-right" for="peripherals"> Peripherals </label>
+
+            <div class="col-sm-7">
+                <div class="checkbox">
+                    <label><input type="checkbox" name="monitor" value="1" <?php if($view) { if($computer->monitor === '1') echo "checked"; } ?> >Monitor</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" name="mouse" value="1" <?php if($view) { if($computer->mouse === '1') echo "checked"; }  ?> >Mouse</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" name="keyboard" value="1" <?php if($view) { if($computer->keyboard === '1') echo "checked"; }  ?> >Keyboard</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Computer Status-->
+        <div class="form-group">
+            <label class="col-sm-3 col-sm-offset-2 control-label no-padding-right" for="status"> Computer Status </label>
+
+            <div class="col-sm-2">
+                <select class="form-control" id="status" name="status">
+                    <option hidden selected>Select one</option>
+                    <option <?php if($view) { if($computer->status === 'Functional') echo "selected"; }  ?> >Functional</option>
+                    <option <?php if($view) { if($computer->status === 'Requires Repairs') echo "selected"; }  ?> >Requires Repairs</option>
+                    <option <?php if($view) { if($computer->status === 'Out of service') echo "selected"; }  ?> >Out of service</option>
+                </select>
+            </div>
+            <span class="text-danger">*</span>
+        </div>
+
+        <!-- Notes -->
+        <div class="form-group">
+            <label class="col-sm-3 col-sm-offset-2 control-label no-padding-right" for="note"> Notes </label>
+
+            <div class="col-sm-4">
+                <textarea class="form-control" id="note" name="note" placeholder="Add here..." value="<?php if($view) echo ($computer->note);  ?>" ></textarea>
+            </div>
+        </div>
+
+        <!-- Buttons -->
+        <div class="clearfix">
+            <div class="col-md-offset-5 col-md-8">
+                <button class="btn btn-primary " id="submit" type="submit">
+                    <i class="ace-icon fa fa-check bigger-110"></i>
+                    <?php
+                        if ($view) {
+                            echo "Update";
+                        } else {
+                            echo "Save";
+                        }
+                    ?>
+                </button>
+
+                &nbsp; &nbsp;
+                <button class="btn" type="reset">
+                    <i class="ace-icon fa fa-undo bigger-110"></i>
+                    Reset
+                </button>
+            </div>
+        </div>
+
+    </form>
