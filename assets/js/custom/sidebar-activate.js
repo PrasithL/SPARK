@@ -81,7 +81,7 @@ var parent_id;
 while(true) {//you can also use a recursive function instead of a loop
   mark_me['active'] = true;//mark this as "active"
   document.getElementById(current_page).className += ' active';
-  if( open ) document.getElementById(parent_id).className += ' open';//mark this as "open"
+  if( open ) document.getElementById(parent_id).className += ' active';//mark this as "open"
 
   breadcrumbs.push(mark_me);
 

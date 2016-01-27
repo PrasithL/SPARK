@@ -1,40 +1,71 @@
 
+      </div><!-- /.content-wrapper -->
 
-							<!-- PAGE CONTENT ENDS -->
-						</div><!-- /.col -->
-					</div><!-- /.row -->
-				</div><!-- /.page-content -->
-			</div><!-- /.main-content -->
-		</div><!-- /.main-container -->
+      <!-- Main Footer -->
+      <footer class="main-footer">
+        <!-- Default to the left -->
+        <strong>&copy; 2016 </strong> IBIT-03
+      </footer>
 
-		<!-- basic scripts -->
+    </div><!-- ./wrapper -->
+
+    <!-- REQUIRED JS SCRIPTS -->
+
+    <!-- jQuery Calendar -->
+    <script src="<?php echo base_url(); ?>assets2/plugins/datepicker/bootstrap-datepicker.js"></script>
+    <!-- Bootstrap 3.3.5 -->
+    <script src="<?php echo base_url(); ?>assets2/js/bootstrap.min.js"></script>
+
+    <!-- script to open active elements in the sidebar -->
+    <script src="<?php echo base_url(); ?>assets/js/custom/sidebar-activate.js"></script>-]
+
+	<!-- SlimScroll -->
+	<script src="<?php echo base_url(); ?>assets2/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+
+	<!-- Joseph's Myers' md5 implementation link - http://www.myersdaily.org/joseph/javascript/md5-text.html -->
+	<script src="<?php echo base_url(); ?>assets2/js/md5.js"></script>
+	<!-- DataTables -->
+	<script src="<?php echo base_url(); ?>assets2/plugins/datatables/jquery.dataTables.min.js"></script>
+	<script src="<?php echo base_url(); ?>assets2/plugins/datatables/dataTables.bootstrap.min.js"></script>
+	<!-- AdminLTE App -->
+    <script src="<?php echo base_url(); ?>assets2/dist/js/app.min.js"></script>
+
+    <!-- Optionally, you can add Slimscroll and FastClick plugins.
+         Both of these plugins are recommended to enhance the
+         user experience. Slimscroll is required when using the
+         fixed layout. -->
+
+	<script>
+		// onload functions moved to header
 
 
-		<script type="text/javascript">
-			if('ontouchstart' in document.documentElement) document.write("<script src='<?php echo base_url(); ?>assets/js/jquery.mobile.custom.js'>"+"<"+"/script>");
-		</script>
-		<script src="<?php echo base_url(); ?>assets/js/bootstrap.js"></script>
+		function startTime() {
+		    var today = new Date();
+		    var h = today.getHours();
+		    var m = today.getMinutes();
+		    var s = today.getSeconds();
+		    m = checkTime(m);
+		    s = checkTime(s);
+		    document.getElementById('time').innerHTML = " " + h + ":" + m + ":" + s;
+		    var t = setTimeout(startTime, 500);
+		}
 
-		<!-- DataTables -->
-		<script src="<?php echo base_url(); ?>assets/plugins/datatables/jquery.dataTables.min.js"></script>
-		<script src="<?php echo base_url(); ?>assets/plugins/datatables/dataTables.bootstrap.min.js"></script>
+		function checkTime(i) {
+		    if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+		    return i;
+		}
 
-		<script src="<?php echo base_url(); ?>assets/js/custom/sidebar-activate.js"></script>-]
+		$('.dropdown-toggle').click(function() {
 
-		<!-- ace scripts -->
-		<script src="<?php echo base_url(); ?>assets/js/ace/elements.scroller.js"></script>
-		<script src="<?php echo base_url(); ?>assets/js/ace/elements.spinner.js"></script>
-		<script src="<?php echo base_url(); ?>assets/js/ace/elements.aside.js"></script>
-		<script src="<?php echo base_url(); ?>assets/js/ace/ace.js"></script>
-		<script src="<?php echo base_url(); ?>assets/js/ace/ace.ajax-content.js"></script>
-		<script src="<?php echo base_url(); ?>assets/js/ace/ace.touch-drag.js"></script>
-		<script src="<?php echo base_url(); ?>assets/js/ace/ace.sidebar.js"></script>
-		<script src="<?php echo base_url(); ?>assets/js/ace/ace.sidebar-scroll-1.js"></script>
-		<script src="<?php echo base_url(); ?>assets/js/ace/ace.submenu-hover.js"></script>
-		<script src="<?php echo base_url(); ?>assets/js/ace/ace.widget-box.js"></script>
+			$("#datepicker").datepicker({
+				todayHighlight: true,
+				'setDate':new Date(),
+				weekStart: 1 // 0 is sunday
+			});
+		});
 
-		<!-- inline scripts related to this page -->
+		$('.dropdown-menu div').click(function(e) {
+	        e.stopPropagation(); //This will prevent the event from bubbling up and close the dropdown when you type/click on text boxes.
+	    });
 
-		<script type="text/javascript"> ace.vars['base'] = '..'; </script>
-	</body>
-</html>
+	</script>
