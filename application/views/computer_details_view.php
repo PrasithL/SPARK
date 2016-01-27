@@ -105,37 +105,8 @@
 				</div>
 
 				<div class="tab-pane" id="tab_2">
-					<div id="boxes" class="row">
-						<?php
-							foreach ($computers as $computer) {
-						?>
-							<div class="col-lg-3 col-xs-6">
-								<!-- small box -->
-								<div class="small-box bg-gray">
-									<div class="inner">
-										<h3><?=$computer->computer_id ?></h3>
-										<p class="text-muted"><?=$computer->location ?></p>
-										<p class="text-muted"><?=$computer->processor." | ".$computer->motherboard." | ".$computer->ram." | ".$computer->hdd ?></p>
-									</div>
-									<div class="icon">
-										<?php switch ($computer->status) {
-											case 'Functional':
-												echo '<i class="fa fa-laptop text-green"></i>';
-												break;
-											case 'Requires Repairs':
-												echo '<i class="fa fa-laptop text-orange"></i>';
-												break;
-											case 'Out of service':
-												echo '<i class="fa fa-laptop text-muted"></i>';
-												break;
-										} ?>
-									</div>
-									<a onclick="open_details('<?=$computer->computer_id ?>')" href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-							  	</div>
-							</div><!-- ./col -->
-						<?php
-							}
-						?>
+					<div id="box">
+
 					</div>
 
 					<div id="detail_viewer" class="row">
@@ -154,9 +125,28 @@
 
 	$(function () {
 		$('#detail_viewer').hide();
+		get_boxes();
 	});
 
+	// AJAX
+	function get_boxes() {
+		check_session();
+		// Fire off the request to server
+	    request = $.ajax({
+	        url: "<?php echo base_url();?>index.php/Computer_Details/get_boxes",
+	        type: "post",
+	        data: ""
+	    });
+
+		// Callback handler that will be called on success
+	    request.done(function (response, textStatus, jqXHR){
+	        $('#box').html(response);
+	    });
+	}
+
+	// AJAX
 	function open_details(computer_id) {
+		check_session();
 		// Fire off the request to server
 	    request = $.ajax({
 	        url: "<?php echo base_url();?>index.php/Computer_Details/show_details_of_one_computer",
@@ -169,11 +159,59 @@
 	        $('#detail_viewer').html(response);
 			$("#boxes").slideUp();
 			$('#detail_viewer').fadeIn();
+			disable_inputs();
 	    });
 	}
 
 	function hide_detail_view() {
-		$('#detail_viewer').fadeOut();
-		$("#boxes").slideDown();
+		get_boxes();
+		$('#detail_viewer').hide();
+		$("#box").slideDown();
+
+	}
+
+	// AJAX
+	function update_details() {
+		check_session();
+        // Let's select and cache all the fields
+        var inputs = $('#form').find("input, select, button, textarea");
+
+        // Serialize the data in the form
+        var serializedData = $('#form').serialize();
+		console.log(serializedData);
+
+		// Fire off the request to server
+	    request = $.ajax({
+	        url: "<?php echo base_url();?>index.php/Computer_Details/update_computer",
+	        type: "post",
+	        data: serializedData
+	    });
+
+		// Callback handler that will be called on success
+	    request.done(function (response, textStatus, jqXHR){
+	        $('#detail_viewer').html(response);
+			disable_inputs();
+	    });
+
+		return false;
+	}
+
+	function check_session() {
+		// Fire off the request to server
+	    request = $.ajax({
+	        url: "<?php echo base_url();?>index.php/Login/session_check_ajax",
+	        type: "post",
+	        data: ""
+	    });
+
+		// Callback handler that will be called on success
+	    request.done(function (response, textStatus, jqXHR){
+	        if (response == 'no') {
+				console.log("loged out");
+	        	window.location.href = "<?php echo base_url(); ?>index.php/Login";
+	        }
+	    });
+
+		var recheck = setTimeout(check_session, 1000);
 	}
 </script>

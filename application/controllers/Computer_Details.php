@@ -32,27 +32,20 @@ class Computer_Details extends CI_Controller{
      **/
     public function add_computer()
     {
-        // $computer_id    = $this->input->post('computer_id');
-        // $processor      = $this->input->post('processor');
-        // $motherboard    = $this->input->post('motherboard');
-        // $ram            = $this->input->post('ram');
-        // $hdd            = $this->input->post('hdd');
-        // $monitor        = $this->input->post('monitor');
-        // $mouse          = $this->input->post('mouse');
-        // $keyboard       = $this->input->post('keyboard');
-        // $status         = $this->input->post('status');
-        // $note           = $this->input->post('note');
         $data = $this->input->post(); // $data stores the associative array of inputs
 
-        //echo $computer_id." ".$processor." ".$motherboard." ".$ram ." ".$hdd." ".$monitor." ".$mouse." ".$keyboard." ".$status." ".$note;
         $this->load->model("Computer_Details_Model");
-        //$result = $this->Computer_Details_Model->add_computer($computer_id, $processor, $motherboard, $ram , $hdd, $monitor, $mouse, $keyboard, $status, $note);
         $result = $this->Computer_Details_Model->add_computer($data);
 
         $this->session->set_flashdata('result', $result);
         redirect('index.php/Computer_Details');
     }
 
+    /**
+    * An AJAX call comes here and this will return the details of
+    * the computer with the posted id.
+    *
+    */
     public function show_details_of_one_computer()
     {
         $computer_id = $this->input->post('computer_id');
@@ -61,6 +54,35 @@ class Computer_Details extends CI_Controller{
         $data['computer'] = $this->Computer_Details_Model->get_details_of($computer_id);
         $this->load->view('computer_details_form', $data);
 
+    }
+
+    /**
+    * An AJAX call comes here and this will return the details of
+    * the computer with the posted id.
+    *
+    */
+    public function update_computer()
+    {
+        $data = $this->input->post(); // $data stores the associative array of inputs
+
+        $this->load->model("Computer_Details_Model");
+
+        $this->Computer_Details_Model->update_computer($data);
+        $data['computer'] = $this->Computer_Details_Model->get_details_of($data['computer_id']);
+
+        $this->load->view('computer_details_form', $data);
+    }
+
+    /**
+    * An AJAX call comes here and this will return the details of
+    * the computer with the posted id.
+    *
+    */
+    public function get_boxes()
+    {
+        $this->load->model("Computer_Details_Model");
+        $data['computers'] = $this->Computer_Details_Model->get_all_computers();
+        $this->load->view('computer_detail_boxes', $data);
     }
 
     /**

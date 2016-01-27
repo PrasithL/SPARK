@@ -38,6 +38,26 @@ class Computer_Details_Model extends CI_Model{
 
     }
 
+    /**
+    *
+    * update a computer's record in the DB
+    *
+    * @param Associative array with column names as keys and respective values
+    *
+    * @return on success return the record of the updated computer
+    * @return on error returns an error msg
+    **/
+    public function update_computer($data)
+    {
+        $this->db->where('computer_id', $data['computer_id']);
+
+        if ( $this->db->update('computer_details', $data)) {
+            return "1";
+        } else {
+            return "An error occured! Unable to Update record"; // error
+        }
+    }
+
     public function get_all_computers()
     {
         $result = $this->db->get('computer_details');

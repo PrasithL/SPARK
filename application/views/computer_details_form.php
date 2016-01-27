@@ -1,19 +1,29 @@
-
-<div class="col-sm-offset-1">
-    <button type="button" class="btn btn-primary" onclick="hide_detail_view()">
-        <i class="fa fa-arrow-left"></i>
-        Go back
-    </button>
-</div>
 <?php
-        $view=false;
-        if(isset($computer)) {
-            $view=true;
-            $computer = $computer[0];
-        }
+    $view=false;
+    $url = base_url()."index.php/Computer_Details/add_computer";
+
+    // if viewing a computer's details do these
+    if(isset($computer)) {
+        $view=true;
+        $computer = $computer[0];
+        //$url = base_url()."index.php/Computer_Details/update_computer";
+?>
+    <div class="" >
+        <button type="button" class="btn btn-default btn-sm pull-right" onclick="hide_detail_view()" style="margin-right:1em; margin-top:-.5em;">
+            <i class="fa fa-times fa-lg text-red"></i>
+            Close
+        </button>
+
+        <button type="button" class="btn btn-default btn-sm pull-right" onclick="enable_inputs()" style="margin-right:1em; margin-top:-.5em;">
+            <i class="fa fa-pencil fa-lg"></i>
+            Edit
+        </button>
+    </div>
+<?php
+    }
 ?>
 <!-- FORM -->
-    <form class="form-horizontal" id="form" role="form"  method="POST" action="<?php echo base_url();?>index.php/Computer_Details/add_computer">
+    <form class="form-horizontal" <?php if($view) echo 'id="form"'; ?> role="form"  method="POST" <?php if($view) echo "onsubmit='return false;'" ?> action="<?php echo $url; ?>">
         <!-- computer ID -->
         <div class="form-group">
             <label class="col-sm-3 col-sm-offset-2 control-label no-padding-right" for="computer_id"> Computer ID </label>
@@ -123,7 +133,7 @@
         <!-- Buttons -->
         <div class="clearfix">
             <div class="col-md-offset-5 col-md-8">
-                <button class="btn btn-primary " id="submit" type="submit">
+                <button class="btn btn-primary" id="save" type="submit" <?php if($view) echo "onclick='update_details(event)'"; ?> >
                     <i class="ace-icon fa fa-check bigger-110"></i>
                     <?php
                         if ($view) {
@@ -135,7 +145,7 @@
                 </button>
 
                 &nbsp; &nbsp;
-                <button class="btn" type="reset">
+                <button class="btn" id="reset" type="reset">
                     <i class="ace-icon fa fa-undo bigger-110"></i>
                     Reset
                 </button>
@@ -143,3 +153,55 @@
         </div>
 
     </form>
+
+<script type="text/javascript">
+    function disable_inputs() {
+        $(".clearfix").hide();
+
+        //  make the input fields read-only if viewing a loan application
+        var inputs=document.getElementsByTagName('input');
+        for(i=0;i<inputs.length;i++){
+            inputs[i].readOnly=true;
+        }
+
+        // disable the select boxes
+        var inputs=document.getElementsByTagName('select');
+        for(i=0;i<inputs.length;i++){
+            inputs[i].disabled=true;
+        }
+
+        // disable the select boxes
+        var inputs=document.getElementsByTagName('textarea');
+        for(i=0;i<inputs.length;i++){
+            inputs[i].readOnly=true;
+        }
+
+
+
+    }
+
+    function enable_inputs() {
+        $(".clearfix").show();
+
+        //  make the input fields read-only if viewing a loan application
+        var inputs=document.getElementsByTagName('input');
+        for(i=0;i<inputs.length;i++){
+            if(inputs[i].id=="computer_id") continue;
+            inputs[i].readOnly=false;
+        }
+
+        // disable the select boxes
+        var inputs=document.getElementsByTagName('select');
+        for(i=0;i<inputs.length;i++){
+            inputs[i].disabled=false;
+        }
+
+        // disable the select boxes
+        var inputs=document.getElementsByTagName('textarea');
+        for(i=0;i<inputs.length;i++){
+            inputs[i].readOnly=false;
+        }
+    }
+
+
+</script>
