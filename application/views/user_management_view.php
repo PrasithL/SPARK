@@ -1,93 +1,91 @@
-	<div class="page-header">
-	<h1>
+<!-- @author Prasith Lakshan -->
+
+<section class="content-header">
+	<h1 >
+		<i class="fa fa-users text-primary"></i>
 		User Management
 	</h1>
-</div><!-- /.page-header -->
+	<ol class="breadcrumb">
+		<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+		<li class="active">User Management</li>
+	</ol>
+</section><!-- /.page-header -->
 
 <!-- User creation form toggle button -->
-<div id="form_toggle" class="col-md-5 col-md-offset-4">
-	<button type="button" class="btn btn-primary btn-sm pull-right" onclick="show_form()">
-		<i class="fa fa-plus"></i>&nbsp; Add User
-	</button>
-</div>
-<div class="space-10"></div>
-
-<!-- form is wrapped in this widget -->
-<div id="form_widget" class="row">
-	<div class="col-sm-6 col-sm-offset-3 widget-container-col ui-sortable">
-		<!-- #section:custom/widget-box.options.transparent -->
-		<div class="widget-box transparentx ui-sortable-handle">
-			<div class="widget-header">
-				<h4 class="widget-title lighter">Create New User</h4>
-
-				<div class="widget-toolbar no-border">
-					<a href="#" onclick="show_button()">
-						<i class="ace-icon fa fa-times"></i>
-					</a>
-				</div>
-			</div>
-
-			<div class="widget-body">
-				<div class="widget-main padding-6 no-padding-left no-padding-right">
-
-					<form class="form-horizontal" id="form" role="form"  method="POST" action="<?php echo base_url();?>index.php/User_Management/add_user">
-						<!-- Empoyee ID -->
-						<div class="form-group">
-							<label class="col-sm-3 col-sm-offset-1 control-label no-padding-right" for="emp_id"> Employee ID </label>
-
-							<div class="col-sm-5">
-								<input type="text" id="emp_id" name="emp_id" placeholder="Enter here..." required />
-								<span class="text-danger">*</span>
-							</div>
-
-						</div>
-
-						<!-- Username -->
-						<div class="form-group">
-							<label class="col-sm-3 col-sm-offset-1 control-label no-padding-right" for="username"> Username </label>
-
-							<div class="col-sm-5">
-								<input type="text" id="username" name="username" placeholder="Enter here..." required />
-								<span class="text-danger">*</span>
-							</div>
-						</div>
-
-						<!-- Password -->
-						<div class="form-group">
-							<label class="col-sm-3 col-sm-offset-1 control-label no-padding-right" for="password"> Password </label>
-
-							<div class="col-sm-5">
-								<input type="password" id="password" name="password" placeholder="****" required/>
-								<span class="text-danger">*</span>
-							</div>
-						</div>
-
-						<!-- Buttons -->
-						<div class="clearfix">
-							<div class="col-md-offset-4 col-md-8">
-								<button class="btn btn-info btn-sm" type="submit">
-									<i class="ace-icon fa fa-check bigger-110"></i>
-									Submit
-								</button>
-
-								&nbsp; &nbsp;
-								<button class="btn btn-sm" type="reset">
-									<i class="ace-icon fa fa-undo bigger-110"></i>
-									Reset
-								</button>
-							</div>
-						</div>
-
-					</form>
-				</div>
-			</div>
-		</div>
-		<div class="space-10"></div>
-		<!-- /section:custom/widget-box.options.transparent -->
+<div class="row">
+	<div id="form_toggle" class="col-md-5 col-md-offset-4">
+		<button type="button" class="btn btn-primary btn-sm pull-right" onclick="show_form()">
+			<i class="fa fa-plus"></i>&nbsp; Add User
+		</button>
 	</div>
 </div>
 
-<div class="space-10"></div>
+
+<!-- form is wrapped in this widget -->
+<div class="col-sm-6 col-sm-offset-3">
+	<div id="form_widget" class="box box-default">
+		<div class="box-header with-border">
+			<h3 class="box-title">Create User</h3>
+			<div class="box-tools pull-right">
+				<button class="btn btn-box-tool" onclick="show_button()"><i class="fa fa-times"></i></button>
+			</div>
+		</div><!-- /.box-header -->
+		<div class="box-body">
+			<form class="form-horizontal" id="form" role="form"  method="POST" action="<?php echo base_url();?>index.php/User_Management/add_user">
+				<!-- Empoyee ID -->
+				<div class="form-group">
+					<label class="col-sm-3 col-sm-offset-1 control-label no-padding-right" for="emp_id"> Employee ID </label>
+
+					<div class="col-sm-5">
+						<input type="text" id="emp_id" name="emp_id" placeholder="Enter here..." required />
+						<span class="text-danger">*</span>
+					</div>
+
+				</div>
+
+				<!-- Username -->
+				<div class="form-group">
+					<label class="col-sm-3 col-sm-offset-1 control-label no-padding-right" for="username"> Username </label>
+
+					<div class="col-sm-5">
+						<input type="text" id="username" name="username" placeholder="Enter here..." required />
+						<span class="text-danger">*</span>
+					</div>
+				</div>
+
+				<!-- Password -->
+				<div class="form-group">
+					<label class="col-sm-3 col-sm-offset-1 control-label no-padding-right" for="password"> Password </label>
+
+					<div class="col-sm-5">
+						<input type="password" id="password" name="password" placeholder="****" required/>
+						<span class="text-danger">*</span>
+					</div>
+				</div>
+
+				<!-- Buttons -->
+				<div class="clearfix">
+					<div class="col-md-offset-4 col-md-8">
+						<button class="btn btn-info btn-sm" type="submit">
+							<i class="ace-icon fa fa-check bigger-110"></i>
+							Submit
+						</button>
+
+						&nbsp; &nbsp;
+						<button class="btn btn-sm" type="reset">
+							<i class="ace-icon fa fa-undo bigger-110"></i>
+							Reset
+						</button>
+					</div>
+				</div>
+
+			</form>
+
+		</div>
+	</div>
+</div>
+
+<br>
 
 <?php
 	// Notification for user creation ERROR
@@ -126,7 +124,7 @@
 					</button>
 
 					<strong>
-						<i class="ace-icon fa fa-times"></i>
+						<i class="ace-icon fa fa-check"></i>
 						Done!
 					</strong>
 
@@ -177,7 +175,7 @@
 					</button>
 
 					<strong>
-						<i class="ace-icon fa fa-times"></i>
+						<i class="ace-icon fa fa-check"></i>
 						Done!
 					</strong>
 
@@ -191,53 +189,58 @@
 ?>
 
 
-<div class="space-20"></div>
+<div class="space-10"></div>
 
 <div class="row">
-	<div class="col-md-6 col-md-offset-3">
-		<table id="table" class="table table-striped table-hover table-borderedx ">
-			<thead>
-				<tr>
-					<th>Employee ID</th>
-					<th>username</th>
-					<th>Created Date</th>
-					<th>Status</th>
-					<th>Actions</th>
-				</tr>
-			</thead>
+	<div id="table_box" class="col-md-6 col-md-offset-3">
+		<div class="box box-primary">
+			<div class="box-body">
+				<table id="table" class="table table-striped table-hover table-borderedx ">
+					<thead>
+						<tr>
+							<th>Employee ID</th>
+							<th>username</th>
+							<th>Created Date</th>
+							<th>Status</th>
+							<th>Actions</th>
+						</tr>
+					</thead>
 
-			<tbody>
-				<?php foreach ($users as $user) { ?>
-					<tr class="<?php if($user->status == 'disabled') echo 'text-muted'; ?>">
-						<td><?=$user->emp_id; ?></td>
-						<td><?=$user->username; ?></td>
-						<td><?=$user->created_date; ?></td>
-						<td><?=$user->status; ?></td>
-						<td>
-							<button type="button" class="btn btn-link btn-sm " onclick="changePasswordModel(<?php echo "'".$user->username."','".$user->emp_id."'"; ?>)" data-rel="tooltip" title="Change Password" <?php if($user->status == 'disabled') echo 'disabled'; ?>>
-								<i class="fa fa-pencil"></i>
-							</button>
-							<?php if($user->status == 'active') { ?>
-								<form onsubmit="return confirm_disable()" action="<?php echo base_url();?>index.php/User_Management/disable_user" method="post" style="display:inline">
-								<input type="hidden" name="emp_id" value=<?=$user->emp_id; ?>>
-								<button type="submit" class="btn btn-link btn-sm" data-rel="tooltip" title="Disable user">
-									<i class="fa fa-minus-square text-danger"></i>
-								</button>
-							<?php } else { ?>
-								<form action="<?php echo base_url();?>index.php/User_Management/enable_user" method="post" style="display:inline">
-								<input type="hidden" name="emp_id" value=<?=$user->emp_id; ?>>
-								<button type="submit" class="btn btn-link btn-sm" data-rel="tooltip" title="Re-activate user">
-									<i class="fa fa-plus-square text-success"></i>
-								</button>
-							<?php } ?>
+					<tbody>
+						<?php foreach ($users as $user) { ?>
+							<tr class="<?php if($user->status == 'disabled') echo 'text-muted'; ?>">
+								<td><?=$user->emp_id; ?></td>
+								<td><?=$user->username; ?></td>
+								<td><?=$user->created_date; ?></td>
+								<td><?=$user->status; ?></td>
+								<td>
+									<button type="button" class="btn btn-link btn-sm " onclick="changePasswordModel(<?php echo "'".$user->username."','".$user->emp_id."'"; ?>)" data-rel="tooltip" title="Change Password" <?php if($user->status == 'disabled') echo 'disabled'; ?>>
+										<i class="fa fa-pencil"></i>
+									</button>
+									<?php if($user->status == 'active') { ?>
+										<form onsubmit="return confirm_disable()" action="<?php echo base_url();?>index.php/User_Management/disable_user" method="post" style="display:inline">
+										<input type="hidden" name="emp_id" value=<?=$user->emp_id; ?>>
+										<button type="submit" class="btn btn-link btn-sm" data-rel="tooltip" title="Disable user">
+											<i class="fa fa-minus-square text-danger"></i>
+										</button>
+									<?php } else { ?>
+										<form action="<?php echo base_url();?>index.php/User_Management/enable_user" method="post" style="display:inline">
+										<input type="hidden" name="emp_id" value=<?=$user->emp_id; ?>>
+										<button type="submit" class="btn btn-link btn-sm" data-rel="tooltip" title="Re-activate user">
+											<i class="fa fa-plus-square text-success"></i>
+										</button>
+									<?php } ?>
 
-							</form>
+									</form>
 
-						</td>
-					</tr>
-				<?php } ?>
-			</tbody>
-		</table>
+								</td>
+							</tr>
+						<?php } ?>
+					</tbody>
+				</table>
+
+			</div>
+		</div>
 	</div>
 </div>
 
@@ -274,7 +277,7 @@
 <script type="text/javascript">
 	var current_page = "User Management"
 
-	jQuery(function () {
+	$(function () {
 		$('#form_widget').hide();
 
 		$('#table').DataTable({
@@ -301,12 +304,14 @@
 	}
 
 	function show_form() {
+		$('#table_box').hide();
 		$('#form_toggle').hide();
 		$('#form_widget').slideDown();
 	}
 
 	function show_button() {
-		$('#form_widget').hide();
+		$('#form_widget').slideUp();
 		$('#form_toggle').fadeIn();
+		$('#table_box').fadeIn();
 	}
 </script>
