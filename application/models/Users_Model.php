@@ -105,7 +105,7 @@
 		{
 			$this->db->set('password', $password);
 			$this->db->where('emp_id', $emp_id);
-			!$this->db->update('users');
+			$this->db->update('users');
 
 			// get the password from the DB
 			$result = $this->db->get_where('users', array('emp_id' => $emp_id));

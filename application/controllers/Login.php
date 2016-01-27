@@ -25,7 +25,7 @@ class Login extends CI_Controller {
 	/**
 	 * Data submitted from Login form in login_view.php is captured here and
 	 * validate against the DB records to redirect the user according to the result
-	 * 
+	 *
 	 * @return null
 	 */
 	public function validate_login()
@@ -47,6 +47,15 @@ class Login extends CI_Controller {
 		} else {
 			$msg = 'Invalid username and/or password.';
 			$this->index($msg);
+		}
+	}
+
+	public function session_check_ajax()
+	{
+		if ( !$this->session->userdata('username')) {
+			echo "no";
+		} else {
+			echo "ok";
 		}
 	}
 
