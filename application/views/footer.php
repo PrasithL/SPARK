@@ -17,7 +17,7 @@
     <script src="<?php echo base_url(); ?>assets2/js/bootstrap.min.js"></script>
 
     <!-- script to open active elements in the sidebar -->
-    <script src="<?php echo base_url(); ?>assets/js/custom/sidebar-activate.js"></script>-]
+    <script src="<?php echo base_url(); ?>assets2/js/custom/sidebar-activate.js"></script>-]
 
 	<!-- SlimScroll -->
 	<script src="<?php echo base_url(); ?>assets2/plugins/slimScroll/jquery.slimscroll.min.js"></script>
