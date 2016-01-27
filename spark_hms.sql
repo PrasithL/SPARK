@@ -80,7 +80,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `emp_id`, `username`, `password`, `status`, `created_date`, `removed_date`) VALUES
-(1, '01', 'admin', 'sdsds', 'active', '2016-01-20', NULL),
+(1, '01', 'admin', 'aaa', 'active', '2016-01-20', NULL),
 (5, '121', 'ss', 'sdfsdf', 'active', '2016-01-24', NULL),
 (14, '32', 'test', 'sdfsd', 'active', '2016-01-25', NULL),
 (15, '11', 'qsa', 'asas', 'active', '2016-01-27', NULL);
