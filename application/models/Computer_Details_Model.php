@@ -32,6 +32,9 @@ class Computer_Details_Model extends CI_Model{
             if( !$this->db->insert('computer_details', $data)) {
                 return -1; // error
             }
+
+            // enter record to location_history
+            $this->add_location_history_record($data);
         }
 
         return 1; // success
@@ -50,12 +53,30 @@ class Computer_Details_Model extends CI_Model{
     public function update_computer($data)
     {
         $this->db->where('computer_id', $data['computer_id']);
-
+        $result = $this->db->get('computer_details');
+        $this->db->where('computer_id', $data['computer_id']);
         if ( $this->db->update('computer_details', $data)) {
+            foreach ($result->result() as $row)
+            {
+                    if($row->location != $data['location']) {
+                        // enter record to location_history
+                        $this->add_location_history_record($data);
+                    }
+            }
             return "1";
         } else {
             return "An error occured! Unable to Update record"; // error
         }
+    }
+
+    public function add_location_history_record($data)
+    {
+        $location_data['computer_id']   = $data["computer_id"];
+        $location_data['location']      = $data["location"];
+        $location_data["created_by"]    = $this->session->userdata('username');
+        $location_data['created_date']  = date("Y-m-d");
+
+        $this->db->insert('location_history', $location_data);
     }
 
     public function get_all_computers()
@@ -67,6 +88,12 @@ class Computer_Details_Model extends CI_Model{
     public function get_details_of($computer_id)
     {
         $result = $this->db->get_where("computer_details", array('computer_id' => $computer_id));
+        return $result->result();
+    }
+
+    public function get_location_history_of($computer_id)
+    {
+        $result = $this->db->get_where("location_history", array('computer_id' => $computer_id));
         return $result->result();
     }
 

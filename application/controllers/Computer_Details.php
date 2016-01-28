@@ -46,12 +46,15 @@ class Computer_Details extends CI_Controller{
     * the computer with the posted id.
     *
     */
-    public function show_details_of_one_computer()
+    public function show_details_of_one_computer($computer_id = null)
     {
-        $computer_id = $this->input->post('computer_id');
+        if ($computer_id == null) {
+            $computer_id = $this->input->post('computer_id');
+        }
 
         $this->load->model("Computer_Details_Model");
         $data['computer'] = $this->Computer_Details_Model->get_details_of($computer_id);
+        $data['history'] = $this->Computer_Details_Model->get_location_history_of($computer_id);
         $this->load->view('computer_details_form', $data);
 
     }
@@ -66,11 +69,9 @@ class Computer_Details extends CI_Controller{
         $data = $this->input->post(); // $data stores the associative array of inputs
 
         $this->load->model("Computer_Details_Model");
-
         $this->Computer_Details_Model->update_computer($data);
-        $data['computer'] = $this->Computer_Details_Model->get_details_of($data['computer_id']);
 
-        $this->load->view('computer_details_form', $data);
+        $this->show_details_of_one_computer($data['computer_id']); // reload the view
     }
 
     /**
