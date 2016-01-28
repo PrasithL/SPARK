@@ -2,7 +2,7 @@
       </div><!-- /.content-wrapper -->
 
       <!-- Main Footer -->
-      <footer class="main-footer">
+      <footer class="main-footer" style="height: 3vh;">
         <!-- Default to the left -->
         <strong>&copy; 2016 </strong> IBIT-03
       </footer>
