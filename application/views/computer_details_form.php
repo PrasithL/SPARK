@@ -126,7 +126,7 @@
             <label class="col-sm-3 col-sm-offset-2 control-label no-padding-right" for="note"> Notes </label>
 
             <div class="col-sm-4">
-                <textarea class="form-control" id="note" name="note" placeholder="Add here..." value="<?php if($view) echo ($computer->note);  ?>" ></textarea>
+                <textarea class="form-control" id="note" name="note" placeholder="Add here..."  ><?php if($view) echo ($computer->note);  ?></textarea>
             </div>
         </div>
 
