@@ -79,8 +79,17 @@ class Computer_Details_Model extends CI_Model{
         $this->db->insert('location_history', $location_data);
     }
 
-    public function get_all_computers()
+    /**
+    *   Retrieves all records from the computer_details table
+    *   if called with a parameter selects that columns and returns it
+    *
+    *   @param column names to select from the table. comma (,) sepereated list
+    */
+    public function get_all_computers($cols = null)
     {
+        if ($cols != null) {
+            $this->db->select($cols);
+        }
         $result = $this->db->get('computer_details');
         return $result->result();
     }

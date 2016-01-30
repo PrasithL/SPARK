@@ -106,11 +106,11 @@
 
 				<div class="tab-pane" id="tab_2">
 					<div id="box">
-
+						<!-- Computer detail boxes loads here -->
 					</div>
 
 					<div id="detail_viewer" class="row">
-						<?php //include 'computer_details_form.php'; ?>
+						<!-- Computer detail page loads here and is shown via JS -->
 					</div>
 				</div>
 			</div>
