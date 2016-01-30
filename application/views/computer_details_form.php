@@ -44,7 +44,7 @@
             <label class="col-sm-3 col-sm-offset-2 control-label no-padding-right" for="location"> Room Code </label>
 
             <div class="col-sm-2">
-                <select class="form-control" id="location" name="location">
+                <select class="form-control" id="location" name="location" required>
                     <option hidden >Select one</option>
                     <?php
                         foreach ($rooms as $room) {
@@ -125,7 +125,7 @@
             <label class="col-sm-3 col-sm-offset-2 control-label no-padding-right" for="status"> Computer Status </label>
 
             <div class="col-sm-2">
-                <select class="form-control" id="status" name="status">
+                <select class="form-control" id="status" name="status" required>
                     <option hidden selected>Select one</option>
                     <option <?php if($view) { if($computer->status === 'Functional') echo "selected"; }  ?> >Functional</option>
                     <option <?php if($view) { if($computer->status === 'Requires Repairs') echo "selected"; }  ?> >Requires Repairs</option>
