@@ -145,7 +145,6 @@
 
 	// AJAX
 	function open_details(computer_id) {
-		check_session();
 		// Fire off the request to server
 	    request = $.ajax({
 	        url: "<?php echo base_url();?>index.php/Computer_Details/show_details_of_one_computer",
@@ -195,22 +194,4 @@
 		return false;
 	}
 
-	function check_session() {
-		// Fire off the request to server
-	    request = $.ajax({
-	        url: "<?php echo base_url();?>index.php/Login/session_check_ajax",
-	        type: "post",
-	        data: ""
-	    });
-
-		// Callback handler that will be called on success
-	    request.done(function (response, textStatus, jqXHR){
-	        if (response == 'no') {
-				console.log("loged out");
-	        	window.location.href = "<?php echo base_url(); ?>index.php/Login";
-	        }
-	    });
-
-		var recheck = setTimeout(check_session, 1000);
-	}
 </script>
