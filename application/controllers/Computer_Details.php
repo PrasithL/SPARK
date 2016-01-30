@@ -17,8 +17,9 @@ class Computer_Details extends CI_Controller{
         }
 
         $this->load->model("Computer_Details_Model");
+        $this->load->model("Room_Details_Model");
         $data['computers'] = $this->Computer_Details_Model->get_all_computers();
-        $data['rooms'] = $this->Computer_Details_Model->get_all_active_rooms();
+        $data['rooms'] = $this->Room_Details_Model->get_all_active_rooms();
 
         $this->load->view('header');
         $this->load->view('computer_details_view', $data);
@@ -57,7 +58,7 @@ class Computer_Details extends CI_Controller{
         $data['computer'] = $this->Computer_Details_Model->get_details_of($computer_id);
         $data['history'] = $this->Computer_Details_Model->get_location_history_of($computer_id);
         $data['rooms'] = $this->Computer_Details_Model->get_all_active_rooms();
-        
+
         $this->load->view('computer_details_form', $data);
 
     }
