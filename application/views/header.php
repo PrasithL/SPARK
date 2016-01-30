@@ -228,7 +228,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                     <ul class="treeview-menu">
                         <li class="" id="Room Details">
-                            <a href="#">
+                            <a href="<?php echo base_url();?>index.php/Room_Details/">
                                 <i class="menu-icon fa fa-caret-right"></i>
                                 Room Details
                             </a>
