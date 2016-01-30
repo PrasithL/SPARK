@@ -85,6 +85,12 @@ class Computer_Details_Model extends CI_Model{
         return $result->result();
     }
 
+    public function get_all_active_rooms()
+    {
+        $result = $this->db->get_where("room_details", array('status' => 'active'));
+        return $result->result();
+    }
+
     public function get_details_of($computer_id)
     {
         $result = $this->db->get_where("computer_details", array('computer_id' => $computer_id));

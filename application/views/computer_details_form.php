@@ -44,8 +44,17 @@
             <label class="col-sm-3 col-sm-offset-2 control-label no-padding-right" for="location"> Room Code </label>
 
             <div class="col-sm-2">
-                <input type="text" class="form-control" id="location" name="location" placeholder="LAB01" value="<?php if($view) echo ($computer->location);  ?>" required />
+                <select class="form-control" id="location" name="location">
+                    <option hidden >Select one</option>
+                    <?php
+                        foreach ($rooms as $room) {
+                    ?>
+                        <option value="<?=$room->room_code ?>" <?php if($view && ($computer->location == $room->room_code)) { echo "selected"; }  ?> ><?=$room->room_code ?></option>
+                    <?php
+                        }
+                    ?>
 
+                </select>
             </div>
             <span class="text-danger">*</span>
         </div>
@@ -160,47 +169,54 @@
     </form>
 
     <!-- location history modal -->
-    <div class="modal fade modal-default" >
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title "><i class="fa fa-history text-primary"></i> <?php if($view) echo ($computer->computer_id);  ?> - Location History </h4>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <table class="table table-hover table-condensed">
-                                <thead>
-                                    <tr>
-                                        <th>Date</th>
-                                        <th>Location</th>
-                                        <th>Updated By</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                        foreach ($history as $row) {
-                                    ?>
+<?php
+    if (isset($history)) {
+?>
+        <div class="modal fade modal-default" >
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title "><i class="fa fa-history text-primary"></i> <?php if($view) echo ($computer->computer_id);  ?> - Location History </h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <table class="table table-hover table-condensed">
+                                    <thead>
                                         <tr>
-                                            <td><?=$row->created_date ?></td>
-                                            <td><?=$row->location ?></td>
-                                            <td><?=$row->created_by ?></td>
+                                            <th>Date</th>
+                                            <th>Location</th>
+                                            <th>Updated By</th>
                                         </tr>
-                                    <?php
-                                        }
-                                    ?>
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                            foreach ($history as $row) {
+                                        ?>
+                                            <tr>
+                                                <td><?=$row->created_date ?></td>
+                                                <td><?=$row->location ?></td>
+                                                <td><?=$row->created_by ?></td>
+                                            </tr>
+                                        <?php
+                                            }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-flat btn-default " onclick="hide_location_history_modal()">Close</button>
-                </div>
-            </div> <!-- /.modal-content -->
-        </div> <!-- /.modal-dialog -->
-    </div> <!-- /.modal -->
-<?php var_dump($history); ?>
+                    <div class="modal-footer">
+                        <button class="btn btn-flat btn-default " onclick="hide_location_history_modal()">Close</button>
+                    </div>
+                </div> <!-- /.modal-content -->
+            </div> <!-- /.modal-dialog -->
+        </div> <!-- /.modal -->
+
+<?php
+    }
+?>
+
 <script type="text/javascript">
 
     $(function() {
