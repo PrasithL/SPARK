@@ -2,7 +2,7 @@
 
 <section class="content-header">
 	<h1 >
-		<i class="fa fa-users text-primary"></i>
+		<i class="fa fa-building-o text-primary"></i>
 		Room Details
 	</h1>
 </section><!-- /.page-header -->
