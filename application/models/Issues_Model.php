@@ -45,6 +45,11 @@ class Issues_Model extends CI_Model{
             $issue_history["computer_code"] = $computer;
             $issue_history["status"] = "open";
             $this->db->insert('issue_history', $issue_history);
+
+            // update computer_details table to reflect the computers current status
+            $this->db->set('status', "Requires Repairs");
+            $this->db->where('computer_id', $computer);
+            $this->db->update('computer_details');
         }
 
 

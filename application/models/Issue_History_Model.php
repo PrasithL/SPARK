@@ -21,9 +21,9 @@ class Issue_History_Model extends CI_Model{
     }
 
     /**
-     * undocumented function summary
      *
-     * Undocumented function long description
+     * Closes issues records by marking them as resolved
+     * and also updates computer_details table to reflect the computers status
      *
      * @param type var Description
      **/
@@ -34,6 +34,16 @@ class Issue_History_Model extends CI_Model{
         $this->db->set('closed_by', $this->session->userdata('username'));
         $this->db->where('issue_id', $input['issue_id']);
         $this->db->update('issue_history');
+
+        $result = $this->db->get_where("issue_history", array('issue_id' => $input['issue_id']));
+        foreach ($result->result() as $record) {
+            $result2 = $this->db->get_where("issue_history", array('computer_code' => $record->computer_code, 'status' => 'open'));
+            if ($result2->num_rows() == 0) {
+                $this->db->set('status', "Functional");
+                $this->db->where('computer_id', $record->computer_code);
+                $this->db->update('computer_details');
+            }
+        }
     }
 
 }
