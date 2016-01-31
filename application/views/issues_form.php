@@ -1,6 +1,7 @@
+
 <?php
     $view=false;
-    $url = base_url()."index.php/Computer_Details/add_computer";
+    $url = base_url()."index.php/Issues/add_issue";
 
     // if viewing a computer's details do these
     if(isset($computer)) {
@@ -31,117 +32,67 @@
     <form class="form-horizontal" <?php if($view) echo 'id="form"'; ?> role="form"  method="POST" <?php if($view) echo "onsubmit='return false;'" ?> action="<?php echo $url; ?>">
         <!-- computer ID -->
         <div class="form-group">
-            <label class="col-sm-3 col-sm-offset-2 control-label no-padding-right" for="computer_id"> Computer ID </label>
+            <label class="col-sm-3 col-sm-offset-2 control-label no-padding-right" for="computer_id"> Computer(s) </label>
 
-            <div class="col-sm-2">
-                <input type="text" class="form-control" id="computer_id" name="computer_id" placeholder="CMP00" value="<?php if($view) echo ($computer->computer_id);  ?>" required />
-            </div>
-            <span class="text-danger">*</span>
-        </div>
-
-        <!-- Location -->
-        <div class="form-group">
-            <label class="col-sm-3 col-sm-offset-2 control-label no-padding-right" for="location"> Room Code </label>
-
-            <div class="col-sm-2">
-                <select class="form-control" id="location" name="location" required>
-                    <option hidden >Select one</option>
+            <div class="col-sm-4">
+                <select class="form-control select2" name="computers[]" multiple="multiple" data-placeholder="Select one or more" style="width: 100%;">
                     <?php
-                        foreach ($rooms as $room) {
+                        foreach ($computers as $computer) {
                     ?>
-                        <option value="<?=$room->room_code ?>" <?php if($view && ($computer->location == $room->room_code)) { echo "selected"; }  ?> ><?=$room->room_code ?></option>
+                        <option value="<?=$computer->computer_id ?>" <?php if($view && ($computer->location == $room->room_code)) { echo "selected"; }  ?> ><?=$computer->computer_id ?></option>
                     <?php
                         }
                     ?>
+                </select>
 
+            </div>
+            <span class="text-danger">*</span>
+        </div>
+
+        <!-- Issue -->
+        <div class="form-group">
+            <label class="col-sm-3 col-sm-offset-2 control-label no-padding-right" for="issue"> Issue </label>
+
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="issue" name="issue" placeholder="..." value="<?php if($view) echo ($computer->processor);  ?>" required />
+
+            </div>
+            <span class="text-danger">*</span>
+        </div>
+
+        <!-- Description -->
+        <div class="form-group">
+            <label class="col-sm-3 col-sm-offset-2 control-label no-padding-right" for="description"> Description </label>
+
+            <div class="col-sm-4">
+                    <textarea class="form-control" id="description" name="description" placeholder="A short description of the issue"  ><?php if($view) echo ($computer->note);  ?></textarea>
+            </div>
+            <span class="text-danger"></span>
+        </div>
+
+        <!-- Severity -->
+        <div class="form-group">
+            <label class="col-sm-3 col-sm-offset-2 control-label no-padding-right" for="severity"> Severity </label>
+
+            <div class="col-sm-4">
+                <select class="form-control" name="severity" id="severity" requiredResolved by>
+                    <option hidden>select one</option>
+                    <option class="" value="Low"></i> Low</option>
+                    <option class="text-warning" value="Medium">Medium</option>
+                    <option class="text-danger" value="High">High</option>
                 </select>
             </div>
             <span class="text-danger">*</span>
         </div>
 
-        <!-- Processor -->
+        <!-- Opened by -->
         <div class="form-group">
-            <label class="col-sm-3 col-sm-offset-2 control-label no-padding-right" for="processor"> Processor Details </label>
-
-            <div class="col-sm-4">
-                <input type="text" class="form-control" id="processor" name="processor" placeholder="intel i3(4010) 2.0Ghz" value="<?php if($view) echo ($computer->processor);  ?>" required />
-
-            </div>
-            <span class="text-danger">*</span>
-        </div>
-
-        <!-- motherboard -->
-        <div class="form-group">
-            <label class="col-sm-3 col-sm-offset-2 control-label no-padding-right" for="motherboard"> Motherboard Details </label>
-
-            <div class="col-sm-4">
-                <input type="text" class="form-control" id="motherboard" name="motherboard" placeholder="Asus Z97-A" value="<?php if($view) echo ($computer->motherboard);  ?>" required />
-
-            </div>
-            <span class="text-danger">*</span>
-        </div>
-
-        <!-- RAM -->
-        <div class="form-group">
-            <label class="col-sm-3 col-sm-offset-2 control-label no-padding-right" for="ram"> RAM Details </label>
-
-            <div class="col-sm-4">
-                <input type="text" class="form-control" id="ram" name="ram" placeholder="Kingston 4GB 1600MHz DDR3" value="<?php if($view) echo ($computer->ram);  ?>" required />
-
-            </div>
-            <span class="text-danger">*</span>
-        </div>
-
-        <!-- Hard Drive -->
-        <div class="form-group">
-            <label class="col-sm-3 col-sm-offset-2 control-label no-padding-right" for="hdd"> HDD Capacity </label>
+            <label class="col-sm-3 col-sm-offset-2 control-label no-padding-right" for="resolved_by"> Issue Opened by </label>
 
             <div class="col-sm-3">
-                <input type="text" class="form-control" id="hdd" name="hdd" placeholder="500GB" value="<?php if($view) echo ($computer->hdd);  ?>" required />
-
+                <input type="text" class="form-control" id="resolved_by" name="resolved_by" value="<?php echo $this->session->userdata('username');  ?>" readonly />
             </div>
             <span class="text-danger">*</span>
-        </div>
-
-        <!-- Peripherals -->
-        <div class="form-group">
-            <label class="col-sm-3 col-sm-offset-2 control-label no-padding-right" for="peripherals"> Peripherals </label>
-
-            <div class="col-sm-7">
-                <div class="checkbox">
-                    <label><input type="checkbox" name="monitor" value="1" <?php if($view) { if($computer->monitor === '1') echo "checked"; } ?> >Monitor</label>
-                </div>
-                <div class="checkbox">
-                    <label><input type="checkbox" name="mouse" value="1" <?php if($view) { if($computer->mouse === '1') echo "checked"; }  ?> >Mouse</label>
-                </div>
-                <div class="checkbox">
-                    <label><input type="checkbox" name="keyboard" value="1" <?php if($view) { if($computer->keyboard === '1') echo "checked"; }  ?> >Keyboard</label>
-                </div>
-            </div>
-        </div>
-
-        <!-- Computer Status-->
-        <div class="form-group">
-            <label class="col-sm-3 col-sm-offset-2 control-label no-padding-right" for="status"> Computer Status </label>
-
-            <div class="col-sm-2">
-                <select class="form-control" id="status" name="status" required>
-                    <option hidden selected>Select one</option>
-                    <option <?php if($view) { if($computer->status === 'Functional') echo "selected"; }  ?> >Functional</option>
-                    <option <?php if($view) { if($computer->status === 'Requires Repairs') echo "selected"; }  ?> >Requires Repairs</option>
-                    <option <?php if($view) { if($computer->status === 'Out of service') echo "selected"; }  ?> >Out of service</option>
-                </select>
-            </div>
-            <span class="text-danger">*</span>
-        </div>
-
-        <!-- Notes -->
-        <div class="form-group">
-            <label class="col-sm-3 col-sm-offset-2 control-label no-padding-right" for="note"> Notes </label>
-
-            <div class="col-sm-4">
-                <textarea class="form-control" id="note" name="note" placeholder="Add here..."  ><?php if($view) echo ($computer->note);  ?></textarea>
-            </div>
         </div>
 
         <!-- Buttons -->
@@ -149,13 +100,7 @@
             <div class="col-md-offset-5 col-md-8">
                 <button class="btn btn-primary" id="save" type="submit" <?php if($view) echo "onclick='update_details(event)'"; ?> >
                     <i class="ace-icon fa fa-check bigger-110"></i>
-                    <?php
-                        if ($view) {
-                            echo "Update";
-                        } else {
-                            echo "Save";
-                        }
-                    ?>
+                    Create
                 </button>
 
                 &nbsp; &nbsp;
@@ -220,6 +165,7 @@
 <script type="text/javascript">
 
     $(function() {
+        $(".select2").select2();
     });
 
     // to diasble all inputs when viewing a computers details
@@ -285,3 +231,6 @@
 
 
 </script>
+
+<!-- Select2 -->
+<script src="<?php echo base_url(); ?>assets2/plugins/select2/select2.full.min.js"></script>

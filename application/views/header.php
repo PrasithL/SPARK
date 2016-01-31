@@ -15,9 +15,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets2/css/bootstrap.min.css">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets2/dist/css/AdminLTE.min.css">
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets2/dist/css/skins/skin-blue.min.css">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets2/css/font-awesome.min.css">
      <!-- date picker -->
@@ -26,7 +23,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
   	<link rel="stylesheet" href="<?php echo base_url(); ?>assets2/plugins/daterangepicker/daterangepicker-bs3.css">
     <!-- DataTables -->
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets2/plugins/datatables/dataTables.bootstrap.css">
+    <!-- Select2 -->
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets2/plugins/select2/select2.min.css">
 
+    <!-- Theme style -->
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets2/dist/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets2/dist/css/skins/skin-blue.min.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -101,6 +103,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			document.getElementById('date').innerHTML =  d.toDateString();
 		 	startTime();
 		 	responsiveSidebar();
+            check_session();
 		};
 
 		window.onresize = function() {
@@ -266,7 +269,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                     <ul class="treeview-menu">
                         <li class="" id="Issues">
-                            <a href="#">
+                            <a href="<?php echo base_url();?>index.php/Issues/">
                                 <i class="menu-icon fa fa-caret-right"></i>
                                 Issues
                             </a>

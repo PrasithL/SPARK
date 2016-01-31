@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 30, 2016 at 11:54 AM
+-- Generation Time: Jan 31, 2016 at 02:08 PM
 -- Server version: 5.5.46-0ubuntu0.14.04.2
 -- PHP Version: 5.5.9-1ubuntu4.14
 
@@ -66,6 +66,71 @@ INSERT INTO `computer_details` (`id`, `computer_id`, `location`, `processor`, `m
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `issues`
+--
+
+CREATE TABLE IF NOT EXISTS `issues` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `issue` varchar(100) NOT NULL,
+  `description` varchar(500) NOT NULL,
+  `severity` varchar(20) NOT NULL,
+  `status` varchar(25) NOT NULL,
+  `opened_by` varchar(20) NOT NULL,
+  `opened_date` date NOT NULL,
+  `opened_time` time NOT NULL,
+  `closed_date` date NOT NULL,
+  `closed_time` time NOT NULL,
+  `closed_by` varchar(20) NOT NULL,
+  `actions_taken` varchar(200) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
+
+--
+-- Dumping data for table `issues`
+--
+
+INSERT INTO `issues` (`id`, `issue`, `description`, `severity`, `status`, `opened_by`, `opened_date`, `opened_time`, `closed_date`, `closed_time`, `closed_by`, `actions_taken`) VALUES
+(15, 'test', 'test', 'Medium', 'resolved', 'admin', '2015-11-26', '21:33:20', '2016-01-31', '12:22:47', 'admin', 'asdasdasd'),
+(16, 'erere', 'zxsasa sjdha sdjaskjdla ksd', 'High', 'open', 'admin', '2016-01-30', '22:07:10', '2016-01-31', '12:40:34', 'admin', ''),
+(17, 'another issue', 'this is a short description of the current issue', 'High', 'resolved', 'admin', '2016-01-31', '13:34:15', '2016-01-31', '13:35:19', 'admin', 'nothing serious'),
+(18, 'another issue 2', 'asda sd asd asda', 'Medium', 'open', 'admin', '2016-01-31', '13:34:48', '0000-00-00', '00:00:00', '', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `issue_history`
+--
+
+CREATE TABLE IF NOT EXISTS `issue_history` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `issue_id` int(11) NOT NULL,
+  `computer_code` varchar(20) NOT NULL,
+  `status` varchar(25) NOT NULL,
+  `closed_date` date NOT NULL,
+  `closed_by` varchar(20) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `issue_id` (`issue_id`,`computer_code`,`closed_by`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
+
+--
+-- Dumping data for table `issue_history`
+--
+
+INSERT INTO `issue_history` (`id`, `issue_id`, `computer_code`, `status`, `closed_date`, `closed_by`) VALUES
+(6, 15, 'WK02', 'resolved', '2016-01-31', 'admin'),
+(7, 15, 'WK03', 'resolved', '2016-01-31', 'admin'),
+(8, 16, 'WK02', 'open', '2016-01-31', 'admin'),
+(9, 16, 'WK03', 'open', '2016-01-31', 'admin'),
+(10, 17, 'WK05', 'resolved', '2016-01-31', 'admin'),
+(11, 17, 'WK06', 'resolved', '2016-01-31', 'admin'),
+(12, 18, 'WK01', 'open', '0000-00-00', ''),
+(13, 18, 'WK02', 'open', '0000-00-00', ''),
+(14, 18, 'WK03', 'open', '0000-00-00', ''),
+(15, 18, 'WK04', 'open', '0000-00-00', '');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `location_history`
 --
 
@@ -109,7 +174,7 @@ CREATE TABLE IF NOT EXISTS `room_details` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `room_code` (`room_code`),
   KEY `created_by` (`created_by`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `room_details`
@@ -118,7 +183,8 @@ CREATE TABLE IF NOT EXISTS `room_details` (
 INSERT INTO `room_details` (`id`, `room_code`, `description`, `status`, `created_date`, `created_by`) VALUES
 (1, 'LAB01', 'Computer Lab #1', 'active', '2016-01-30', 'admin'),
 (2, 'LAB09', 'Computer Lab #9', 'active', '2016-01-30', 'admin'),
-(3, 'LAB02', 'Computer Lab #2', 'active', '2016-01-30', 'admin');
+(3, 'LAB02', 'Computer Lab #2', 'active', '2016-01-30', 'admin'),
+(5, 'LEC01', 'Lecture Room 1', 'disabled', '2016-01-30', 'admin');
 
 -- --------------------------------------------------------
 

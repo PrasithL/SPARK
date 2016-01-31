@@ -26,11 +26,6 @@
 				$data['result'] = $this->session->flashdata('result');
 			}
 
-			// result of the password change operation
-			if (null !== $this->session->flashdata('change_pass_result')) {
-				$data['change_pass_result'] = $this->session->flashdata('change_pass_result');
-			}
-
 			// loading the page
 			$this->load->view("header");
 			$this->load->view('room_details_view', $data);

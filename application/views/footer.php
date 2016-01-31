@@ -68,4 +68,22 @@
 	        e.stopPropagation(); //This will prevent the event from bubbling up and close the dropdown when you type/click on text boxes.
 	    });
 
+        function check_session() {
+    		// Fire off the request to server
+    	    request = $.ajax({
+    	        url: "<?php echo base_url();?>index.php/Login/session_check_ajax",
+    	        type: "post",
+    	        data: ""
+    	    });
+
+    		// Callback handler that will be called on success
+    	    request.done(function (response, textStatus, jqXHR){
+    	        if (response == 'no') {
+    	        	window.location.href = "<?php echo base_url(); ?>index.php/Login";
+    	        }
+    	    });
+
+    		var recheck = setTimeout(check_session, 10000);
+    	}
+
 	</script>
