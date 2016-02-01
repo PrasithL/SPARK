@@ -35,7 +35,7 @@
             <label class="col-sm-3 col-sm-offset-2 control-label no-padding-right" for="computer_id"> Computer(s) </label>
 
             <div class="col-sm-4">
-                <select class="form-control select2" name="computers[]" multiple="multiple" data-placeholder="Select one or more" style="width: 100%;">
+                <select class="form-control select2" name="computers[]" multiple="multiple" data-placeholder="Select one or more" style="width: 100%;" required>
                     <?php
                         foreach ($computers as $computer) {
                     ?>
@@ -65,7 +65,7 @@
             <label class="col-sm-3 col-sm-offset-2 control-label no-padding-right" for="description"> Description </label>
 
             <div class="col-sm-4">
-                    <textarea class="form-control" id="description" name="description" placeholder="A short description of the issue"  ><?php if($view) echo ($computer->note);  ?></textarea>
+                    <textarea class="form-control" id="description" name="description" placeholder="A short description of the issue"  required><?php if($view) echo ($computer->note);  ?></textarea>
             </div>
             <span class="text-danger"></span>
         </div>
@@ -75,7 +75,7 @@
             <label class="col-sm-3 col-sm-offset-2 control-label no-padding-right" for="severity"> Severity </label>
 
             <div class="col-sm-4">
-                <select class="form-control" name="severity" id="severity" requiredResolved by>
+                <select class="form-control" name="severity" id="severity" required>
                     <option hidden>select one</option>
                     <option class="" value="Low"></i> Low</option>
                     <option class="text-warning" value="Medium">Medium</option>
