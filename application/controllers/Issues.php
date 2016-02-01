@@ -45,7 +45,7 @@ class Issues extends CI_Controller{
         $this->load->model("Issue_History_Model");
 
         $data['issues'] = $this->Issues_Model->get_issues('open');
-        $data['issue_history_records'] = $this->Issue_History_Model->get_all('open');
+        $data['issue_history_records'] = $this->Issue_History_Model->get_all();
 
         $this->load->view('issues_list', $data);
     }
@@ -65,6 +65,24 @@ class Issues extends CI_Controller{
         $data['view'] = "resolved"; // to let the view know what data we are viewing
 
         $this->load->view('issues_list', $data);
+    }
+
+    /**
+    * An AJAX call comes here and this will mark the passed
+    * issue history record of the passed computer as resolved
+    *
+    */
+    public function close_issue_for_computer()
+    {
+        $inputs = $this->input->post(); // issue_id & computer_code & actions_taken
+
+        $this->load->model("Issues_Model");
+        $this->load->model("Issue_History_Model");
+
+        $this->Issue_History_Model->close_issue_for_computer($inputs);
+        $this->Issues_Model->update_actions_taken($inputs);
+
+        echo "done";
     }
 
     /**
