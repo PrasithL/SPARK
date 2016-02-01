@@ -42,7 +42,7 @@
                             if ($record->status == "open") { // to change the background color of the labels according to the status
                                 $string = "<li>$record->computer_code &nbsp;&nbsp;&nbsp;";
                                 if(!$viewing_closed) {
-                                    $string = $string."<small class='label bg-orange <?=$issue->id  ?>'>$record->status</small></li> ";
+                                    $string = $string."<small class='label bg-orange <?=$issue->id  ?>'>$record->status</small><button type=\"button\" onclick=\"close_issue_for_computer('$record->computer_code', '$issue->id' )\" class=\"btn btn-link btn-xs \"><i class=\"fa fa-check text-green\"></i> <span class=\"text-green\">Mark as resolved</span></button></li> ";
                                 }
                                 echo $string;
                             } else {
@@ -63,12 +63,10 @@
                     <?=$issue->description  ?>
                 </blockquote>
 
-                <?php if($viewing_closed) { ?>
-                    <b>Actions Taken</b>
-                        <blockquote style="font-size: 1.1em;">
-                            <?=$issue->actions_taken  ?>
-                        </blockquote>
-                <?php } ?>
+            <b>Actions Taken</b>
+                <blockquote style="font-size: 1.1em;">
+                    <?=$issue->actions_taken  ?>
+                </blockquote>
 
         </p>
         <br />
@@ -86,7 +84,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title "><i class="fa fa-info-circle"> Getting ready to close the issue #<span id="modal_issue_id"></span></i></h4>
+                <h4 class="modal-title "><i class="fa fa-info-circle"> Getting ready to close the issue <span id="modal_issue_id" class="text-primary"></span><span id="modal_computer_id"></span></i></h4>
             </div>
             <div class="modal-body">
                 <div class="row">
@@ -106,10 +104,13 @@
 
 <script type="text/javascript">
     var issue_id = 0;
+    var computer_id = 0;
+    var closure_mode = "all"; // 'all' for all comouters(on 'close issue' button click)
+                              // 'single' for a one computer
     var open_count = <?=sizeof($issues) ?>
 
     function show_modal(id) {
-        $("#modal_issue_id").html(id);
+        $("#modal_issue_id").html("#"+id);
         $('.modal').modal({backdrop: 'static', keyboard: false});
         issue_id = id;
     }
@@ -118,6 +119,15 @@
         $('.modal').modal('hide');
         $('body').removeClass('modal-open');
         $('.modal-backdrop').remove();
+        $("#modal_computer_id").html("");
+    }
+
+    function close_issue_for_computer(comp_id, issue_id) {
+        closure_mode = 'single';
+        computer_id = comp_id;
+        $("#modal_computer_id").html(" of <span class='text-primary'>"+comp_id+"</span>");
+        $('#actions_taken').val("Actions for "+comp_id+" - ");
+        show_modal(issue_id);
     }
 
 
@@ -125,19 +135,29 @@
 	function close_issue() {
         actions_taken = $('#actions_taken').val();
 
-		// Fire off the request to server
-	    request = $.ajax({
-	        url: "<?php echo base_url();?>index.php/Issues/close_issue",
-	        type: "post",
-	        data: "issue_id="+issue_id+"&actions_taken="+actions_taken
-	    });
+        // Fire off the request to server
+        if (closure_mode == "all") {
+            request = $.ajax({
+    	        url: "<?php echo base_url();?>index.php/Issues/close_issue",
+    	        type: "post",
+    	        data: "issue_id="+issue_id+"&actions_taken="+actions_taken
+    	    });
+        } else {
+            request = $.ajax({
+    	        url: "<?php echo base_url();?>index.php/Issues/close_issue_for_computer",
+    	        type: "post",
+    	        data: "issue_id="+issue_id+"&computer_code="+computer_id+"&actions_taken="+actions_taken
+    	    });
+        }
+
 
 		// Callback handler that will be called on success
 	    request.done(function (response, textStatus, jqXHR){
-            $('#'+issue_id).hide();
             hide_modal();
             issue_id = 0;
-            $('#open_count').html(open_count-1);
+            get_issues();
+            computer_id = 0;
+
 	    });
 	}
 </script>
