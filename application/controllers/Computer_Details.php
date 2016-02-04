@@ -56,12 +56,39 @@ class Computer_Details extends CI_Controller{
 
         $this->load->model("Computer_Details_Model");
         $this->load->model("Room_Details_Model");
-        
+        $this->load->model("Issues_Model");
+
         $data['computer'] = $this->Computer_Details_Model->get_details_of($computer_id);
         $data['history'] = $this->Computer_Details_Model->get_location_history_of($computer_id);
         $data['rooms'] = $this->Room_Details_Model->get_all_active_rooms();
+        $data['open_issue_count'] = $this->Issues_Model->get_open_issues_count($computer_id);
 
         $this->load->view('computer_details_form', $data);
+
+    }
+
+    /**
+    * An AJAX call comes here and this will return the details of
+    * the issues of the computer with the posted ID
+    *
+    */
+    public function show_issue_history_of()
+    {
+        if (null !== $this->session->flashdata('computer_id')) {
+            $computer_id = $this->session->flashdata('computer_id');
+        } else {
+            $computer_id = $this->input->post('computer_id');
+        }
+
+
+        $this->load->model("Issues_Model");
+        $this->load->model("Issue_History_Model");
+
+        $data['issues'] = $this->Issues_Model->get_issues_of($computer_id);
+        $data['issue_history_records'] = $this->Issue_History_Model->get_all();
+        $data['computer_id'] = $computer_id;
+
+        $this->load->view('computer_details_issues_list', $data);
 
     }
 

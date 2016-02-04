@@ -109,8 +109,10 @@
 						<!-- Computer detail boxes loads here -->
 					</div>
 
-					<div id="detail_viewer" class="row">
-						<!-- Computer detail page loads here and is shown via JS -->
+					<div class="row">
+						<div id="detail_viewer" class="col-md-12">
+						  <!-- Computer detail page loads here and is shown via JS -->
+						</div>
 					</div>
 				</div>
 			</div>

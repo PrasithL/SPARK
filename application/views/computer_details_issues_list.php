@@ -1,4 +1,14 @@
+<button type="button" class="btn btn-primary btn-sm" onclick="open_details('<?=$computer_id ?>')">
+    <i class="fa fa-arrow-left"></i> Back to Details View
+</button>
+<div class="text-center">
+    <h3 style="margin-top:0;">Issues History of <u><?=$computer_id ?></u></h3>
+</div>
+
+<p></p>
+
 <?php
+    // This file is a customized copy of 'issues_list.php'
     $viewing_closed = false;
     if (isset($view)) {
         $viewing_closed = true;
@@ -11,23 +21,23 @@
 ?>
     <div class="post well" id="<?=$issue->id  ?>">
         <div class="user-block">
-            <?php if($viewing_closed) { ?>
+            <?php if($issue->status == 'resolved') { ?>
                 <img class="img-thumbnail " src="<?php echo base_url(); ?>assets2/img/ok.png" alt="user image">
             <?php } else {?>
                 <img class="img-thumbnail " src="<?php echo base_url(); ?>assets2/img/issue.png" alt="user image">
             <?php } ?>
 
             <span class='username text-primary'>
-                <?php if(!$viewing_closed) { ?>
+                <?php if($issue->status == "open") { ?>
                     <button class='pull-right btn-link' onclick="show_modal(<?=$issue->id  ?>)"><i class='fa fa-check' data-rel="tooltip" title="Mark this issue as resolved"></i> Close issue</button>
                 <?php } ?>
 
                 #<?=$issue->id  ?> - <?=$issue->issue  ?>
             </span>
-            <span class='description'>Opened on <?=$issue->opened_date  ?> at <?=$issue->opened_time  ?> by <?=$issue->opened_by  ?> (<?=$differnce->days ?> days ago) <small class='label <?php if($viewing_closed) {echo "bg-green";} else {echo "bg-primary";} ?> <?=$issue->id  ?>'><?=$issue->status ?></small></span>
+            <span class='description'>Opened on <?=$issue->opened_date  ?> at <?=$issue->opened_time  ?> by <?=$issue->opened_by  ?> (<?=$differnce->days ?> days ago) <small class='label <?php if($issue->status == 'open') {echo "bg-orange";} else {echo "bg-green";} ?> <?=$issue->id  ?>'><?=$issue->status ?></small></span>
 
             <?php
-                if ($viewing_closed) {
+                if ($issue->status == "resolved") {
                     echo "<span class='description'>Closed on $issue->closed_date  at $issue->closed_time by $issue->closed_by";
                 }
             ?>
@@ -41,15 +51,13 @@
                         if ($record->issue_id == $issue->id) {
                             if ($record->status == "open") { // to change the background color of the labels according to the status
                                 $string = "<li>$record->computer_code &nbsp;&nbsp;&nbsp;";
-                                if(!$viewing_closed) {
-                                    $string = $string."<small class='label bg-orange <?=$issue->id  ?>'>$record->status</small><button type=\"button\" onclick=\"close_issue_for_computer('$record->computer_code', '$issue->id' )\" class=\"btn btn-link btn-xs \"><i class=\"fa fa-check text-green\"></i> <span class=\"text-green\">Mark as resolved</span></button></li> ";
-                                }
+                                $string = $string."<small class='label bg-orange <?=$issue->id  ?>'>$record->status</small> <button type=\"button\" onclick=\"close_issue_for_computer('$record->computer_code', '$issue->id' )\" class=\"btn btn-link btn-xs \"><i class=\"fa fa-check text-green\"></i> <span class=\"text-green\">Mark as resolved</span></button></li> ";
+
                                 echo $string;
                             } else {
                                 $string = "<li>$record->computer_code &nbsp;&nbsp;&nbsp;";
-                                if(!$viewing_closed) {
-                                    $string = $string."<small class='label bg-green <?=$issue->id  ?>'>$record->status</small></li> ";
-                                }
+                                $string = $string."<small class='label bg-green <?=$issue->id  ?>'>$record->status</small></li> ";
+
                                 echo $string;
                             }
 
@@ -107,7 +115,6 @@
     var computer_id = 0;
     var closure_mode = "all"; // 'all' for all comouters(on 'close issue' button click)
                               // 'single' for a one computer
-    var open_count = <?=sizeof($issues) ?>
 
     function show_modal(id) {
         $("#modal_issue_id").html("#"+id);
@@ -130,12 +137,11 @@
         show_modal(issue_id);
     }
 
-
     // AJAX
 	function close_issue() {
         actions_taken = $('#actions_taken').val();
 
-        // Fire off the request to server
+		// Fire off the request to server
         if (closure_mode == "all") {
             request = $.ajax({
     	        url: "<?php echo base_url();?>index.php/Issues/close_issue",
@@ -155,7 +161,7 @@
 	    request.done(function (response, textStatus, jqXHR){
             hide_modal();
             issue_id = 0;
-            get_issues();
+            show_issue_history(computer_id);
             computer_id = 0;
 
 	    });

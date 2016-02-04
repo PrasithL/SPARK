@@ -7,26 +7,39 @@
         $view=true;
         $computer = $computer[0]; // using the first array element of the returned result
 ?>
-    <div class="" >
+    <div class="col-md-12" >
         <button type="button" class="btn btn-danger btn-sm pull-right" onclick="hide_detail_view()" style="margin-right:1em; margin-top:-.5em;">
             <i class="fa fa-times fa-lg"></i>
             Close
         </button>
 
-        <button type="button" class="btn btn-default btn-sm pull-right" onclick="enable_inputs()" style="margin-right:1em; margin-top:-.5em;">
+        <button type="button" class="btn btn-default btn-sm pull-left" onclick="enable_inputs()" style="margin-right:1em; margin-top:-.5em;">
             <i class="fa fa-pencil fa-lg"></i>
             Edit
         </button>
 
-        <button type="button" class="btn btn-default btn-sm pull-right" onclick="show_location_history_modal()" style="margin-right:1em; margin-top:-.5em;">
+        <button type="button" class="btn btn-default btn-sm pull-left" onclick="show_location_history_modal()" style="margin-right:1em; margin-top:-.5em;">
             <i class="fa fa-history fa-lg"></i>
             Location History &nbsp;&nbsp;
             <span class="label label-default"><?php echo sizeof($history); ?></span>
         </button>
+
+        <button type="button" class="btn btn-default btn-sm pull-left" onclick="show_issue_history('<?=$computer->computer_id ?>')" style="margin-right:1em; margin-top:-.5em;">
+            <i class="fa fa-exclamation-circle fa-lg"></i>
+            Issues &nbsp;&nbsp;
+            <span class="label label-default"><?php echo $open_issue_count; ?></span>
+        </button>
+
     </div>
 <?php
     }
 ?>
+
+<br />
+<p>
+    &nbsp;
+</p>
+
 <!-- FORM -->
     <form class="form-horizontal" <?php if($view) echo 'id="form"'; ?> role="form"  method="POST" <?php if($view) echo "onsubmit='return false;'" ?> action="<?php echo $url; ?>">
         <!-- computer ID -->
@@ -281,6 +294,23 @@
         $('body').removeClass('modal-open');
         $('.modal-backdrop').remove();
     }
+
+    // AJAX
+    // opening issue history view
+	function show_issue_history(computer_id) {
+		// Fire off the request to server
+	    request = $.ajax({
+	        url: "<?php echo base_url();?>index.php/Computer_Details/show_issue_history_of",
+	        type: "post",
+	        data: "computer_id="+computer_id
+	    });
+
+		// Callback handler that will be called on success
+	    request.done(function (response, textStatus, jqXHR){
+            $('#detail_viewer').html(response);
+			$('#detail_viewer').fadeIn();
+	    });
+	}
 
 
 
