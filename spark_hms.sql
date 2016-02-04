@@ -3,8 +3,8 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 31, 2016 at 02:08 PM
--- Server version: 5.5.46-0ubuntu0.14.04.2
+-- Generation Time: Feb 04, 2016 at 06:58 PM
+-- Server version: 5.5.47-0ubuntu0.14.04.1
 -- PHP Version: 5.5.9-1ubuntu4.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -57,11 +57,11 @@ INSERT INTO `computer_details` (`id`, `computer_id`, `location`, `processor`, `m
 (3, 'WK02', 'LAB02', 'intel i5 2Ghz', 'Z97', '4GB DDR3', '500GB', 1, 1, 1, 'Requires Repairs', '', '2016-01-27 12:18:21 am', '', 'admin'),
 (4, 'WK03', 'LAB01', 'i3(4010) 2.3Ghz', 'Z97', '4GB DDR3', '500GB', 1, 1, 0, 'Functional', '', '2016-01-27', '12:21:35 am', 'admin'),
 (5, 'WK04', 'LAB01', 'i3(4010) 2.3Ghz', 'Z97', '4GB DDR3', '500GB', 1, 1, 0, 'Functional', '', '2016-01-27', '12:24:04 am', 'admin'),
-(6, 'WK05', 'LAB01', 'i3', 'Z97', '4GB DDR3', '500GB', 1, 1, 0, 'Out of service', '', '2016-01-27', '12:24:59 am', 'admin'),
+(6, 'WK05', 'LAB01', 'i3', 'Z97', '4GB DDR3', '500GB', 1, 1, 0, 'Functional', '', '2016-01-27', '12:24:59 am', 'admin'),
 (8, 'WK06', 'LAB02', 'i3(4010) 2.3Ghz ', 'Z97-A', '4GB DDR3', '500GB', 1, 1, 1, 'Functional', 'fgdfgd11', '2016-01-27', '12:15:41 pm', 'admin'),
 (9, 'WK07', 'LAB09', 'i3(4010) 2.3Ghz', 'Z97-A', '4GB DDR3', '500GB', 1, 1, 1, 'Functional', 'test test test... jkh', '2016-01-28', '04:29:44 pm', 'admin'),
-(10, 'WK08', 'LAB09', 'i3(4010) 2.3Ghz', 'Z97', '4GB DDR3', '500GB', 1, 1, 1, 'Requires Repairs', 'some OS issues', '2016-01-28', '09:51:25 pm', 'admin'),
-(12, 'WK09', 'LAB02', 'i3(4010) 2.3Ghz', 'Z97', '4GB DDR3', '500GB', 1, 1, 0, 'Requires Repairs', '', '2016-01-30', '11:46:48 am', 'admin');
+(10, 'WK08', 'LAB09', 'i3(4010) 2.3Ghz', 'Z97', '4GB DDR3', '500GB', 1, 1, 1, 'Functional', 'some OS issues', '2016-01-28', '09:51:25 pm', 'admin'),
+(12, 'WK09', 'LAB02', 'i3(4010) 2.3Ghz', 'Z97', '4GB DDR3', '500GB', 1, 1, 0, 'Functional', '', '2016-01-30', '11:46:48 am', 'admin');
 
 -- --------------------------------------------------------
 
@@ -83,7 +83,7 @@ CREATE TABLE IF NOT EXISTS `issues` (
   `closed_by` varchar(20) NOT NULL,
   `actions_taken` varchar(200) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=32 ;
 
 --
 -- Dumping data for table `issues`
@@ -91,9 +91,22 @@ CREATE TABLE IF NOT EXISTS `issues` (
 
 INSERT INTO `issues` (`id`, `issue`, `description`, `severity`, `status`, `opened_by`, `opened_date`, `opened_time`, `closed_date`, `closed_time`, `closed_by`, `actions_taken`) VALUES
 (15, 'test', 'test', 'Medium', 'resolved', 'admin', '2015-11-26', '21:33:20', '2016-01-31', '12:22:47', 'admin', 'asdasdasd'),
-(16, 'erere', 'zxsasa sjdha sdjaskjdla ksd', 'High', 'open', 'admin', '2016-01-30', '22:07:10', '2016-01-31', '12:40:34', 'admin', ''),
+(16, 'erere', 'zxsasa sjdha sdjaskjdla ksd', 'High', 'resolved', 'admin', '2016-01-30', '22:07:10', '2016-02-01', '18:54:21', 'admin', 'jhgjhg\n'),
 (17, 'another issue', 'this is a short description of the current issue', 'High', 'resolved', 'admin', '2016-01-31', '13:34:15', '2016-01-31', '13:35:19', 'admin', 'nothing serious'),
-(18, 'another issue 2', 'asda sd asd asda', 'Medium', 'open', 'admin', '2016-01-31', '13:34:48', '0000-00-00', '00:00:00', '', '');
+(18, 'another issue 2', 'asda sd asd asda', 'Medium', 'resolved', 'admin', '2016-01-31', '13:34:48', '2016-02-01', '18:11:25', 'admin', 'bla bla blaa'),
+(19, 'ererezsdas', 'sadas', 'Low', 'resolved', 'admin', '2016-01-31', '14:30:26', '2016-02-01', '18:37:39', 'admin', 'aaaaaaaa'),
+(20, 'another issue 3', 'adsada', 'Medium', 'resolved', 'admin', '2016-01-31', '14:44:58', '2016-01-31', '14:45:40', 'admin', 'dsfsdfs'),
+(21, 'another issue 4', 'test test', 'Medium', 'resolved', 'admin', '2016-01-31', '17:47:41', '2016-01-31', '17:48:01', 'admin', 'hgjh'),
+(22, 'sdfsdfs', 'dfsdfsd', 'Medium', 'resolved', 'admin', '2016-02-01', '18:41:50', '2016-02-01', '22:17:29', 'admin', ' <br/> Actions for WK02 - hgjhgjhgj <br/> Actions for WK02 - asasas'),
+(23, 'hgjh', 'jgjhg', 'High', 'resolved', 'admin', '2016-02-01', '18:54:53', '2016-02-01', '22:34:09', 'admin', ' <br/> Actions for WK02 - asdasdas <br/> Actions for WK01 - sasasasas <br/> Actions for WK02 - nothing <br/> Actions for WK02 - '),
+(24, 'erere', 'dasdas', 'Low', 'resolved', 'admin', '2016-02-01', '22:20:18', '2016-02-01', '22:30:28', 'admin', ' <br/> Actions for WK01 - sdsdasd <br/> Actions for WK01 - zxczx <br/> Actions for WK01 - sdasda <br/> Actions for WK01 - zczxczx'),
+(25, 'dfsdf', 'sdfsdfs', 'Medium', 'resolved', 'admin', '2016-02-01', '22:34:19', '2016-02-01', '22:34:32', 'admin', ''),
+(26, 'sdasd', 'asdasd', 'Medium', 'resolved', 'admin', '2016-02-01', '22:34:42', '2016-02-01', '22:40:24', 'admin', 'hkjhkj'),
+(27, 'asdas', 'asdasd', 'Medium', 'resolved', 'admin', '2016-02-01', '22:43:19', '2016-02-01', '22:43:28', 'admin', ' <br/> '),
+(28, 'ssasa', 'sasas', 'Low', 'resolved', 'admin', '2016-02-01', '22:44:19', '2016-02-01', '22:44:28', 'admin', ' <br/> Actions for WK01 - asasasa <br/> asasa'),
+(29, 'wewew', 'wewew', 'High', 'open', 'admin', '2016-02-01', '22:45:09', '0000-00-00', '00:00:00', '', ' <br/> Actions for WK01 - done'),
+(30, 'sasa', 'sasas', 'select one', 'resolved', 'admin', '2016-02-01', '22:48:21', '2016-02-01', '22:50:26', 'admin', 'Actions for WK04 - asdasdas <br/> Actions for WK05 - asdasdasdsad <br/> '),
+(31, 'test', 'fdsdf', 'Medium', 'resolved', 'admin', '2016-02-01', '22:49:59', '2016-02-01', '22:50:09', 'admin', ' <br/> ');
 
 -- --------------------------------------------------------
 
@@ -107,26 +120,55 @@ CREATE TABLE IF NOT EXISTS `issue_history` (
   `computer_code` varchar(20) NOT NULL,
   `status` varchar(25) NOT NULL,
   `closed_date` date NOT NULL,
+  `closed_time` time NOT NULL,
   `closed_by` varchar(20) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `issue_id` (`issue_id`,`computer_code`,`closed_by`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=44 ;
 
 --
 -- Dumping data for table `issue_history`
 --
 
-INSERT INTO `issue_history` (`id`, `issue_id`, `computer_code`, `status`, `closed_date`, `closed_by`) VALUES
-(6, 15, 'WK02', 'resolved', '2016-01-31', 'admin'),
-(7, 15, 'WK03', 'resolved', '2016-01-31', 'admin'),
-(8, 16, 'WK02', 'open', '2016-01-31', 'admin'),
-(9, 16, 'WK03', 'open', '2016-01-31', 'admin'),
-(10, 17, 'WK05', 'resolved', '2016-01-31', 'admin'),
-(11, 17, 'WK06', 'resolved', '2016-01-31', 'admin'),
-(12, 18, 'WK01', 'open', '0000-00-00', ''),
-(13, 18, 'WK02', 'open', '0000-00-00', ''),
-(14, 18, 'WK03', 'open', '0000-00-00', ''),
-(15, 18, 'WK04', 'open', '0000-00-00', '');
+INSERT INTO `issue_history` (`id`, `issue_id`, `computer_code`, `status`, `closed_date`, `closed_time`, `closed_by`) VALUES
+(6, 15, 'WK02', 'resolved', '2016-01-31', '00:00:00', 'admin'),
+(7, 15, 'WK03', 'resolved', '2016-01-31', '00:00:00', 'admin'),
+(8, 16, 'WK02', 'resolved', '2016-02-01', '18:54:21', 'admin'),
+(9, 16, 'WK03', 'resolved', '2016-02-01', '18:54:21', 'admin'),
+(10, 17, 'WK05', 'resolved', '2016-01-31', '00:00:00', 'admin'),
+(11, 17, 'WK06', 'resolved', '2016-01-31', '00:00:00', 'admin'),
+(12, 18, 'WK01', 'resolved', '2016-02-01', '00:00:00', 'admin'),
+(13, 18, 'WK02', 'resolved', '2016-02-01', '00:00:00', 'admin'),
+(14, 18, 'WK03', 'resolved', '2016-02-01', '00:00:00', 'admin'),
+(15, 18, 'WK04', 'resolved', '2016-02-01', '00:00:00', 'admin'),
+(16, 19, 'WK01', 'resolved', '2016-02-01', '18:37:40', 'admin'),
+(17, 20, 'WK08', 'resolved', '2016-01-31', '00:00:00', 'admin'),
+(18, 21, 'WK01', 'resolved', '2016-01-31', '00:00:00', 'admin'),
+(19, 21, 'WK02', 'resolved', '2016-01-31', '00:00:00', 'admin'),
+(20, 21, 'WK03', 'resolved', '2016-01-31', '00:00:00', 'admin'),
+(21, 21, 'WK04', 'resolved', '2016-01-31', '00:00:00', 'admin'),
+(22, 21, 'WK05', 'resolved', '2016-01-31', '00:00:00', 'admin'),
+(23, 21, 'WK06', 'resolved', '2016-01-31', '00:00:00', 'admin'),
+(24, 21, 'WK07', 'resolved', '2016-01-31', '00:00:00', 'admin'),
+(25, 21, 'WK08', 'resolved', '2016-01-31', '00:00:00', 'admin'),
+(26, 21, 'WK09', 'resolved', '2016-01-31', '00:00:00', 'admin'),
+(27, 22, 'WK02', 'resolved', '0000-00-00', '00:00:00', 'admin'),
+(28, 23, 'WK01', 'resolved', '0000-00-00', '00:00:00', 'admin'),
+(29, 23, 'WK02', 'resolved', '2016-02-01', '22:34:09', 'admin'),
+(30, 24, 'WK01', 'resolved', '2016-02-01', '22:30:28', 'admin'),
+(31, 25, 'WK01', 'resolved', '2016-02-01', '22:34:33', 'admin'),
+(32, 26, 'WK01', 'resolved', '2016-02-01', '22:40:24', 'admin'),
+(33, 26, 'WK02', 'resolved', '2016-02-01', '22:40:24', 'admin'),
+(34, 26, 'WK03', 'resolved', '2016-02-01', '22:40:24', 'admin'),
+(35, 27, 'WK01', 'resolved', '2016-02-01', '22:43:28', 'admin'),
+(36, 27, 'WK02', 'resolved', '2016-02-01', '22:43:28', 'admin'),
+(37, 27, 'WK04', 'resolved', '2016-02-01', '22:43:28', 'admin'),
+(38, 28, 'WK01', 'resolved', '2016-02-01', '22:44:28', 'admin'),
+(39, 28, 'WK02', 'resolved', '2016-02-01', '22:44:28', 'admin'),
+(40, 29, 'WK01', 'resolved', '2016-02-01', '22:45:42', 'admin'),
+(41, 29, 'WK02', 'open', '0000-00-00', '00:00:00', ''),
+(42, 30, 'WK04', 'resolved', '2016-02-01', '22:50:22', 'admin'),
+(43, 30, 'WK05', 'resolved', '2016-02-01', '22:50:25', 'admin');
 
 -- --------------------------------------------------------
 
