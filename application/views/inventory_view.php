@@ -100,6 +100,7 @@
 
 <script type="text/javascript">
 	var current_page = "Inventory";
+	var item_id; // item id is set on 'use item' button click, in use_item_modal()
 
 	$(function () {
 		$('#detail_viewer').hide();
@@ -119,6 +120,7 @@
 	    request.done(function (response, textStatus, jqXHR){
 			$('#detail_viewer').hide();
 	        $('#box').html(response);
+			datatable_init();
 			$("#box").slideDown();
 	    });
 	}
@@ -172,5 +174,38 @@
 
 		return false;
 	}
+
+	function use_item_modal(id) {
+		$('.modal').modal({backdrop: 'static', keyboard: false});
+		item_id = id;
+	}
+
+	// AJAX
+	function use_item() {
+		computer_code = $("#computer_code").val();
+
+		// Fire off the request to server
+	    request = $.ajax({
+	        url: "<?php echo base_url();?>index.php/Inventory/use_item",
+	        type: "post",
+	        data: "item_id="+item_id+"&computer_code="+computer_code
+	    });
+
+		// Callback handler that will be called on success
+	    request.done(function (response, textStatus, jqXHR){
+	        $('#box').html(response);
+			datatable_init();
+			item_id = "";
+			hide_location_history_modal();
+			//disable_inputs();
+	    });
+	}
+
+
+    function hide_location_history_modal() {
+        $('.modal').modal('hide');
+        $('body').removeClass('modal-open');
+        $('.modal-backdrop').remove();
+    }
 
 </script>

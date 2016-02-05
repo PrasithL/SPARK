@@ -92,4 +92,17 @@ class Inventory_Model extends CI_Model{
         return $result->result();
     }
 
+    /**
+     * undocumented function summary
+     *
+     * Undocumented function long description
+     *
+     * @param type var Description
+     **/
+    public function decrement_available_count($item_id)
+    {
+        $sql = "UPDATE inventory_details SET available = available - 1 WHERE id = ".$item_id;
+        $this->db->query($sql);
+    }
+
 }

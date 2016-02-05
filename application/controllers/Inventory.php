@@ -51,8 +51,9 @@ class Inventory extends CI_Controller{
      **/
     public function get_all_items()
     {
-        $this->load->model('Inventory_Model');
+        $this->load->model(array('Inventory_Model', 'Computer_Details_Model'));
         $data['items'] = $this->Inventory_Model->get_all_items();
+        $data['computers'] = $this->Computer_Details_Model->get_all_computers();
 
         $this->load->view('inventory_item_list', $data);
     }
@@ -94,6 +95,23 @@ class Inventory extends CI_Controller{
         $this->get_details_of_item($data['id'], $result);
     }
 
+    /**
+     * Adds a record to the DB to emulate the using of an item
+     *
+     * @param type var Description
+     **/
+    public function use_item()
+    {
+        $data = $this->input->post();
+
+        $this->load->model('Used_Inventory_Items_Model');
+        $this->load->model('Inventory_Model');
+
+        $this->Used_Inventory_Items_Model->add_record($data);
+        $this->Inventory_Model->decrement_available_count($data['item_id']);
+
+        $this->get_all_items();
+    }
 
     /**
     * Checks if user is logged in by looking at session data.
