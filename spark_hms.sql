@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 04, 2016 at 06:58 PM
+-- Generation Time: Feb 05, 2016 at 10:12 PM
 -- Server version: 5.5.47-0ubuntu0.14.04.1
 -- PHP Version: 5.5.9-1ubuntu4.14
 
@@ -62,6 +62,69 @@ INSERT INTO `computer_details` (`id`, `computer_id`, `location`, `processor`, `m
 (9, 'WK07', 'LAB09', 'i3(4010) 2.3Ghz', 'Z97-A', '4GB DDR3', '500GB', 1, 1, 1, 'Functional', 'test test test... jkh', '2016-01-28', '04:29:44 pm', 'admin'),
 (10, 'WK08', 'LAB09', 'i3(4010) 2.3Ghz', 'Z97', '4GB DDR3', '500GB', 1, 1, 1, 'Functional', 'some OS issues', '2016-01-28', '09:51:25 pm', 'admin'),
 (12, 'WK09', 'LAB02', 'i3(4010) 2.3Ghz', 'Z97', '4GB DDR3', '500GB', 1, 1, 0, 'Functional', '', '2016-01-30', '11:46:48 am', 'admin');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `inventory_details`
+--
+
+CREATE TABLE IF NOT EXISTS `inventory_details` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `item_name` varchar(100) NOT NULL,
+  `type` varchar(50) NOT NULL,
+  `details` varchar(200) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `available` int(11) NOT NULL,
+  `created_date` date NOT NULL,
+  `created_time` time NOT NULL,
+  `created_by` varchar(20) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+
+--
+-- Dumping data for table `inventory_details`
+--
+
+INSERT INTO `inventory_details` (`id`, `item_name`, `type`, `details`, `quantity`, `available`, `created_date`, `created_time`, `created_by`) VALUES
+(2, 'asa', 'Netword Interface Card (NIC)', 'asa', 0, -4, '2016-02-05', '14:41:30', 'admin'),
+(3, 'sdas', 'CPU', 'sda', 5, 3, '2016-02-05', '14:42:42', 'admin'),
+(4, 'optical mouse', 'Mouse', 'mouse', 10, 10, '2016-02-05', '15:14:43', 'admin'),
+(5, 'sad', 'HDD', '500GB', 3, 1, '2016-02-05', '15:14:59', 'admin'),
+(6, 'Monitors', 'Monitor', 'adsaaaa', 5, 2, '2016-02-05', '15:21:09', 'admin'),
+(7, 'test', 'Motherboard', 'wewew', 5, 0, '2016-02-05', '19:22:07', 'admin');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `inventory_item_types`
+--
+
+CREATE TABLE IF NOT EXISTS `inventory_item_types` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL,
+  `description` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `name` (`name`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+
+--
+-- Dumping data for table `inventory_item_types`
+--
+
+INSERT INTO `inventory_item_types` (`id`, `name`, `description`) VALUES
+(1, 'RAM', 'RAM modules'),
+(2, 'HDD', 'Hard Disk Drive'),
+(3, 'CPU', 'Central Processing Unit(Processor)'),
+(4, 'Motherboard', ''),
+(5, 'Monitor', ''),
+(6, 'Power Supply Unit', ''),
+(7, 'Optical Disk Drive', ''),
+(8, 'Keyboard', ''),
+(9, 'Mouse', ''),
+(10, 'Cable', ''),
+(11, 'Graphic Card', ''),
+(12, 'Netword Interface Card (NIC)', '');
 
 -- --------------------------------------------------------
 
@@ -227,6 +290,37 @@ INSERT INTO `room_details` (`id`, `room_code`, `description`, `status`, `created
 (2, 'LAB09', 'Computer Lab #9', 'active', '2016-01-30', 'admin'),
 (3, 'LAB02', 'Computer Lab #2', 'active', '2016-01-30', 'admin'),
 (5, 'LEC01', 'Lecture Room 1', 'disabled', '2016-01-30', 'admin');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `used_inventory_items`
+--
+
+CREATE TABLE IF NOT EXISTS `used_inventory_items` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `item_id` int(11) NOT NULL,
+  `computer_code` varchar(20) NOT NULL,
+  `created_date` date NOT NULL,
+  `created_time` time NOT NULL,
+  `created_by` varchar(20) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
+
+--
+-- Dumping data for table `used_inventory_items`
+--
+
+INSERT INTO `used_inventory_items` (`id`, `item_id`, `computer_code`, `created_date`, `created_time`, `created_by`) VALUES
+(6, 0, 'WK01', '2016-02-05', '21:52:49', 'admin'),
+(7, 0, 'WK01', '2016-02-05', '21:52:27', 'admin'),
+(8, 7, 'WK02', '2016-02-05', '21:56:25', 'admin'),
+(9, 7, 'WK02', '2016-02-05', '21:56:31', 'admin'),
+(10, 7, 'WK02', '2016-02-05', '21:58:08', 'admin'),
+(11, 7, 'WK03', '2016-02-05', '22:04:31', 'admin'),
+(12, 7, 'WK05', '2016-02-05', '22:04:37', 'admin'),
+(13, 7, 'WK06', '2016-02-05', '22:04:41', 'admin'),
+(14, 7, 'WK05', '2016-02-05', '22:04:46', 'admin');
 
 -- --------------------------------------------------------
 
