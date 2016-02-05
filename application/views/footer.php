@@ -37,7 +37,11 @@
 
 	<script>
 		// onload functions moved to header
-        var recheck;
+
+        function check_session_init() {
+            check_session();
+            recheck = setTimeout(check_session_init, 10000);
+        }
 
 		function startTime() {
 		    var today = new Date();
@@ -83,7 +87,6 @@
     	        }
     	    });
 
-    		recheck = setTimeout(check_session, 10000);
     	}
 
 	</script>
