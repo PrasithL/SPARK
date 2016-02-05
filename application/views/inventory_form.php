@@ -207,17 +207,6 @@
 
 <script type="text/javascript">
 
-    // show the location history modal
-    function show_location_history_modal() {
-        $('.modal').modal({backdrop: 'static', keyboard: false});
-    }
-
-    function hide_location_history_modal() {
-        $('.modal').modal('hide');
-        $('body').removeClass('modal-open');
-        $('.modal-backdrop').remove();
-    }
-
     // AJAX
     // opening issue history view
 	function show_issue_history(computer_id) {
