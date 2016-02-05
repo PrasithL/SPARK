@@ -42,6 +42,35 @@ class Inventory_Model extends CI_Model{
     }
 
     /**
+     * update a record with the given ID
+     *
+     * @param associative array with column names as keys
+     **/
+    public function update_item($data)
+    {
+        $id = $data['id'];
+        unset($data['id']); // removing the id because it shouldn't update
+
+        // check if the quantity is changed. if it's changed update the 'available' column accordingly
+        $result = $this->db->get_where('inventory_details', array('id' => $id ));
+        $result = $result->result_array();
+
+        $difference = $data['quantity'] - $result[0]['quantity'];
+        if ($difference < 0) {
+            $difference = 0;
+        }
+        $data['available'] = $result[0]['available'] + $difference;
+
+        $this->db->where('id', $id);
+
+        if ($this->db->update('inventory_details', $data)) {
+            return 1;
+        }
+
+        return -1;
+    }
+
+    /**
      * Retrive all inventory item records
      *
      * @param void

@@ -62,14 +62,19 @@ class Inventory extends CI_Controller{
      *
      * @param type var Description
      **/
-    public function get_details_of_item()
+    public function get_details_of_item($id = null, $result = null)
     {
-        $id = $this->input->post('id');
+        if ($id == null) {
+            $id = $this->input->post('id');
+        }
 
         $this->load->model("Inventory_Model");
         $data["item"] = $this->Inventory_Model->get_details_of_item($id);
         $data['item_types'] = $this->Inventory_Model->get_item_types();
         $data["flag"] = "view";
+        if ($result != null) {
+            $data['update_result'] = $result;
+        }
 
         $this->load->view('inventory_form', $data);
     }
@@ -84,7 +89,9 @@ class Inventory extends CI_Controller{
         $data = $this->input->post();
 
         $this->load->model('Inventory_Model');
-        $this->Inventory_Model->update_item($data);
+        $result = $this->Inventory_Model->update_item($data);
+
+        $this->get_details_of_item($data['id'], $result);
     }
 
 

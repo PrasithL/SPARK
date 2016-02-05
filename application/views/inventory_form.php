@@ -23,6 +23,53 @@
     &nbsp;
 </p>
 
+    <div class="row">
+
+        <?php
+            // Notification for record creation SUCCESS
+            if (isset($update_result)) {
+                if ($update_result == 1) {
+        ?>
+                    <div class="col-md-6 col-md-offset-3">
+                        <div class="alert alert-success">
+                            <button type="button" class="close" data-dismiss="alert">
+                                <i class="ace-icon fa fa-times"></i>
+                            </button>
+
+                            <strong>
+                                <i class="ace-icon fa fa-check"></i>
+                                Done!
+                            </strong>
+
+                             Record updated successfully.
+                            <br />
+                        </div>
+                    </div>
+        <?php
+                } else {
+        ?>
+                <div class="col-md-6 col-md-offset-3">
+                    <div class="alert alert-warning">
+                        <button type="button" class="close" data-dismiss="alert">
+                            <i class="ace-icon fa fa-times"></i>
+                        </button>
+
+                        <strong>
+                            <i class="ace-icon fa fa-exclamationc"></i>
+                            Done!
+                        </strong>
+
+                         Record updated failed.
+                        <br />
+                    </div>
+                </div>
+        <?php
+                }
+            }
+        ?>
+
+    </div>
+
 <!-- FORM -->
     <form class="form-horizontal" <?php if($view) echo 'id="form"'; ?> role="form"  method="POST" <?php if($view) echo "onsubmit='return false;'" ?> action="<?php echo $url; ?>">
         <!-- Item Name -->
@@ -76,6 +123,14 @@
             </div>
             <span class="text-danger">*</span>
         </div>
+
+        <?php
+            if ($view) {
+        ?>
+            <input type="hidden" name="id" value="<?=$item->id;  ?>">
+        <?php
+            }
+        ?>
 
         <!-- Buttons -->
         <div class="clearfix">
