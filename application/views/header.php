@@ -298,7 +298,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </li>
 
                 <li class="" id="Inventory">
-                    <a href="#">
+                    <a href="<?php echo base_url();?>index.php/Inventory/">
                         <i class="menu-icon fa fa-briefcase"></i>
                         <span class="menu-text"> Inventory </span>
                     </a>
@@ -336,7 +336,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </li>
 
                 <li class="" id="To-do Tasks">
-                    <a href="#">
+                    <a href="<?php echo base_url();?>index.php/ToDo/">
                         <i class="menu-icon fa fa-list"></i>
                         <span class="menu-text"> To-do Tasks </span>
                     </a>
