@@ -21,7 +21,7 @@ class Computer_Details_Model extends CI_Model{
     public function add_computer($data)
     {
         $data["created_date"] = date("Y-m-d");
-        $data["created_time"] = date("h:i:s a");
+        $data["created_time"] = date("H:i:s");
         $data["created_by"]   = $this->session->userdata('username');
 
         $result = $this->db->get_where("computer_details", array('computer_id' => $data["computer_id"]));
