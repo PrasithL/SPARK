@@ -1,3 +1,9 @@
+<style media="screen">
+    .top {
+        display: inline;
+    }
+</style>
+
 <?php
     // since this file is used for showing both open and closed issues, if the table has the same ID, DataTables has
     // trouble initializing the second one.
@@ -143,7 +149,9 @@
 		"searching": true,
 		"ordering": false,
 		"info": true,
-		"autoWidth": false
+		"autoWidth": false,
+        "lengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
+        //"sDom": '<"top"lifp>t<"bottom"p><"info"i><"clear">' // was trying to get pagination bar to display on the top. unsuccessful
 		});
 	});
 
