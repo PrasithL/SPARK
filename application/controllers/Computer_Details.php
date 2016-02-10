@@ -57,11 +57,13 @@ class Computer_Details extends CI_Controller{
         $this->load->model("Computer_Details_Model");
         $this->load->model("Room_Details_Model");
         $this->load->model("Issues_Model");
+        $this->load->model("Used_Inventory_Items_Model");
 
         $data['computer'] = $this->Computer_Details_Model->get_details_of($computer_id);
         $data['history'] = $this->Computer_Details_Model->get_location_history_of($computer_id);
         $data['rooms'] = $this->Room_Details_Model->get_all_active_rooms();
         $data['open_issue_count'] = $this->Issues_Model->get_open_issues_count($computer_id);
+        $data['added_parts'] = $this->Used_Inventory_Items_Model->get_added_parts_of($computer_id);
 
         $this->load->view('computer_details_form', $data);
 
