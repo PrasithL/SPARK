@@ -29,7 +29,7 @@
 
             <span class='username text-primary'>
                 <?php if($issue->status == "open") { ?>
-                    <button class='pull-right btn-link' onclick="show_modal(<?=$issue->id  ?>)"><i class='fa fa-check' data-rel="tooltip" title="Mark this issue as resolved"></i> Close issue</button>
+                    <button class='pull-right btn-link' onclick="show_modal('<?=$issue->id  ?>', '<?=$computer_id ?>')"><i class='fa fa-check' data-rel="tooltip" title="Mark this issue as resolved"></i> Close issue</button>
                 <?php } ?>
 
                 #<?=$issue->id  ?> - <?=$issue->issue  ?>
@@ -116,10 +116,11 @@
     var closure_mode = "all"; // 'all' for all comouters(on 'close issue' button click)
                               // 'single' for a one computer
 
-    function show_modal(id) {
+    function show_modal(id, comp_id) {
         $("#modal_issue_id").html("#"+id);
         $('.modal').modal({backdrop: 'static', keyboard: false});
         issue_id = id;
+        computer_id = comp_id;
     }
 
     function hide_modal() {
@@ -155,14 +156,13 @@
     	        data: "issue_id="+issue_id+"&computer_code="+computer_id+"&actions_taken="+actions_taken
     	    });
         }
-
+        console.log(computer_id);
 
 		// Callback handler that will be called on success
 	    request.done(function (response, textStatus, jqXHR){
             hide_modal();
             issue_id = 0;
             show_issue_history(computer_id);
-            computer_id = 0;
 
 	    });
 	}

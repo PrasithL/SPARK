@@ -30,6 +30,12 @@
             <span class="label label-default"><?php echo $open_issue_count; ?></span>
         </button>
 
+        <button type="button" class="btn btn-default btn-sm pull-left" onclick="show_added_parts_modal()" style="margin-right:1em; margin-top:-.5em;">
+            <i class="fa fa-exclamation-circle fa-lg"></i>
+            Added Parts &nbsp;&nbsp;
+            <span class="label label-default"><?php echo count($added_parts); ?></span>
+        </button>
+
     </div>
 <?php
     }
@@ -181,7 +187,7 @@
 
     </form>
 
-    <!-- location history modal -->
+<!-- location history modal -->
 <?php
     if (isset($history)) {
 ?>
@@ -229,6 +235,62 @@
 <?php
     }
 ?>
+
+<!-- Added parts modal -->
+<div id="parts_modal" class="modal fade modal-default" >
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title "><i class="fa fa-wrench text-primary"></i> <?php if($view) echo ($computer->computer_id);  ?> - Added Parts </h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <?php
+                            if ($added_parts != null) {
+                        ?>
+                            <table class="table table-hover table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th>Item ID</th>
+                                        <th>Item Name</th>
+                                        <th>Type</th>
+                                        <th>Added By</th>
+                                        <th>Added Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                        foreach ($added_parts as $row) {
+                                    ?>
+                                        <tr>
+                                            <td><?=$row->id ?></td>
+                                            <td><?=$row->item_name ?></td>
+                                            <td><?=$row->type ?></td>
+                                            <td><?=$row->created_by ?></td>
+                                            <td><?=$row->created_date ?> <?=$row->created_time ?></td>
+                                        </tr>
+                                    <?php
+                                        }
+                                    ?>
+                                </tbody>
+                            </table>
+                        <?php
+                            } else {
+                                echo "No parts has been added to this computer";
+                            }
+                        ?>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-flat btn-default " onclick="hide_location_history_modal()">Close</button>
+            </div>
+        </div> <!-- /.modal-content -->
+    </div> <!-- /.modal-dialog -->
+</div> <!-- /.modal -->
+
+
 
 <script type="text/javascript">
 
@@ -293,6 +355,11 @@
         $('.modal').modal('hide');
         $('body').removeClass('modal-open');
         $('.modal-backdrop').remove();
+    }
+
+    // show the added parts modal
+    function show_added_parts_modal() {
+        $('#parts_modal').modal({backdrop: 'static', keyboard: false});
     }
 
     // AJAX

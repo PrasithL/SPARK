@@ -117,9 +117,9 @@ class Issues_Model extends CI_Model{
         $i = 1;
 
         $this->db->order_by('status', 'ASC'); // first sort by status. 'open' ones first
-        $this->db->order_by('closed_date', 'DESC'); // then sort by closed_date. recent ones first
-        $this->db->order_by('closed_time', 'DESC'); // for ones with the same date, sort by closed_time. recent ones first
-        $this->db->order_by('id', 'ASC'); // BUT, there are no closed dates, times for 'open' issues, so they are just sorted by ID. recent ones first
+        //$this->db->order_by('closed_date', 'DESC'); // then sort by closed_date. recent ones first
+        //$this->db->order_by('closed_time', 'DESC'); // for ones with the same date, sort by closed_time. recent ones first
+        $this->db->order_by('id', 'DESC'); // BUT, there are no closed dates, times for 'open' issues, so they are just sorted by ID. recent ones first
         $result = $this->db->get_where('issue_history', array('computer_code' => $computer_id));
         foreach ($result->result() as $record) {
             $result2 = $this->db->get_where('issues', array('id' => $record->issue_id));
