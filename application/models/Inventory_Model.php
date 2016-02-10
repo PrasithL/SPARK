@@ -93,11 +93,10 @@ class Inventory_Model extends CI_Model{
     }
 
     /**
-     * undocumented function summary
      *
-     * Undocumented function long description
+     * After an item is used decrease the available count by one
      *
-     * @param type var Description
+     * @param item_id ID of the item 
      **/
     public function decrement_available_count($item_id)
     {
