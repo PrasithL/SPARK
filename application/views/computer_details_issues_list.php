@@ -135,7 +135,7 @@
         computer_id = comp_id;
         $("#modal_computer_id").html(" of <span class='text-primary'>"+comp_id+"</span>");
         $('#actions_taken').val("Actions for "+comp_id+" - ");
-        show_modal(issue_id);
+        show_modal(issue_id, comp_id);
     }
 
     // AJAX
