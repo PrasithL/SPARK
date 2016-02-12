@@ -106,4 +106,24 @@ class Computer_Details_Model extends CI_Model{
         return $result->result();
     }
 
+    public function computer_count_by_room()
+    {
+        $sql = "SELECT location, COUNT(computer_id) AS count FROM `computer_details` GROUP BY location ORDER BY location ASC";
+        $result = $this->db->query($sql);
+        return $result->result();
+    }
+
+    public function computers_count_with_issues()
+    {
+        $sql = "SELECT location, SUM(CASE WHEN status = 'Requires Repairs' THEN 1 ELSE 0 END) AS repair_count FROM `computer_details` GROUP BY location ORDER BY location ASC";
+        $result = $this->db->query($sql);
+        return $result->result();
+    }
+
+    public function get_computers_in($room_code)
+    {
+        $result = $this->db->get_where('computer_details', array('location' => $room_code ));
+        return $result->result();
+    }
+
 }

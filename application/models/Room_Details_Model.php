@@ -26,6 +26,7 @@
 
         public function get_all_active_rooms()
         {
+			$this->db->order_by('room_code', "ASC");
             $result = $this->db->get_where("room_details", array('status' => 'active'));
             return $result->result();
         }
