@@ -74,6 +74,7 @@
 	function hide_computer_details() {
 		$('#details_row').fadeOut();
 		$("#boxes").slideDown();
+		load_room_boxes();
 	}
 
 	// this is to load the room detail boxes on page load and after updating a computers details.
@@ -145,7 +146,6 @@
 			disable_inputs();
 			// these will update the data in the other views to reflect any changes made
 			refresh_comps_in_room_after_update();
-			load_room_boxes();
 	    });
 
 		return false;
