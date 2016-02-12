@@ -212,7 +212,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </li>
 
                 <li class="" id="SPARK Explorer">
-                    <a href="<?php echo base_url();?>index.php/Dashboard/">
+                    <a href="<?php echo base_url();?>index.php/Spark_Explorer/">
                         <i class="menu-icon fa fa-sitemap"></i>
                         <span class="menu-text"> SPARK Explorer </span>
                     </a>
