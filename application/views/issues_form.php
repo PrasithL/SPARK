@@ -39,7 +39,7 @@
                     <?php
                         foreach ($computers as $computer) {
                     ?>
-                        <option value="<?=$computer->computer_id ?>" <?php if($view && ($computer->location == $room->room_code)) { echo "selected"; }  ?> ><?=$computer->computer_id ?></option>
+                        <option value="<?php echo $computer->computer_id ?>" <?php if($view && ($computer->location == $room->room_code)) { echo "selected"; }  ?> ><?php echo $computer->computer_id ?></option>
                     <?php
                         }
                     ?>
@@ -139,9 +139,9 @@
                                             foreach ($history as $row) {
                                         ?>
                                             <tr>
-                                                <td><?=$row->created_date ?></td>
-                                                <td><?=$row->location ?></td>
-                                                <td><?=$row->created_by ?></td>
+                                                <td><?php echo $row->created_date ?></td>
+                                                <td><?php echo $row->location ?></td>
+                                                <td><?php echo $row->created_by ?></td>
                                             </tr>
                                         <?php
                                             }

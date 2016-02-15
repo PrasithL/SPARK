@@ -92,7 +92,7 @@
                     <?php
                         foreach ($item_types as $type) {
                     ?>
-                        <option value="<?=$type->name ?>" <?php if($view && ($item->type == $type->name)) { echo "selected"; }  ?> ><?=$type->name ?> </option>
+                        <option value="<?php echo $type->name ?>" <?php if($view && ($item->type == $type->name)) { echo "selected"; }  ?> ><?php echo $type->name ?> </option>
                     <?php
                         }
                     ?>
@@ -127,7 +127,7 @@
         <?php
             if ($view) {
         ?>
-            <input type="hidden" name="id" value="<?=$item->id;  ?>">
+            <input type="hidden" name="id" value="<?php echo $item->id;  ?>">
         <?php
             }
         ?>
@@ -182,9 +182,9 @@
                                             foreach ($history as $row) {
                                         ?>
                                             <tr>
-                                                <td><?=$row->created_date ?></td>
-                                                <td><?=$row->location ?></td>
-                                                <td><?=$row->created_by ?></td>
+                                                <td><?php echo $row->created_date ?></td>
+                                                <td><?php echo $row->location ?></td>
+                                                <td><?php echo $row->created_by ?></td>
                                             </tr>
                                         <?php
                                             }

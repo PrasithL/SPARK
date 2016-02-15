@@ -17,24 +17,24 @@
             foreach ($items as $item) {
         ?>
             <tr>
-                <td><?=$item->id ?></td>
-                <td><?=$item->item_name ?></td>
-                <td><?=$item->type ?></td>
-                <td><?=$item->details ?></td>
-                <td><?=$item->quantity ?></td>
-                <td><?=$item->available ?></td>
+                <td><?php echo $item->id ?></td>
+                <td><?php echo $item->item_name ?></td>
+                <td><?php echo $item->type ?></td>
+                <td><?php echo $item->details ?></td>
+                <td><?php echo $item->quantity ?></td>
+                <td><?php echo $item->available ?></td>
                 <td>
-                    <?=$item->created_by ?>
+                    <?php echo $item->created_by ?>
                     <br />
-                    <?=$item->created_date ?>
+                    <?php echo $item->created_date ?>
                 </td>
                 <td>
-                    <button type="button" class="btn btn-sm btn-default" onclick="open_details(<?=$item->id ?>)">
+                    <button type="button" class="btn btn-sm btn-default" onclick="open_details(<?php echo $item->id ?>)">
                         <i class="fa fa-pencil"></i>
                         &nbsp; Edit
                     </button>
                     &nbsp;
-                    <button type="button" class="btn btn-sm btn-primary" onclick="use_item_modal(<?=$item->id ?>)" <?php if($item->available < 1) echo "disabled title='No items available'"; ?>>
+                    <button type="button" class="btn btn-sm btn-primary" onclick="use_item_modal(<?php echo $item->id ?>)" <?php if($item->available < 1) echo "disabled title='No items available'"; ?>>
                         <i class="fa fa-wrench"></i>
                         &nbsp; Use Item
                     </button>
@@ -62,7 +62,7 @@
                                     <input type="text" list="computers" class="form-control col-md-3" id="computer_code" name="computer_code" >
                                     <datalist id="computers">
                                         <?php foreach ($computers as $computer): ?>
-                                            <option><?=$computer->computer_id ?></option>
+                                            <option><?php echo $computer->computer_id ?></option>
                                         <?php endforeach; ?>
                                     </datalist>
                             </div>

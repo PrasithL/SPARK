@@ -5,8 +5,8 @@
         <!-- small box -->
         <div class="small-box bg-gray">
             <div class="inner">
-                <h3><?=$room->room_code ?></h3>
-                <p class="text-muted"><?=$room->description ?></p>
+                <h3><?php echo $room->room_code ?></h3>
+                <p class="text-muted"><?php echo $room->description ?></p>
 
                 <?php
                     foreach ($computer_count as $record) {
@@ -28,7 +28,7 @@
                 <?php endforeach; ?>
 
             </div>
-            <a onclick="open_room('<?=$room->room_code ?>')" href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a onclick="open_room('<?php echo $room->room_code ?>')" href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
         </div>
     </div><!-- ./col -->
 <?php
