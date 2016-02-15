@@ -6,9 +6,9 @@
                 <!-- small box -->
                 <div class="small-box bg-gray">
                     <div class="inner">
-                        <h3><?=$computer->computer_id ?></h3>
-                        <p class="text-muted"><?=$computer->location ?></p>
-                        <p class="text-muted"><?=$computer->processor." | ".$computer->motherboard." <br> ".$computer->ram." | ".$computer->hdd ?></p>
+                        <h3><?php echo $computer->computer_id ?></h3>
+                        <p class="text-muted"><?php echo $computer->location ?></p>
+                        <p class="text-muted"><?php echo $computer->processor." | ".$computer->motherboard." <br> ".$computer->ram." | ".$computer->hdd ?></p>
                     </div>
                     <div class="icon">
                         <?php switch ($computer->status) {
@@ -23,7 +23,7 @@
                                 break;
                         } ?>
                     </div>
-                    <a onclick="open_details('<?=$computer->computer_id ?>')" href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                    <a onclick="open_details('<?php echo $computer->computer_id ?>')" href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div><!-- ./col -->
         <?php

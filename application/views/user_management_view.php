@@ -209,23 +209,23 @@
 					<tbody>
 						<?php foreach ($users as $user) { ?>
 							<tr class="<?php if($user->status == 'disabled') echo 'text-muted'; ?>">
-								<td><?=$user->emp_id; ?></td>
-								<td><?=$user->username; ?></td>
-								<td><?=$user->created_date; ?></td>
-								<td><?=$user->status; ?></td>
+								<td><?php echo $user->emp_id; ?></td>
+								<td><?php echo $user->username; ?></td>
+								<td><?php echo $user->created_date; ?></td>
+								<td><?php echo $user->status; ?></td>
 								<td>
 									<button type="button" class="btn btn-link btn-sm " onclick="changePasswordModel(<?php echo "'".$user->username."','".$user->emp_id."'"; ?>)" data-rel="tooltip" title="Change Password" <?php if($user->status == 'disabled') echo 'disabled'; ?>>
 										<i class="fa fa-pencil"></i>
 									</button>
 									<?php if($user->status == 'active') { ?>
 										<form onsubmit="return confirm_disable()" action="<?php echo base_url();?>index.php/User_Management/disable_user" method="post" style="display:inline">
-										<input type="hidden" name="emp_id" value=<?=$user->emp_id; ?>>
+										<input type="hidden" name="emp_id" value=<?php echo $user->emp_id; ?>>
 										<button type="submit" class="btn btn-link btn-sm" data-rel="tooltip" title="Disable user">
 											<i class="fa fa-minus-square text-danger"></i>
 										</button>
 									<?php } else { ?>
 										<form action="<?php echo base_url();?>index.php/User_Management/enable_user" method="post" style="display:inline">
-										<input type="hidden" name="emp_id" value=<?=$user->emp_id; ?>>
+										<input type="hidden" name="emp_id" value=<?php echo $user->emp_id; ?>>
 										<button type="submit" class="btn btn-link btn-sm" data-rel="tooltip" title="Re-activate user">
 											<i class="fa fa-plus-square text-success"></i>
 										</button>

@@ -146,21 +146,21 @@
 					<tbody>
 						<?php foreach ($rooms as $room) { ?>
 							<tr class="<?php if($room->status == 'disabled') echo 'text-muted'; ?>">
-								<td><?=$room->room_code; ?></td>
-								<td><?=$room->description; ?></td>
-								<td><?=$room->created_date; ?></td>
-                                <td><?=$room->created_by; ?></td>
-								<td><?=$room->status; ?></td>
+								<td><?php echo $room->room_code; ?></td>
+								<td><?php echo $room->description; ?></td>
+								<td><?php echo $room->created_date; ?></td>
+                                <td><?php echo $room->created_by; ?></td>
+								<td><?php echo $room->status; ?></td>
 								<td>
 									<?php if($room->status == 'active') { ?>
 										<form onsubmit="return confirm_disable()" action="<?php echo base_url();?>index.php/Room_Details/disable_room" method="post" style="display:inline">
-										<input type="hidden" name="room_code" value=<?=$room->room_code; ?>>
+										<input type="hidden" name="room_code" value=<?php echo $room->room_code; ?>>
 										<button type="submit" class="btn btn-link btn-sm" data-rel="tooltip" title="Disable room">
 											<i class="fa fa-minus-square text-danger"></i>
 										</button>
 									<?php } else { ?>
 										<form action="<?php echo base_url();?>index.php/Room_Details/enable_room" method="post" style="display:inline">
-										<input type="hidden" name="room_code" value=<?=$room->room_code; ?>>
+										<input type="hidden" name="room_code" value=<?php echo $room->room_code; ?>>
 										<button type="submit" class="btn btn-link btn-sm" data-rel="tooltip" title="Re-activate room">
 											<i class="fa fa-plus-square text-success"></i>
 										</button>

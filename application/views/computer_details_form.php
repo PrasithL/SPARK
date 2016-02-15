@@ -8,7 +8,7 @@
         $computer = $computer[0]; // using the first array element of the returned result
 ?>
     <div class="col-md-12" >
-        <button type="button" class="btn btn-danger btn-sm pull-right" onclick="hide_detail_view()" style="margin-right:1em; margin-top:-.5em;">
+        <button type="button" class="btn btn-danger btn-sm pull-left" onclick="hide_detail_view()" style="margin-right:1em; margin-top:-.5em;">
             <i class="fa fa-times fa-lg"></i>
             Close
         </button>
@@ -24,7 +24,7 @@
             <span class="label label-default"><?php echo sizeof($history); ?></span>
         </button>
 
-        <button type="button" class="btn btn-default btn-sm pull-left" onclick="show_issue_history('<?=$computer->computer_id ?>')" style="margin-right:1em; margin-top:-.5em;">
+        <button type="button" class="btn btn-default btn-sm pull-left" onclick="show_issue_history('<?php echo $computer->computer_id ?>')" style="margin-right:1em; margin-top:-.5em;">
             <i class="fa fa-exclamation-circle fa-lg"></i>
             Issues &nbsp;&nbsp;
             <span class="label label-default"><?php echo $open_issue_count; ?></span>
@@ -68,7 +68,7 @@
                     <?php
                         foreach ($rooms as $room) {
                     ?>
-                        <option value="<?=$room->room_code ?>" <?php if($view && ($computer->location == $room->room_code)) { echo "selected"; }  ?> ><?=$room->room_code ?></option>
+                        <option value="<?php echo $room->room_code ?>" <?php if($view && ($computer->location == $room->room_code)) { echo "selected"; }  ?> ><?php echo $room->room_code ?></option>
                     <?php
                         }
                     ?>
@@ -191,7 +191,7 @@
 <?php
     if (isset($history)) {
 ?>
-        <div class="modal fade modal-default" >
+        <div id="location_modal" class="modal fade modal-default" >
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -213,9 +213,9 @@
                                             foreach ($history as $row) {
                                         ?>
                                             <tr>
-                                                <td><?=$row->created_date ?></td>
-                                                <td><?=$row->location ?></td>
-                                                <td><?=$row->created_by ?></td>
+                                                <td><?php echo $row->created_date ?></td>
+                                                <td><?php echo $row->location ?></td>
+                                                <td><?php echo $row->created_by ?></td>
                                             </tr>
                                         <?php
                                             }
@@ -264,11 +264,11 @@
                                         foreach ($added_parts as $row) {
                                     ?>
                                         <tr>
-                                            <td><?=$row->id ?></td>
-                                            <td><?=$row->item_name ?></td>
-                                            <td><?=$row->type ?></td>
-                                            <td><?=$row->created_by ?></td>
-                                            <td><?=$row->created_date ?> <?=$row->created_time ?></td>
+                                            <td><?php echo $row->id ?></td>
+                                            <td><?php echo $row->item_name ?></td>
+                                            <td><?php echo $row->type ?></td>
+                                            <td><?php echo $row->created_by ?></td>
+                                            <td><?php echo $row->created_date ?> <?php echo $row->created_time ?></td>
                                         </tr>
                                     <?php
                                         }
@@ -295,6 +295,7 @@
 <script type="text/javascript">
 
     $(function() {
+        // none
     });
 
     // to diasble all inputs when viewing a computers details
@@ -348,7 +349,7 @@
 
     // show the location history modal
     function show_location_history_modal() {
-        $('.modal').modal({backdrop: 'static', keyboard: false});
+        $('#location_modal').modal({backdrop: 'static', keyboard: false});
     }
 
     function hide_location_history_modal() {

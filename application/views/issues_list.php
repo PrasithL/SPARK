@@ -14,7 +14,7 @@
         $table_id = 'table_open';
     }
 ?>
-<table id="<?=$table_id ?>" class="table">
+<table id="<?php echo $table_id ?>" class="table">
     <thead>
         <tr>
             <th></th>
@@ -37,7 +37,7 @@
         ?>
             <tr>
                 <td>
-                    <div class="post well" id="<?=$issue->id  ?>">
+                    <div class="post well" id="<?php echo $issue->id  ?>">
                         <div class="user-block">
                             <?php if($viewing_closed) { ?>
                                 <img class="img-thumbnail " src="<?php echo base_url(); ?>assets2/img/ok.png" alt="user image">
@@ -47,12 +47,12 @@
 
                             <span class='username text-primary'>
                                 <?php if(!$viewing_closed) { ?>
-                                    <button class='pull-right btn-link' onclick="show_modal(<?=$issue->id  ?>)"><i class='fa fa-check' data-rel="tooltip" title="Mark this issue as resolved"></i> Close issue</button>
+                                    <button class='pull-right btn-link' onclick="show_modal(<?php echo $issue->id  ?>)"><i class='fa fa-check' data-rel="tooltip" title="Mark this issue as resolved"></i> Close issue</button>
                                 <?php } ?>
 
-                                #<?=$issue->id  ?> - <?=$issue->issue  ?>
+                                #<?php echo $issue->id  ?> - <?php echo $issue->issue  ?>
                             </span>
-                            <span class='description'>Opened on <?=$issue->opened_date  ?> at <?=$issue->opened_time  ?> by <?=$issue->opened_by  ?> (<?=$differnce->days ?> days ago) <small class='label <?php if($viewing_closed) {echo "bg-green";} else {echo "bg-primary";} ?> <?=$issue->id  ?>'><?=$issue->status ?></small></span>
+                            <span class='description'>Opened on <?php echo $issue->opened_date  ?> at <?php echo $issue->opened_time  ?> by <?php echo $issue->opened_by  ?> (<?php echo $differnce->days ?> days ago) <small class='label <?php if($viewing_closed) {echo "bg-green";} else {echo "bg-primary";} ?> <?php echo $issue->id  ?>'><?php echo $issue->status ?></small></span>
 
                             <?php
                                 if ($viewing_closed) {
@@ -70,13 +70,13 @@
                                             if ($record->status == "open") { // to change the background color of the labels according to the status
                                                 $string = "<li>$record->computer_code &nbsp;&nbsp;&nbsp;";
                                                 if(!$viewing_closed) {
-                                                    $string = $string."<small class='label bg-orange <?=$issue->id  ?>'>$record->status</small><button type=\"button\" onclick=\"close_issue_for_computer('$record->computer_code', '$issue->id' )\" class=\"btn btn-link btn-xs \"><i class=\"fa fa-check text-green\"></i> <span class=\"text-green\">Mark as resolved</span></button></li> ";
+                                                    $string = $string."<small class='label bg-orange <?php echo $issue->id  ?>'>$record->status</small><button type=\"button\" onclick=\"close_issue_for_computer('$record->computer_code', '$issue->id' )\" class=\"btn btn-link btn-xs \"><i class=\"fa fa-check text-green\"></i> <span class=\"text-green\">Mark as resolved</span></button></li> ";
                                                 }
                                                 echo $string;
                                             } else {
                                                 $string = "<li>$record->computer_code &nbsp;&nbsp;&nbsp;";
                                                 if(!$viewing_closed) {
-                                                    $string = $string."<small class='label bg-green <?=$issue->id  ?>'>$record->status</small></li> ";
+                                                    $string = $string."<small class='label bg-green <?php echo $issue->id  ?>'>$record->status</small></li> ";
                                                 }
                                                 echo $string;
                                             }
@@ -88,12 +88,12 @@
 
                             <b>Description</b>
                                 <blockquote style="font-size: 1.1em;">
-                                    <?=$issue->description  ?>
+                                    <?php echo $issue->description  ?>
                                 </blockquote>
 
                             <b>Actions Taken</b>
                                 <blockquote style="font-size: 1.1em;">
-                                    <?=$issue->actions_taken  ?>
+                                    <?php echo $issue->actions_taken  ?>
                                 </blockquote>
 
                         </p>
@@ -140,10 +140,10 @@
     var computer_id = 0;
     var closure_mode = "all"; // 'all' for all comouters(on 'close issue' button click)
                               // 'single' for a one computer
-    var open_count = <?=sizeof($issues) ?>
+    var open_count = <?php echo sizeof($issues) ?>
 
     $(function () {
-        $('#<?=$table_id ?>').DataTable({
+        $('#<?php echo $table_id ?>').DataTable({
 		"paging": true,
 		"lengthChange": true,
 		"searching": true,
