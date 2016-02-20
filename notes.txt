@@ -1,0 +1,4 @@
+* Added parts modal is not showing in computer details!!
+* Severity of an issue is not shown anywhere! fix it.
+* select2 doesn't reset with default reset. gonna have to use JS.
+* Login page still uses AceAdmin assets. Create a new login page using AdminLTE's template.

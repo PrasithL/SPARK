@@ -9,19 +9,19 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 
 		<!-- bootstrap & fontawesome -->
-		<link rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/bootstrap.css" />
-		<link rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/font-awesome.css" />
+		<link rel="stylesheet" href="<?php echo base_url(); ?>/assets2/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="<?php echo base_url(); ?>/assets2/css/font-awesome.min.css" />
 
 		<!-- text fonts -->
-		<link rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/ace-fonts.css" />
+		<link rel="stylesheet" href="<?php echo base_url(); ?>/assets2/css/ace/ace-fonts.css" />
 
 		<!-- ace styles -->
-		<link rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/ace.css" />
+		<link rel="stylesheet" href="<?php echo base_url(); ?>/assets2/css/ace/ace.css" />
 
 		<!--[if lte IE 9]>
 			<link rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/ace-part2.css" />
 		<![endif]-->
-		<link rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/ace-rtl.css" />
+		<link rel="stylesheet" href="<?php echo base_url(); ?>/assets2/css/ace/ace-rtl.css" />
 
 		<!--[if lte IE 9]>
 		  <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/ace-ie.css" />
@@ -30,8 +30,8 @@
 		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 
 		<!--[if lt IE 9]>
-		<script src="<?php echo base_url(); ?>/assets/js/html5shiv.js"></script>
-		<script src="<?php echo base_url(); ?>/assets/js/respond.js"></script>
+		<script src="<?php echo base_url(); ?>/assets2/js/html5shiv.js"></script>
+		<script src="<?php echo base_url(); ?>/assets2/js/respond.js"></script>
 		<![endif]-->
 
 		<style type="text/css">
@@ -126,7 +126,7 @@
 
 		<!--[if !IE]> -->
 		<script type="text/javascript">
-			window.jQuery || document.write("<script src='<?php echo base_url(); ?>/assets/js/jquery.js'>"+"<"+"/script>");
+			window.jQuery || document.write("<script src='<?php echo base_url(); ?>/assets2/plugins/jQuery/jQuery.min.js'>"+"<"+"/script>");
 		</script>
 
 		<!-- <![endif]-->
@@ -137,7 +137,7 @@
 </script>
 <![endif]-->
 		<script type="text/javascript">
-			if('ontouchstart' in document.documentElement) document.write("<script src='<?php echo base_url(); ?>/assets/js/jquery.mobile.custom.js'>"+"<"+"/script>");
+			if('ontouchstart' in document.documentElement) document.write("<script src='<?php echo base_url(); ?>/assets2/js/jquery.mobile.custom.js'>"+"<"+"/script>");
 		</script>
 
 		<!-- inline scripts related to this page -->
