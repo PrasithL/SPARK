@@ -52,7 +52,7 @@
         <div class="form-group">
             <label class="col-sm-3 col-sm-offset-2 control-label no-padding-right" for="computer_id"> Computer ID </label>
 
-            <div class="col-sm-2">
+            <div class="col-sm-4">
                 <input type="text" class="form-control" id="computer_id" name="computer_id" placeholder="CMP00" value="<?php if($view) echo ($computer->computer_id);  ?>" required />
             </div>
             <span class="text-danger">*</span>
@@ -62,7 +62,7 @@
         <div class="form-group">
             <label class="col-sm-3 col-sm-offset-2 control-label no-padding-right" for="location"> Room Code </label>
 
-            <div class="col-sm-2">
+            <div class="col-sm-4">
                 <select class="form-control" id="location" name="location" required>
                     <option hidden >Select one</option>
                     <?php
@@ -115,7 +115,7 @@
         <div class="form-group">
             <label class="col-sm-3 col-sm-offset-2 control-label no-padding-right" for="hdd"> HDD Capacity </label>
 
-            <div class="col-sm-3">
+            <div class="col-sm-4">
                 <input type="text" class="form-control" id="hdd" name="hdd" placeholder="500GB" value="<?php if($view) echo ($computer->hdd);  ?>" required />
 
             </div>
@@ -143,7 +143,7 @@
         <div class="form-group">
             <label class="col-sm-3 col-sm-offset-2 control-label no-padding-right" for="status"> Computer Status </label>
 
-            <div class="col-sm-2">
+            <div class="col-sm-4">
                 <select class="form-control" id="status" name="status" required>
                     <option hidden selected>Select one</option>
                     <option <?php if($view) { if($computer->status === 'Functional') echo "selected"; }  ?> >Functional</option>

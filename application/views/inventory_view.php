@@ -14,11 +14,11 @@
 		<!-- Custom Tabs -->
 		<div class="nav-tabs-custom">
 			<ul class="nav nav-tabs">
-				<li class="active"><a href="#tab_1" data-toggle="tab" onclick="hide_detail_view()"> <i class="fa fa-plus-square-o"></i> Add Items</a></li>
-				<li><a href="#tab_2" data-toggle="tab" onclick="get_item_list();"> <i class="fa fa-th-large"></i> View </a></li>
+				<li class="active"><a href="#tab_2" data-toggle="tab" onclick="get_item_list();"> <i class="fa fa-th-large"></i> View </a></li>
+				<li ><a href="#tab_1" data-toggle="tab" onclick="hide_detail_view()"> <i class="fa fa-plus-square-o"></i> Add Items</a></li>
 			</ul>
 			<div class="tab-content">
-		  		<div class="tab-pane active" id="tab_1">
+		  		<div class="tab-pane" id="tab_1">
 
 					<div class="row">
 
@@ -80,7 +80,7 @@
 					</div>
 				</div>
 
-				<div class="tab-pane" id="tab_2">
+				<div class="tab-pane active" id="tab_2">
 					<div id="box">
 						<!-- inventory detail loads here -->
 					</div>
@@ -101,9 +101,11 @@
 <script type="text/javascript">
 	var current_page = "Inventory";
 	var item_id; // item id is set on 'use item' button click, in use_item_modal()
+	var item_type;
 
 	$(function () {
 		$('#detail_viewer').hide();
+		get_item_list();
 	});
 
 	// AJAX
@@ -175,9 +177,10 @@
 		return false;
 	}
 
-	function use_item_modal(id) {
+	function use_item_modal(id, type) {
 		$('.modal').modal({backdrop: 'static', keyboard: false});
 		item_id = id;
+		item_type = type;
 	}
 
 	// AJAX
@@ -188,7 +191,7 @@
 	    request = $.ajax({
 	        url: "<?php echo base_url();?>index.php/Inventory/use_item",
 	        type: "post",
-	        data: "item_id="+item_id+"&computer_code="+computer_code
+	        data: "item_id="+item_id+"&computer_code="+computer_code+"&item_type="+item_type
 	    });
 
 		// Callback handler that will be called on success

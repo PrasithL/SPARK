@@ -63,6 +63,24 @@
 			}
 		}
 
+		public function update_room($data)
+		{
+			if (!isset($data['projector'])) {
+				$data['projector'] = "";
+			}
+			if (!isset($data['projector_screen'])) {
+				$data['projector_screen'] = "";
+			}
+
+			$this->db->set($data);
+			$this->db->where('room_code', $data['room_code']);
+
+			if (!$this->db->update('room_details')) {
+				return -1;
+			}
+			return 1;
+		}
+
 		public function disable_room($room_code)
 		{
 			$this->db->set('status', 'disabled');

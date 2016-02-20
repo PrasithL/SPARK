@@ -13,7 +13,7 @@
 
 <!-- User creation form toggle button -->
 <div class="row">
-	<div id="form_toggle" class="col-md-5 col-md-offset-4">
+	<div id="form_toggle" class="col-md-5 col-md-offset-5">
 		<button type="button" class="btn btn-primary btn-sm pull-right" onclick="show_form()">
 			<i class="fa fa-plus"></i>&nbsp; Add User
 		</button>
@@ -192,7 +192,7 @@
 <div class="space-10"></div>
 
 <div class="row">
-	<div id="table_box" class="col-md-6 col-md-offset-3">
+	<div id="table_box" class="col-md-8 col-md-offset-2">
 		<div class="box box-primary">
 			<div class="box-body">
 				<table id="table" class="table table-striped table-hover table-borderedx ">

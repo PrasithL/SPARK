@@ -26,6 +26,11 @@
 				$data['result'] = $this->session->flashdata('result');
 			}
 
+			// from update_room_details
+			if (null !== $this->session->flashdata('update_result')) {
+				$data['update_result'] = $this->session->flashdata('update_result');
+			}
+
 			// loading the page
 			$this->load->view("header");
 			$this->load->view('room_details_view', $data);
@@ -42,6 +47,24 @@
 
 			// reload the page with result
 			$this->session->set_flashdata('result', $result);
+			redirect('index.php/Room_Details');
+		}
+
+		/**
+		 * Update the given room details record
+		 *
+		 * @param assocative array of column values passed via post
+		 **/
+		public function update_room_details()
+		{
+			$data 	= $this->input->post();
+
+			// load model and invoke the function
+			$this->load->model("Room_Details_Model");
+			$result 	= $this->Room_Details_Model->update_room($data);
+
+			// reload the page with result
+			$this->session->set_flashdata('update_result', $result);
 			redirect('index.php/Room_Details');
 		}
 

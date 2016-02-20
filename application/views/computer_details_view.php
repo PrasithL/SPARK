@@ -14,11 +14,11 @@
 		<!-- Custom Tabs -->
 		<div class="nav-tabs-custom">
 			<ul class="nav nav-tabs">
-				<li class="active"><a href="#tab_1" data-toggle="tab" onclick="hide_detail_view()"> <i class="fa fa-plus-square-o"></i> Add</a></li>
-				<li><a href="#tab_2" data-toggle="tab" onclick="get_boxes(); hide_detail_view();"> <i class="fa fa-th-large"></i> View All</a></li>
+				<li class="active"><a href="#tab_2" data-toggle="tab" onclick="get_boxes(); hide_detail_view();"> <i class="fa fa-th-large"></i> View All</a></li>
+				<li ><a href="#tab_1" data-toggle="tab" onclick="hide_detail_view()"> <i class="fa fa-plus-square-o"></i> Add</a></li>
 			</ul>
 			<div class="tab-content">
-		  		<div class="tab-pane active" id="tab_1">
+		  		<div class="tab-pane" id="tab_1">
 
 					<div class="row">
 						<?php
@@ -104,7 +104,7 @@
 					</div>
 				</div>
 
-				<div class="tab-pane" id="tab_2">
+				<div class="tab-pane active" id="tab_2">
 					<div id="box">
 						<!-- Computer detail boxes loads here -->
 					</div>
@@ -127,6 +127,7 @@
 
 	$(function () {
 		$('#detail_viewer').hide();
+		get_boxes();
 	});
 
 	// AJAX
