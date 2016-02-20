@@ -52,6 +52,17 @@ class Computer_Details_Model extends CI_Model{
     **/
     public function update_computer($data)
     {
+        if (!isset($data['monitor'])) {
+            $data['monitor'] = "";
+        }
+        if (!isset($data['mouse'])) {
+            $data['mouse'] = "";
+        }
+        if (!isset($data['keyboard'])) {
+            $data['keyboard'] = "";
+        }
+
+
         $this->db->where('computer_id', $data['computer_id']);
         // get the computer's details before the update
         $result = $this->db->get('computer_details');
