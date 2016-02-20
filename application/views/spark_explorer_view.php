@@ -4,6 +4,11 @@
 		<i class="fa fa-sitemap text-primary"></i>
 		SPARK Explorer
 	</h1>
+	<ol class="breadcrumb">
+		<li id="breadcrumb_explorer" class="active"><a href="#"><i class="fa fa-sitemap"></i> SPARK Explorer</a></li>
+		<li onclick="hide_detail_view();" id="breadcrumb_room"><a id="bread_room_link" href="#">Rooms name</a></li>
+		<li id="breadcrumb_comp"><span id="bread_comp_link" href="#">Computer name</span></li>
+	</ol>
 </section><!-- /.page-header -->
 
 <br>
@@ -47,6 +52,8 @@
 	var room_code_x = "";
 
 	$(function () {
+		$('#breadcrumb_room').hide();
+		$('#breadcrumb_comp').hide();
 		$('#details_row').hide();
 		load_room_boxes();
 	});
@@ -62,11 +69,25 @@
 	        data: "room_code="+room_code
 	    });
 
+		// remove the breadcrumbs
+
+
 		// Callback handler that will be called on success
 	    request.done(function (response, textStatus, jqXHR){
 	        $('#computer_details').html(response);
 			$("#boxes").slideUp();
 			$('#details_row').fadeIn();
+
+			// update breadcrumb
+			$('#breadcrumb_explorer').removeClass('active');
+			$('#breadcrumb_explorer').click(function() {
+				hide_detail_view();
+				hide_computer_details();
+			});
+			$('#breadcrumb_room').addClass('active');
+			$('#breadcrumb_room').fadeIn();
+			$('#bread_room_link').html(room_code);
+
 			//disable_inputs();
 	    });
 	}
@@ -75,6 +96,11 @@
 		$('#details_row').fadeOut();
 		$("#boxes").slideDown();
 		load_room_boxes();
+		$('#breadcrumb_room').fadeOut();
+		$('#breadcrumb_room').removeClass('active');
+
+		// remove onclick from explorer breadcrumb
+		$('#breadcrumb_explorer').unbind('click');
 	}
 
 	// this is to load the room detail boxes on page load and after updating a computers details.
@@ -113,6 +139,11 @@
 			$("#details_row").slideUp();
 			$('#detail_viewer').fadeIn();
 			disable_inputs();
+
+			$('#breadcrumb_room').removeClass('active');
+			$('#breadcrumb_comp').addClass('active');
+			$('#breadcrumb_comp').fadeIn();
+			$('#bread_comp_link').html(computer_id);
 	    });
 	}
 
@@ -121,6 +152,8 @@
 		$('#detail_viewer').hide();
 		$("#details_row").slideDown();
 		//enable_inputs("all");
+		$('#breadcrumb_comp').fadeOut();
+		$('#breadcrumb_comp').removeClass('active');
 	}
 
 	// AJAX
