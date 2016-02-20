@@ -34,7 +34,7 @@
                         &nbsp; Edit
                     </button>
                     &nbsp;
-                    <button type="button" class="btn btn-sm btn-primary" onclick="use_item_modal(<?php echo $item->id ?>)" <?php if($item->available < 1) echo "disabled title='No items available'"; ?>>
+                    <button type="button" class="btn btn-sm btn-primary" onclick="use_item_modal('<?php echo $item->id ?>', '<?php echo $item->type ?>')" <?php if($item->available < 1) echo "disabled title='No items available'"; ?>>
                         <i class="fa fa-wrench"></i>
                         &nbsp; Use Item
                     </button>

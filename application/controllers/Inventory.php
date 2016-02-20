@@ -103,12 +103,63 @@ class Inventory extends CI_Controller{
     public function use_item()
     {
         $data = $this->input->post();
+        $item_type = $data['item_type'];
+        // removing this from the array because the table doesn't have a column for this.
+        unset($data['item_type']);
 
         $this->load->model('Used_Inventory_Items_Model');
         $this->load->model('Inventory_Model');
+        $this->load->model('Computer_Details_Model');
 
         $this->Used_Inventory_Items_Model->add_record($data);
+        // decrement the count of the available items by 1
         $this->Inventory_Model->decrement_available_count($data['item_id']);
+
+        // if the item is a processor, HDD, motherboard, RAM, mouse, keyboard or a monitor update the related record in
+        // computer_details table
+
+        // first we need the details of the item_id
+        $result = $this->Inventory_Model->get_details_of_item($data['item_id']);
+        switch ($item_type) {
+            case 'CPU':
+                $item = array('computer_id' => $data['computer_code'], 'processor' => $result[0]->details );
+                $this->Computer_Details_Model->update_computer($item);
+                break;
+
+            case 'HDD':
+                $item = array('computer_id' => $data['computer_code'], 'hdd' => $result[0]->details );
+                $this->Computer_Details_Model->update_computer($item);
+                break;
+
+            case 'RAM':
+                $item = array('computer_id' => $data['computer_code'], 'ram' => $result[0]->details );
+                $this->Computer_Details_Model->update_computer($item);
+                break;
+
+            case 'Motherboard':
+                $item = array('computer_id' => $data['computer_code'], 'motherboard' => $result[0]->details );
+                $this->Computer_Details_Model->update_computer($item);
+                break;
+
+            case 'Keyboard':
+                $item = array('computer_id' => $data['computer_code'], 'keyboard' => "1" );
+                $this->Computer_Details_Model->update_computer($item);
+                break;
+
+            case 'Mouse':
+                $item = array('computer_id' => $data['computer_code'], 'mouse' => "1" );
+                $this->Computer_Details_Model->update_computer($item);
+                break;
+
+            case 'Monitor':
+                $item = array('computer_id' => $data['computer_code'], 'monitor' => "1" );
+                $this->Computer_Details_Model->update_computer($item);
+                break;
+
+            default:
+                # code...
+                break;
+        }
 
         $this->get_all_items();
     }

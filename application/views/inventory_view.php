@@ -101,6 +101,7 @@
 <script type="text/javascript">
 	var current_page = "Inventory";
 	var item_id; // item id is set on 'use item' button click, in use_item_modal()
+	var item_type;
 
 	$(function () {
 		$('#detail_viewer').hide();
@@ -176,9 +177,10 @@
 		return false;
 	}
 
-	function use_item_modal(id) {
+	function use_item_modal(id, type) {
 		$('.modal').modal({backdrop: 'static', keyboard: false});
 		item_id = id;
+		item_type = type;
 	}
 
 	// AJAX
@@ -189,7 +191,7 @@
 	    request = $.ajax({
 	        url: "<?php echo base_url();?>index.php/Inventory/use_item",
 	        type: "post",
-	        data: "item_id="+item_id+"&computer_code="+computer_code
+	        data: "item_id="+item_id+"&computer_code="+computer_code+"&item_type="+item_type
 	    });
 
 		// Callback handler that will be called on success

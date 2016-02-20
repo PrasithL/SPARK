@@ -53,12 +53,16 @@ class Computer_Details_Model extends CI_Model{
     public function update_computer($data)
     {
         $this->db->where('computer_id', $data['computer_id']);
+        // get the computer's details before the update
         $result = $this->db->get('computer_details');
+
         $this->db->where('computer_id', $data['computer_id']);
+
         if ( $this->db->update('computer_details', $data)) {
+            // I don't think a foreach is needed here. but let's leave it alone for now.
             foreach ($result->result() as $row)
             {
-                    if($row->location != $data['location']) {
+                    if(isset($data['location']) && $row->location != $data['location']) {
                         // enter record to location_history
                         $this->add_location_history_record($data);
                     }
