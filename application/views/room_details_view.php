@@ -9,7 +9,7 @@
 
 <!-- User creation form toggle button -->
 <div class="row">
-	<div id="form_toggle" class="col-md-5 col-md-offset-5">
+	<div id="form_toggle" class="col-md-5 col-md-offset-6">
 		<button type="button" class="btn btn-primary btn-sm pull-right" onclick="show_form()">
 			<i class="fa fa-plus"></i>&nbsp; Add Room
 		</button>
@@ -185,7 +185,7 @@
 						<tr>
 							<th>Room Code</th>
 							<th>Description</th>
-							<th>Special Devices</th>
+							<th width='20%'>Special Devices</th>
 							<th>Other</th>
                             <th>Created by</th>
 							<th>Status</th>
