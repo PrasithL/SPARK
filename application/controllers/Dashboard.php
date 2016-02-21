@@ -17,9 +17,19 @@
 
 		public function index($values = NULL)
 		{
+			// decided to use a seperate model to make things easier
+			$this->load->model('Dashboard_Model');
+
+			$data['room_count'] = $this->Dashboard_Model->get_active_room_count();
+			$data['computer_count'] = $this->Dashboard_Model->get_active_computer_count();
+			$data['issue_count'] = $this->Dashboard_Model->get_open_issue_count();
+			$data['inventory_count'] = $this->Dashboard_Model->get_inventory_item_count();
+
+			$data['issues'] = $this->Dashboard_Model->get_recent_issues();
+
 			// loading the page
 			$this->load->view("header");
-			$this->load->view('dashboard_view');
+			$this->load->view('dashboard_view', $data);
 			$this->load->view("footer");
 		}
 
