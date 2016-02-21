@@ -27,6 +27,11 @@
 
 			$data['issues'] = $this->Dashboard_Model->get_recent_issues();
 
+			$data['opened_count_by_date'] = $this->Dashboard_Model->opened_issues_by_date();
+			$data['closed_count_by_date'] = $this->Dashboard_Model->closed_issues_by_date();
+
+			$data['comps_with_most_issues'] = $this->Dashboard_Model->computers_with_most_issues();
+
 			// loading the page
 			$this->load->view("header");
 			$this->load->view('dashboard_view', $data);

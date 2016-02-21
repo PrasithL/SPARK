@@ -47,4 +47,24 @@ class Dashboard_Model extends CI_Model{
         return $result->result();
     }
 
+    public function opened_issues_by_date()
+    {
+        $query = "SELECT opened_date, count(id) AS count FROM issues GROUP BY opened_date";
+        $result = $this->db->query($query);
+        return $result->result();
+    }
+
+    public function closed_issues_by_date()
+    {
+        $query = "SELECT closed_date, count(id) AS count FROM issues GROUP BY closed_date";
+        $result = $this->db->query($query);
+        return $result->result();
+    }
+
+    public function computers_with_most_issues()
+    {
+        $query = "SELECT computer_code, count(id) as count FROM `issue_history` GROUP BY computer_code ORDER BY count DESC LIMIT 10 ";
+        $result = $this->db->query($query);
+        return $result->result();
+    }
 }
