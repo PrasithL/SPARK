@@ -138,7 +138,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <header class="main-header">
 
         <!-- Logo -->
-        <a href="WelcomeHome.jsp" class="logo">
+        <a href="<?php echo base_url();?>index.php/Dashboard/" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
       	  <span class="logo-mini"><i class="fa fa-cubes"></i></span>
           <!-- logo for regular state and mobile devices -->
@@ -351,6 +351,25 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <i class="fa fa-angle-down pull-right"></i>
                     </a>
 
+                    <ul class="treeview-menu">
+                        <li class="" id="Backup History">
+                            <a href="<?php echo base_url();?>index.php/Inventory_Overview">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                Inventory Overview Report
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+
+                        <li class="" id="Backup Schedule">
+                            <a href="#">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                --placeholder--
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+                    </ul>
                 </li>
             </ul><!-- /.sidebar-menu -->
         </section>
