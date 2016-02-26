@@ -362,9 +362,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </li>
 
                         <li class="" id="Backup Schedule">
-                            <a href="#">
+                            <a href="<?php echo base_url();?>index.php/Issues_Overview">
                                 <i class="menu-icon fa fa-caret-right"></i>
-                                --placeholder--
+                                Issues Overview Report
                             </a>
 
                             <b class="arrow"></b>
