@@ -44,6 +44,7 @@ class Issues_Model extends CI_Model{
         foreach ($data["computers"] as $computer) {
             $issue_history["computer_code"] = $computer;
             $issue_history["status"] = "open";
+            $issue_history["closed_by"] = NULL;
             $this->db->insert('issue_history', $issue_history);
 
             // update computer_details table to reflect the computers current status
@@ -157,6 +158,81 @@ class Issues_Model extends CI_Model{
             $this->db->where('id', $issue_id);
             $this->db->update('issues');
         }
+    }
+
+    // Below functions are related to issues report
+
+    public function issues_opened_in_this($period)
+    {
+        $sql = "SELECT count(id) as count FROM issues WHERE $period(opened_date) = $period(NOW()) ";
+        $result = $this->db->query($sql);
+        $result =  $result->result();
+        return $result[0]->count;
+    }
+
+    public function issues_closed_in_this($period)
+    {
+        $sql = "SELECT count(id) as count FROM issues WHERE  $period(opened_date) = $period(NOW()) AND status = 'resolved' ";
+        $result = $this->db->query($sql);
+        $result =  $result->result();
+        return $result[0]->count;
+    }
+
+    public function get_open_issue_count()
+    {
+        $result0 = $this->db->get_where('issues', array('status' => 'open'));
+        return $result0->num_rows();
+    }
+
+    public function get_closed_issue_count()
+    {
+        $result0 = $this->db->get_where('issues', array('status' => 'resolved'));
+        return $result0->num_rows();
+    }
+
+    public function get_open_issue_count_by_room()
+    {
+        $sql = "SELECT room_code, COUNT(issue_history.id) AS count FROM issue_history
+                JOIN computer_details ON issue_history.computer_code = computer_details.computer_id
+                JOIN room_details ON room_details.room_code = computer_details.location
+                WHERE issue_history.status = 'open'
+                GROUP BY room_code
+                ORDER BY count DESC";
+        $result = $this->db->query($sql);
+        return $result->result();
+    }
+
+    public function get_closed_issue_count_by_room()
+    {
+        $sql = "SELECT room_code, COUNT(issue_history.id) AS count FROM issue_history
+                JOIN computer_details ON issue_history.computer_code = computer_details.computer_id
+                JOIN room_details ON room_details.room_code = computer_details.location
+                WHERE issue_history.status = 'resolved'
+                GROUP BY room_code
+                ORDER BY count DESC";
+        $result = $this->db->query($sql);
+        return $result->result();
+    }
+
+    public function get_open_issue_count_per_computer()
+    {
+        $sql = "SELECT computer_code, COUNT(id) AS count FROM issue_history WHERE status = 'open' GROUP BY computer_code ORDER BY count DESC";
+        $result = $this->db->query($sql);
+        return $result->result();
+    }
+
+    public function most_opened_by()
+    {
+        $sql = "SELECT opened_by, count(id) as count, (COUNT(id) / (SELECT COUNT(*) FROM issues)) * 100 AS percent FROM `issues` GROUP BY opened_by";
+        $result = $this->db->query($sql);
+        return $result->result();
+    }
+
+    public function most_closed_by()
+    {
+        $sql = "SELECT closed_by, count(id) as count, (COUNT(id) / (SELECT COUNT(*) FROM issues  WHERE status='resolved')) * 100 AS percent FROM issues WHERE status = 'resolved' GROUP BY closed_by";
+        $result = $this->db->query($sql);
+        return $result->result();
     }
 
 }

@@ -96,12 +96,27 @@ class Inventory_Model extends CI_Model{
      *
      * After an item is used decrease the available count by one
      *
-     * @param item_id ID of the item 
+     * @param item_id ID of the item
      **/
     public function decrement_available_count($item_id)
     {
         $sql = "UPDATE inventory_details SET available = available - 1 WHERE id = ".$item_id;
         $this->db->query($sql);
+    }
+
+    public function get_details_for_report()
+    {
+        $sql = "SELECT item_name, details, type, available, (quantity-available) as used, (quantity) as total FROM inventory_details order by type asc";
+        $result = $this->db->query($sql);
+        return $result->result();
+    }
+
+    public function get_all_item_types()
+    {
+
+            $sql = "SELECT name FROM inventory_item_types ORDER BY name ASC";
+            $result = $this->db->query($sql);
+            return $result->result();
     }
 
 }
