@@ -352,7 +352,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </a>
 
                     <ul class="treeview-menu">
-                        <li class="" id="Backup History">
+                        <li class="" id="Inventory Overview Report">
                             <a href="<?php echo base_url();?>index.php/Inventory_Overview">
                                 <i class="menu-icon fa fa-caret-right"></i>
                                 Inventory Overview Report
@@ -361,7 +361,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <b class="arrow"></b>
                         </li>
 
-                        <li class="" id="Backup Schedule">
+                        <li class="" id="Issues Overview Report">
                             <a href="<?php echo base_url();?>index.php/Issues_Overview">
                                 <i class="menu-icon fa fa-caret-right"></i>
                                 Issues Overview Report
