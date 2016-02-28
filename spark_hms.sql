@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 24, 2016 at 10:04 PM
+-- Generation Time: Feb 28, 2016 at 10:43 AM
 -- Server version: 5.5.47-0ubuntu0.14.04.1
 -- PHP Version: 5.5.9-1ubuntu4.14
 
@@ -149,7 +149,7 @@ CREATE TABLE IF NOT EXISTS `issues` (
   `closed_by` varchar(20) NOT NULL,
   `actions_taken` varchar(200) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=43 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=44 ;
 
 --
 -- Dumping data for table `issues`
@@ -183,7 +183,8 @@ INSERT INTO `issues` (`id`, `issue`, `description`, `severity`, `status`, `opene
 (39, 'another issue 2', 'asas', 'Medium', 'resolved', 'admin', '2016-02-10', '19:06:39', '2016-02-10', '19:16:23', 'admin', 'Actions for WK08 - dsdfsdfs <br/> Actions for WK08 -  <br/> xvxc <br/> '),
 (40, 'regdfg', 'dfgdf', 'Medium', 'resolved', 'admin', '2016-02-12', '09:18:46', '2016-02-12', '09:19:12', 'admin', 'jhgjh\n <br/> '),
 (41, 'another issue 2', 'asda', 'Medium', 'resolved', 'admin', '2016-02-12', '09:42:11', '2016-02-12', '11:46:59', 'admin', 'Actions for WK02 - nothing <br/> Actions for WK02 - dfgdfg <br/> Actions for WK05 - fsdfsdf <br/> '),
-(42, 'test isssue', 'test description', 'Medium', 'resolved', 'admin', '2016-02-21', '15:03:42', '2016-02-22', '10:07:22', 'admin', 'test action <br/> ');
+(42, 'test isssue', 'test description', 'Medium', 'resolved', 'admin', '2016-02-21', '15:03:42', '2016-02-22', '10:07:22', 'admin', 'test action <br/> '),
+(43, 'dfsfs', 'sdfsd', 'Low', 'open', 'test', '2016-02-28', '10:40:28', '0000-00-00', '00:00:00', '', '');
 
 -- --------------------------------------------------------
 
@@ -198,7 +199,7 @@ CREATE TABLE IF NOT EXISTS `issue_history` (
   `status` varchar(25) NOT NULL,
   `closed_date` date NOT NULL,
   `closed_time` time NOT NULL,
-  `closed_by` varchar(20) NOT NULL,
+  `closed_by` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `issue_id` (`issue_id`,`computer_code`,`closed_by`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=58 ;
@@ -410,7 +411,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 INSERT INTO `users` (`id`, `emp_id`, `username`, `password`, `status`, `created_date`, `removed_date`) VALUES
 (1, '01', 'admin', 'aaa', 'active', '2016-01-20', NULL),
 (5, '121', 'ss', 'sdfsdf', 'active', '2016-01-24', NULL),
-(14, '32', 'test', 'sdfsd', 'active', '2016-01-25', NULL),
+(14, '32', 'test', 'aaa', 'active', '2016-01-25', NULL),
 (15, '11', 'qsa', 'asas', 'active', '2016-01-27', NULL);
 
 --

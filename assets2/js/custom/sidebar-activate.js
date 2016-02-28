@@ -66,7 +66,15 @@ var menu_list = {
 
     'Reports' : {
        'parent' : 'none'
-    }
+   },
+
+       'Inventory Overview Report' : {
+          'parent' : 'Reports'
+       },
+
+       'Issues Overview Report' : {
+          'parent' : 'Reports'
+       },
  };
 
 // current page name is stored as a JS variable in the page itself
