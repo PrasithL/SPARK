@@ -53,12 +53,32 @@
 
                                     <span class='username text-primary'>
                                         <?php if(!$viewing_closed) { ?>
-                                            <button class='pull-right btn-link' onclick="show_modal(<?php echo $issue->id  ?>)"><i class='fa fa-check' data-rel="tooltip" title="Mark this issue as resolved"></i> Close issue</button>
+                                            <button class='pull-right btn-link' onclick="show_modal(<?php echo $issue->id  ?>)" data-toggle="tooltip" title="Mark this issue as resolved for all affected computers"><i class='fa fa-check' ></i> Close issue</button>
                                         <?php } ?>
 
                                         #<?php echo $issue->id  ?> - <?php echo $issue->issue  ?>
                                     </span>
-                                    <span class='description'>Opened on <?php echo $issue->opened_date  ?> at <?php echo $issue->opened_time  ?> by <?php echo $issue->opened_by  ?> (<?php echo $differnce->days ?> days ago) <small class='label <?php if($viewing_closed) {echo "bg-green";} else {echo "bg-primary";} ?> <?php echo $issue->id  ?>'><?php echo $issue->status ?></small></span>
+                                    <span class='description'>Opened on <?php echo $issue->opened_date  ?> at <?php echo $issue->opened_time  ?> by <?php echo $issue->opened_by  ?> (<?php echo $differnce->days ?> days ago) <small class='label <?php if($viewing_closed) {echo "bg-green";} else {echo "bg-primary";} ?> <?php echo $issue->id  ?>'><?php echo $issue->status ?></small>
+                                        <?php
+                                            switch ($issue->severity) {
+                                                case 'Low':
+                                                    echo "<small class='label bg-purple'>$issue->severity</small>";
+                                                    break;
+
+                                                case 'Medium':
+                                                    echo "<small class='label bg-maroon'>$issue->severity</small>";
+                                                    break;
+
+                                                case 'High':
+                                                    echo "<small class='label bg-red'>$issue->severity</small>";
+                                                    break;
+
+                                                default:
+                                                    # code...
+                                                    break;
+                                            }
+                                        ?>
+                                    </span>
 
                                     <?php
                                         if ($viewing_closed) {
@@ -69,6 +89,7 @@
                                 </div><!-- /.user-block -->
                                 <p>
                                     <b>Affected Computer(s)</b>
+                                    <blockquote style="font-size: 1em;">
                                     <ul class="">
                                         <?php
                                             foreach ($issue_history_records as $record) {
@@ -76,7 +97,7 @@
                                                     if ($record->status == "open") { // to change the background color of the labels according to the status
                                                         $string = "<li>$record->computer_code &nbsp;&nbsp;&nbsp;";
                                                         if(!$viewing_closed) {
-                                                            $string = $string."<small class='label bg-orange <?php echo $issue->id  ?>'>$record->status</small><button type=\"button\" onclick=\"close_issue_for_computer('$record->computer_code', '$issue->id' )\" class=\"btn btn-link btn-xs \"><i class=\"fa fa-check text-green\"></i> <span class=\"text-green\">Mark as resolved</span></button></li> ";
+                                                            $string = $string."<small class='label bg-orange <?php echo $issue->id  ?>'>$record->status</small><button type=\"button\" data-toggle=\"tooltip\" title='Mark only this computer as resolved' onclick=\"close_issue_for_computer('$record->computer_code', '$issue->id' )\" class=\"btn btn-link btn-xs \"><i class=\"fa fa-check text-green\"></i> <span class=\"text-green\">Mark as resolved</span></button></li> ";
                                                         }
                                                         echo $string;
                                                     } else {
@@ -91,6 +112,7 @@
                                             }
                                         ?>
                                     </ul>
+                                    </blockquote>
 
                                     <b>Description</b>
                                         <blockquote style="font-size: 1.1em;">
@@ -157,6 +179,8 @@
         "lengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
         //"sDom": '<"top"lifp>t<"bottom"p><"info"i><"clear">' // was trying to get pagination bar to display on the top. unsuccessful
 		});
+
+         $('[data-toggle="tooltip"]').tooltip();
 	});
 
     function show_modal(id) {

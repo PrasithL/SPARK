@@ -29,13 +29,32 @@
 
             <span class='username text-primary'>
                 <?php if($issue->status == "open") { ?>
-                    <button class='pull-right btn-link' onclick="show_modal('<?php echo $issue->id  ?>', '<?php echo $computer_id ?>')"><i class='fa fa-check' data-rel="tooltip" title="Mark this issue as resolved"></i> Close issue</button>
+                    <button class='pull-right btn-link' onclick="show_modal('<?php echo $issue->id  ?>', '<?php echo $computer_id ?>')"><i class='fa fa-check' data-toggle="tooltip" title="Mark this issue as resolved for all affected computers"></i> Close issue</button>
                 <?php } ?>
 
                 #<?php echo $issue->id  ?> - <?php echo $issue->issue  ?>
             </span>
-            <span class='description'>Opened on <?php echo $issue->opened_date  ?> at <?php echo $issue->opened_time  ?> by <?php echo $issue->opened_by  ?> (<?php echo $differnce->days ?> days ago) <small class='label <?php if($issue->status == 'open') {echo "bg-orange";} else {echo "bg-green";} ?> <?php echo $issue->id  ?>'><?php echo $issue->status ?></small></span>
+            <span class='description'>Opened on <?php echo $issue->opened_date  ?> at <?php echo $issue->opened_time  ?> by <?php echo $issue->opened_by  ?> (<?php echo $differnce->days ?> days ago) <small class='label <?php if($viewing_closed) {echo "bg-green";} else {echo "bg-primary";} ?> <?php echo $issue->id  ?>'><?php echo $issue->status ?></small>
+                <?php
+                    switch ($issue->severity) {
+                        case 'Low':
+                            echo "<small class='label bg-purple'>$issue->severity</small>";
+                            break;
 
+                        case 'Medium':
+                            echo "<small class='label bg-maroon'>$issue->severity</small>";
+                            break;
+
+                        case 'High':
+                            echo "<small class='label bg-red'>$issue->severity</small>";
+                            break;
+
+                        default:
+                            # code...
+                            break;
+                    }
+                ?>
+            </span>
             <?php
                 if ($issue->status == "resolved") {
                     echo "<span class='description'>Closed on $issue->closed_date  at $issue->closed_time by $issue->closed_by";
@@ -45,6 +64,7 @@
         </div><!-- /.user-block -->
         <p>
             <b>Affected Computer(s)</b>
+            <blockquote style="font-size: 1em;">
             <ul class="">
                 <?php
                     foreach ($issue_history_records as $record) {
@@ -56,7 +76,7 @@
                                 echo $string;
                             } else {
                                 $string = "<li>$record->computer_code &nbsp;&nbsp;&nbsp;";
-                                $string = $string."<small class='label bg-green <?php echo $issue->id  ?>'>$record->status</small></li> ";
+                                $string = $string."<small class='label bg-green $issue->id '>$record->status</small></li> ";
 
                                 echo $string;
                             }
@@ -65,6 +85,7 @@
                     }
                 ?>
             </ul>
+            </blockquote>
 
             <b>Description</b>
                 <blockquote style="font-size: 1.1em;">
