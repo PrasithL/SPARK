@@ -89,6 +89,16 @@
             <span class="text-danger">*</span>
         </div>
 
+        <!-- Processor Serial No. -->
+        <div class="form-group">
+            <label class="col-sm-3 col-sm-offset-2 control-label no-padding-right" for="processor_serial"> Processor Serial No.  </label>
+
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="processor_serial" name="processor_serial" placeholder="Leave Empty If Not Available" value="<?php if($view) echo ($computer->processor_serial);  ?>" />
+
+            </div>
+        </div>
+
         <!-- motherboard -->
         <div class="form-group">
             <label class="col-sm-3 col-sm-offset-2 control-label no-padding-right" for="motherboard"> Motherboard Details </label>
@@ -98,6 +108,16 @@
 
             </div>
             <span class="text-danger">*</span>
+        </div>
+
+        <!-- motherboard  Serial No. -->
+        <div class="form-group">
+            <label class="col-sm-3 col-sm-offset-2 control-label no-padding-right" for="motherboard_serial"> Motherboard  Serial No. </label>
+
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="motherboard_serial" name="motherboard_serial" placeholder="Leave Empty If Not Available" value="<?php if($view) echo ($computer->motherboard_serial);  ?>"  />
+
+            </div>
         </div>
 
         <!-- RAM -->
@@ -111,6 +131,16 @@
             <span class="text-danger">*</span>
         </div>
 
+        <!-- RAM Serial No. -->
+        <div class="form-group">
+            <label class="col-sm-3 col-sm-offset-2 control-label no-padding-right" for="ram_serial"> RAM Serial No.  </label>
+
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="ram_serial" name="ram_serial" placeholder="Leave Empty If Not Available" value="<?php if($view) echo ($computer->ram_serial);  ?>"  />
+
+            </div>
+        </div>
+
         <!-- Hard Drive -->
         <div class="form-group">
             <label class="col-sm-3 col-sm-offset-2 control-label no-padding-right" for="hdd"> HDD Capacity </label>
@@ -120,6 +150,16 @@
 
             </div>
             <span class="text-danger">*</span>
+        </div>
+
+        <!-- Hard Drive Serial No. -->
+        <div class="form-group">
+            <label class="col-sm-3 col-sm-offset-2 control-label no-padding-right" for="hdd_serial"> HDD Serial No. </label>
+
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="hdd_serial" name="hdd_serial" placeholder="Leave Empty If Not Available" value="<?php if($view) echo ($computer->hdd_serial);  ?>"  />
+
+            </div>
         </div>
 
         <!-- Peripherals -->
