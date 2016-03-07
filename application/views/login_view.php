@@ -7,7 +7,7 @@
 
 		<meta name="description" content="User login page" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-
+        <link rel="shortcut icon" href="<?php echo base_url(); ?>assets2/img/icon.png" type="image/png">
 		<!-- bootstrap & fontawesome -->
 		<link rel="stylesheet" href="<?php echo base_url(); ?>/assets2/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="<?php echo base_url(); ?>/assets2/css/font-awesome.min.css" />
@@ -52,12 +52,13 @@
 					<div class="col-sm-10 col-sm-offset-1">
 						<div class="login-container">
 							<div id="title" class="center">
-								<h1>
+								<!-- <h1>
 									<i class="ace-icon fa fa-cubes gray"></i>
 									<span class="red">SPARK</span>
 									<span class="white" id="id-text2"></span>
-								</h1>
-								<h4 class="blue" id="id-company-text">Hardware Management System</h4>
+								</h1> -->
+                                <img src="<?php echo base_url();?>/assets2/img/logo.png" alt="SPARK LOGO" style="height: 8em;"/>
+								<h4 class="blue" id="id-company-text" style="margin-top:-0.3em; margin-bottom:-1em;">Hardware Management System</h4>
 							</div>
 
 							<div class="space-6"></div>
