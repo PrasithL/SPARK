@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 28, 2016 at 10:43 AM
+-- Generation Time: Mar 13, 2016 at 07:59 AM
 -- Server version: 5.5.47-0ubuntu0.14.04.1
 -- PHP Version: 5.5.9-1ubuntu4.14
 
@@ -31,9 +31,13 @@ CREATE TABLE IF NOT EXISTS `computer_details` (
   `computer_id` varchar(20) NOT NULL,
   `location` varchar(20) NOT NULL,
   `processor` varchar(50) NOT NULL,
+  `processor_serial` varchar(100) NOT NULL DEFAULT 'n/a',
   `motherboard` varchar(50) NOT NULL,
+  `motherboard_serial` varchar(100) NOT NULL DEFAULT 'n/a',
   `ram` varchar(30) NOT NULL,
+  `ram_serial` varchar(100) NOT NULL DEFAULT 'n/a',
   `hdd` varchar(15) NOT NULL,
+  `hdd_serial` varchar(100) NOT NULL DEFAULT 'n/a',
   `monitor` int(11) NOT NULL DEFAULT '0',
   `mouse` int(11) NOT NULL DEFAULT '0',
   `keyboard` int(11) NOT NULL DEFAULT '0',
@@ -46,23 +50,24 @@ CREATE TABLE IF NOT EXISTS `computer_details` (
   UNIQUE KEY `computer_id` (`computer_id`),
   KEY `location` (`location`),
   KEY `created_by` (`created_by`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
 
 --
 -- Dumping data for table `computer_details`
 --
 
-INSERT INTO `computer_details` (`id`, `computer_id`, `location`, `processor`, `motherboard`, `ram`, `hdd`, `monitor`, `mouse`, `keyboard`, `status`, `note`, `created_date`, `created_time`, `created_by`) VALUES
-(1, 'WK01', 'LAB09', 'sda', 'Z97', '4GB DDR3', '500GB', 1, 1, 1, 'Functional', '', '2016-01-27', '', 'admin'),
-(3, 'WK02', 'LAB09', 'intel i5 2Ghz', 'Z97', '4GB DDR3', '500GB', 1, 1, 1, 'Functional', '', '2016-01-27 12:18:21 am', '', 'admin'),
-(4, 'WK03', 'LAB01', 'i3(4010) 2.3Ghz', 'Z97', '4GB DDR3', '500GB', 1, 1, 0, 'Functional', '', '2016-01-27', '12:21:35 am', 'admin'),
-(5, 'WK04', 'LAB01', 'i3(4010) 2.3Ghz', 'Z97', '4GB DDR3', '500GB', 1, 1, 0, 'Functional', '', '2016-01-27', '12:24:04 am', 'admin'),
-(6, 'WK05', 'LAB09', 'i3', 'wewew', '8GB', '1TB', 1, 1, 1, 'Functional', '', '2016-01-27', '12:24:59 am', 'admin'),
-(8, 'WK06', 'LAB02', 'i3(4010) 2.3Ghz ', 'Z97-A', '4GB DDR3', '500GB', 1, 1, 1, 'Functional', 'fgdfgd11', '2016-01-27', '12:15:41 pm', 'admin'),
-(9, 'WK07', 'LAB09', 'i3(4010) 2.3Ghz', 'Z97-A', '4GB DDR3', '500GB', 1, 1, 1, 'Functional', 'test test test... jkh', '2016-01-28', '04:29:44 pm', 'admin'),
-(10, 'WK08', 'LAB09', 'i3(4010) 2.3Ghz', 'Z97', '4GB DDR3', '500GB', 1, 1, 1, 'Functional', 'some OS issues', '2016-01-28', '09:51:25 pm', 'admin'),
-(12, 'WK09', 'LAB02', 'i3(4010) 2.3Ghz', 'Z97', '4GB DDR3', '500GB', 1, 1, 0, 'Functional', '', '2016-01-30', '11:46:48 am', 'admin'),
-(13, 'WK10', 'LAB02', 'i3(4010) 2.3Ghz', 'Z97-A', '4GB DDR3', '500GB', 1, 1, 1, 'Functional', 'asdasd', '2016-02-12', '11:07:02', 'admin');
+INSERT INTO `computer_details` (`id`, `computer_id`, `location`, `processor`, `processor_serial`, `motherboard`, `motherboard_serial`, `ram`, `ram_serial`, `hdd`, `hdd_serial`, `monitor`, `mouse`, `keyboard`, `status`, `note`, `created_date`, `created_time`, `created_by`) VALUES
+(1, 'WK01', 'LAB09', 'sda', 'n/a', 'Z97', 'n/a', '4GB DDR3', 'n/a', '500GB', 'n/a', 1, 1, 1, 'Functional', '', '2016-01-27', '', 'admin'),
+(3, 'WK02', 'LAB09', 'intel i5 2Ghz', 'n/a', 'Z97', 'n/a', '4GB DDR3', 'n/a', '500GB', 'n/a', 1, 1, 1, 'Functional', '', '2016-01-27 12:18:21 am', '', 'admin'),
+(4, 'WK03', 'LAB01', 'i3(4010) 2.3Ghz', 'n/a', 'Z97', 'n/a', '4GB DDR3', 'n/a', '500GB', 'n/a', 1, 1, 0, 'Requires Repairs', '', '2016-01-27', '12:21:35 am', 'admin'),
+(5, 'WK04', 'LAB01', 'i3(4010) 2.3Ghz', 'n/a', 'Z97', 'n/a', '4GB DDR3', 'n/a', '500GB', 'n/a', 1, 1, 0, 'Functional', '', '2016-01-27', '12:24:04 am', 'admin'),
+(6, 'WK05', 'LAB09', 'i3', 'n/a', 'wewew', 'n/a', '8GB', 'n/a', '1TB', 'n/a', 1, 1, 1, 'Functional', '', '2016-01-27', '12:24:59 am', 'admin'),
+(8, 'WK06', 'LAB02', 'i3(4010) 2.3Ghz ', 'n/a', 'Z97-A', 'n/a', '4GB DDR3', 'n/a', '500GB', 'n/a', 1, 1, 1, 'Requires Repairs', 'fgdfgd11', '2016-01-27', '12:15:41 pm', 'admin'),
+(9, 'WK07', 'LAB09', 'i3(4010) 2.3Ghz', 'n/a', 'Z97-A', 'n/a', '4GB DDR3', 'n/a', '500GB', 'n/a', 1, 1, 1, 'Functional', 'test test test... jkh', '2016-01-28', '04:29:44 pm', 'admin'),
+(10, 'WK08', 'LAB09', 'i3(4010) 2.3Ghz', 'n/a', 'Z97', 'n/a', '4GB DDR3', 'n/a', '500GB', 'n/a', 1, 1, 1, 'Functional', 'some OS issues', '2016-01-28', '09:51:25 pm', 'admin'),
+(12, 'WK09', 'LAB02', 'i3(4010) 2.3Ghz', 'n/a', 'Z97', 'n/a', '4GB DDR3', 'n/a', '500GB', 'n/a', 1, 1, 0, 'Functional', '', '2016-01-30', '11:46:48 am', 'admin'),
+(13, 'WK10', 'LAB02', 'i3(4010) 2.3Ghz', 'n/a', 'Z97-A', 'n/a', '4GB DDR3', 'n/a', '500GB', 'n/a', 1, 1, 1, 'Functional', 'asdasd', '2016-02-12', '11:07:02', 'admin'),
+(14, 'WK11', 'LAB01', 'i3 2GHz', '000-111-111-2', 'Asus G47', '777-2-332-1', '4GB DDR3', '112-321-312-3', '360GB', '1212-342-12', 1, 1, 1, 'Functional', '', '2016-03-05', '10:37:47', 'admin');
 
 -- --------------------------------------------------------
 
@@ -149,7 +154,7 @@ CREATE TABLE IF NOT EXISTS `issues` (
   `closed_by` varchar(20) NOT NULL,
   `actions_taken` varchar(200) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=44 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=46 ;
 
 --
 -- Dumping data for table `issues`
@@ -184,7 +189,9 @@ INSERT INTO `issues` (`id`, `issue`, `description`, `severity`, `status`, `opene
 (40, 'regdfg', 'dfgdf', 'Medium', 'resolved', 'admin', '2016-02-12', '09:18:46', '2016-02-12', '09:19:12', 'admin', 'jhgjh\n <br/> '),
 (41, 'another issue 2', 'asda', 'Medium', 'resolved', 'admin', '2016-02-12', '09:42:11', '2016-02-12', '11:46:59', 'admin', 'Actions for WK02 - nothing <br/> Actions for WK02 - dfgdfg <br/> Actions for WK05 - fsdfsdf <br/> '),
 (42, 'test isssue', 'test description', 'Medium', 'resolved', 'admin', '2016-02-21', '15:03:42', '2016-02-22', '10:07:22', 'admin', 'test action <br/> '),
-(43, 'dfsfs', 'sdfsd', 'Low', 'open', 'test', '2016-02-28', '10:40:28', '0000-00-00', '00:00:00', '', '');
+(43, 'dfsfs', 'sdfsd', 'Low', 'resolved', 'test', '2016-02-28', '10:40:28', '2016-02-28', '10:50:26', 'admin', ' <br/> '),
+(44, 'dfsfs', 'dadsdas', 'Low', 'open', 'test', '2016-02-28', '10:49:15', '0000-00-00', '00:00:00', '', ''),
+(45, 'dfsfs', 'defsdf', 'Medium', 'open', 'admin', '2016-03-05', '11:28:26', '0000-00-00', '00:00:00', '', '');
 
 -- --------------------------------------------------------
 
@@ -202,7 +209,7 @@ CREATE TABLE IF NOT EXISTS `issue_history` (
   `closed_by` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `issue_id` (`issue_id`,`computer_code`,`closed_by`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=58 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=60 ;
 
 --
 -- Dumping data for table `issue_history`
@@ -260,7 +267,9 @@ INSERT INTO `issue_history` (`id`, `issue_id`, `computer_code`, `status`, `close
 (54, 40, 'WK05', 'resolved', '2016-02-12', '09:19:12', 'admin'),
 (55, 41, 'WK02', 'resolved', '2016-02-12', '11:44:17', 'admin'),
 (56, 41, 'WK05', 'resolved', '2016-02-12', '11:46:59', 'admin'),
-(57, 42, 'WK01', 'resolved', '2016-02-22', '10:07:22', 'admin');
+(57, 42, 'WK01', 'resolved', '2016-02-22', '10:07:22', 'admin'),
+(58, 44, 'WK03', 'open', '0000-00-00', '00:00:00', NULL),
+(59, 45, 'WK06', 'open', '0000-00-00', '00:00:00', NULL);
 
 -- --------------------------------------------------------
 
@@ -278,7 +287,7 @@ CREATE TABLE IF NOT EXISTS `location_history` (
   KEY `location` (`location`),
   KEY `created_by` (`created_by`),
   KEY `computer_id` (`computer_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=25 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=26 ;
 
 --
 -- Dumping data for table `location_history`
@@ -307,7 +316,8 @@ INSERT INTO `location_history` (`id`, `computer_id`, `location`, `created_by`, `
 (21, 'WK10', 'LAB02', 'admin', '2016-02-12'),
 (22, 'WK01', 'LAB09', 'admin', '2016-02-12'),
 (23, 'WK05', 'LAB02', 'admin', '2016-02-20'),
-(24, 'WK05', 'LAB09', 'admin', '2016-02-20');
+(24, 'WK05', 'LAB09', 'admin', '2016-02-20'),
+(25, 'WK11', 'LAB01', 'admin', '2016-03-05');
 
 -- --------------------------------------------------------
 
