@@ -1,4 +1,9 @@
 <!-- @author Prasith Lakshan_IBIT03 -->
+<?php
+    // setting the timezone for the Date() to use
+    // if not set, an error is thrown
+    date_default_timezone_set("UTC")
+?>
 
 <!DOCTYPE html>
 <!--
@@ -10,7 +15,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>SPARK HMS</title>
-    <link rel="shortcut icon" href="<?php echo base_url(); ?>assets2/img/favicon.png" type="image/png">
+    <link rel="shortcut icon" href="<?php echo base_url(); ?>assets2/img/icon.png" type="image/png">
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
@@ -336,7 +341,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </li>
 
                 <li class="" id="To-do Tasks">
-                    <a href="<?php echo base_url();?>index.php/ToDo/">
+                    <a href="<?php echo base_url();?>index.php/Task_List/">
                         <i class="menu-icon fa fa-list"></i>
                         <span class="menu-text"> To-do Tasks </span>
                     </a>
