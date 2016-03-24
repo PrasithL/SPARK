@@ -1,9 +1,4 @@
 <!-- @author Prasith Lakshan_IBIT03 -->
-<?php
-    // setting the timezone for the Date() to use
-    // if not set, an error is thrown
-    date_default_timezone_set("UTC")
-?>
 
 <!DOCTYPE html>
 <!--
