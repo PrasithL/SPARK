@@ -341,7 +341,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </li>
 
                 <li class="" id="To-do Tasks">
-                    <a href="<?php echo base_url();?>index.php/ToDo/">
+                    <a href="<?php echo base_url();?>index.php/Task_List/">
                         <i class="menu-icon fa fa-list"></i>
                         <span class="menu-text"> To-do Tasks </span>
                     </a>

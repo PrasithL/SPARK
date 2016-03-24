@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.10deb1
+-- version 4.5.5.1
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 13, 2016 at 07:59 AM
--- Server version: 5.5.47-0ubuntu0.14.04.1
--- PHP Version: 5.5.9-1ubuntu4.14
+-- Generation Time: Mar 24, 2016 at 08:22 AM
+-- Server version: 10.0.23-MariaDB
+-- PHP Version: 5.6.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,7 +14,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `spark_hms`
@@ -26,8 +26,8 @@ SET time_zone = "+00:00";
 -- Table structure for table `computer_details`
 --
 
-CREATE TABLE IF NOT EXISTS `computer_details` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `computer_details` (
+  `id` int(11) NOT NULL,
   `computer_id` varchar(20) NOT NULL,
   `location` varchar(20) NOT NULL,
   `processor` varchar(50) NOT NULL,
@@ -45,12 +45,8 @@ CREATE TABLE IF NOT EXISTS `computer_details` (
   `note` varchar(200) NOT NULL,
   `created_date` varchar(30) NOT NULL,
   `created_time` varchar(15) NOT NULL,
-  `created_by` varchar(20) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `computer_id` (`computer_id`),
-  KEY `location` (`location`),
-  KEY `created_by` (`created_by`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
+  `created_by` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `computer_details`
@@ -75,8 +71,8 @@ INSERT INTO `computer_details` (`id`, `computer_id`, `location`, `processor`, `p
 -- Table structure for table `inventory_details`
 --
 
-CREATE TABLE IF NOT EXISTS `inventory_details` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `inventory_details` (
+  `id` int(11) NOT NULL,
   `item_name` varchar(100) NOT NULL,
   `type` varchar(50) NOT NULL,
   `details` varchar(200) NOT NULL,
@@ -84,9 +80,8 @@ CREATE TABLE IF NOT EXISTS `inventory_details` (
   `available` int(11) NOT NULL,
   `created_date` date NOT NULL,
   `created_time` time NOT NULL,
-  `created_by` varchar(20) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+  `created_by` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `inventory_details`
@@ -108,28 +103,26 @@ INSERT INTO `inventory_details` (`id`, `item_name`, `type`, `details`, `quantity
 -- Table structure for table `inventory_item_types`
 --
 
-CREATE TABLE IF NOT EXISTS `inventory_item_types` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `inventory_item_types` (
+  `id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
-  `description` varchar(100) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `name` (`name`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+  `description` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `inventory_item_types`
 --
 
 INSERT INTO `inventory_item_types` (`id`, `name`, `description`) VALUES
-(1, 'RAM', 'RAM modules (don''t change this type''s name!)'),
-(2, 'HDD', 'Hard Disk Drive (don''t change this type''s name!)'),
-(3, 'CPU', 'Central Processing Unit(Processor) (don''t change this type''s name!)'),
-(4, 'Motherboard', '(don''t change this type''s name!)'),
-(5, 'Monitor', '(don''t change this type''s name!)'),
+(1, 'RAM', 'RAM modules (don\'t change this type\'s name!)'),
+(2, 'HDD', 'Hard Disk Drive (don\'t change this type\'s name!)'),
+(3, 'CPU', 'Central Processing Unit(Processor) (don\'t change this type\'s name!)'),
+(4, 'Motherboard', '(don\'t change this type\'s name!)'),
+(5, 'Monitor', '(don\'t change this type\'s name!)'),
 (6, 'Power Supply Unit', ''),
 (7, 'Optical Disk Drive', ''),
-(8, 'Keyboard', '(don''t change this type''s name!)'),
-(9, 'Mouse', '(don''t change this type''s name!)'),
+(8, 'Keyboard', '(don\'t change this type\'s name!)'),
+(9, 'Mouse', '(don\'t change this type\'s name!)'),
 (10, 'Cable', ''),
 (11, 'Graphic Card', ''),
 (12, 'Netword Interface Card (NIC)', '');
@@ -140,8 +133,8 @@ INSERT INTO `inventory_item_types` (`id`, `name`, `description`) VALUES
 -- Table structure for table `issues`
 --
 
-CREATE TABLE IF NOT EXISTS `issues` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `issues` (
+  `id` int(11) NOT NULL,
   `issue` varchar(100) NOT NULL,
   `description` varchar(500) NOT NULL,
   `severity` varchar(20) NOT NULL,
@@ -152,9 +145,8 @@ CREATE TABLE IF NOT EXISTS `issues` (
   `closed_date` date NOT NULL,
   `closed_time` time NOT NULL,
   `closed_by` varchar(20) NOT NULL,
-  `actions_taken` varchar(200) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=46 ;
+  `actions_taken` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `issues`
@@ -199,17 +191,15 @@ INSERT INTO `issues` (`id`, `issue`, `description`, `severity`, `status`, `opene
 -- Table structure for table `issue_history`
 --
 
-CREATE TABLE IF NOT EXISTS `issue_history` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `issue_history` (
+  `id` int(11) NOT NULL,
   `issue_id` int(11) NOT NULL,
   `computer_code` varchar(20) NOT NULL,
   `status` varchar(25) NOT NULL,
   `closed_date` date NOT NULL,
   `closed_time` time NOT NULL,
-  `closed_by` varchar(20) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `issue_id` (`issue_id`,`computer_code`,`closed_by`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=60 ;
+  `closed_by` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `issue_history`
@@ -277,17 +267,13 @@ INSERT INTO `issue_history` (`id`, `issue_id`, `computer_code`, `status`, `close
 -- Table structure for table `location_history`
 --
 
-CREATE TABLE IF NOT EXISTS `location_history` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `location_history` (
+  `id` int(11) NOT NULL,
   `computer_id` varchar(20) NOT NULL,
   `location` varchar(20) NOT NULL,
   `created_by` varchar(20) NOT NULL,
-  `created_date` date NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `location` (`location`),
-  KEY `created_by` (`created_by`),
-  KEY `computer_id` (`computer_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=26 ;
+  `created_date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `location_history`
@@ -325,8 +311,8 @@ INSERT INTO `location_history` (`id`, `computer_id`, `location`, `created_by`, `
 -- Table structure for table `room_details`
 --
 
-CREATE TABLE IF NOT EXISTS `room_details` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `room_details` (
+  `id` int(11) NOT NULL,
   `room_code` varchar(20) NOT NULL,
   `description` varchar(100) NOT NULL,
   `special_devices` varchar(255) NOT NULL,
@@ -334,11 +320,8 @@ CREATE TABLE IF NOT EXISTS `room_details` (
   `projector_screen` varchar(5) NOT NULL DEFAULT '0',
   `status` varchar(15) NOT NULL,
   `created_date` date NOT NULL,
-  `created_by` varchar(20) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `room_code` (`room_code`),
-  KEY `created_by` (`created_by`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+  `created_by` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `room_details`
@@ -355,18 +338,41 @@ INSERT INTO `room_details` (`id`, `room_code`, `description`, `special_devices`,
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tasks`
+--
+
+CREATE TABLE `tasks` (
+  `task_id` int(11) NOT NULL,
+  `task_name` varchar(200) NOT NULL,
+  `description` varchar(500) NOT NULL,
+  `priority` varchar(20) NOT NULL,
+  `status` varchar(20) NOT NULL,
+  `addedby` varchar(20) NOT NULL,
+  `created_date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tasks`
+--
+
+INSERT INTO `tasks` (`task_id`, `task_name`, `description`, `priority`, `status`, `addedby`, `created_date`) VALUES
+(1, 'new task', 'nbewsljkadfsa', 'Low', 'Pending', 'admin', '2016-03-24'),
+(2, 'xcfx', 'zsdfsd', 'Low', 'done', 'admin', '2016-03-24');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `used_inventory_items`
 --
 
-CREATE TABLE IF NOT EXISTS `used_inventory_items` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `used_inventory_items` (
+  `id` int(11) NOT NULL,
   `item_id` int(11) NOT NULL,
   `computer_code` varchar(20) NOT NULL,
   `created_date` date NOT NULL,
   `created_time` time NOT NULL,
-  `created_by` varchar(20) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=27 ;
+  `created_by` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `used_inventory_items`
@@ -401,18 +407,15 @@ INSERT INTO `used_inventory_items` (`id`, `item_id`, `computer_code`, `created_d
 -- Table structure for table `users`
 --
 
-CREATE TABLE IF NOT EXISTS `users` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
   `emp_id` varchar(15) NOT NULL,
   `username` varchar(20) NOT NULL,
   `password` varchar(50) NOT NULL,
   `status` varchar(10) NOT NULL,
   `created_date` date NOT NULL,
-  `removed_date` date DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `emp_id` (`emp_id`),
-  UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
+  `removed_date` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
@@ -424,6 +427,136 @@ INSERT INTO `users` (`id`, `emp_id`, `username`, `password`, `status`, `created_
 (14, '32', 'test', 'aaa', 'active', '2016-01-25', NULL),
 (15, '11', 'qsa', 'asas', 'active', '2016-01-27', NULL);
 
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `computer_details`
+--
+ALTER TABLE `computer_details`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `computer_id` (`computer_id`),
+  ADD KEY `location` (`location`),
+  ADD KEY `created_by` (`created_by`);
+
+--
+-- Indexes for table `inventory_details`
+--
+ALTER TABLE `inventory_details`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `inventory_item_types`
+--
+ALTER TABLE `inventory_item_types`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `name` (`name`);
+
+--
+-- Indexes for table `issues`
+--
+ALTER TABLE `issues`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `issue_history`
+--
+ALTER TABLE `issue_history`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `issue_id` (`issue_id`,`computer_code`,`closed_by`);
+
+--
+-- Indexes for table `location_history`
+--
+ALTER TABLE `location_history`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `location` (`location`),
+  ADD KEY `created_by` (`created_by`),
+  ADD KEY `computer_id` (`computer_id`);
+
+--
+-- Indexes for table `room_details`
+--
+ALTER TABLE `room_details`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `room_code` (`room_code`),
+  ADD KEY `created_by` (`created_by`);
+
+--
+-- Indexes for table `tasks`
+--
+ALTER TABLE `tasks`
+  ADD PRIMARY KEY (`task_id`);
+
+--
+-- Indexes for table `used_inventory_items`
+--
+ALTER TABLE `used_inventory_items`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `emp_id` (`emp_id`),
+  ADD UNIQUE KEY `username` (`username`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `computer_details`
+--
+ALTER TABLE `computer_details`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+--
+-- AUTO_INCREMENT for table `inventory_details`
+--
+ALTER TABLE `inventory_details`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+--
+-- AUTO_INCREMENT for table `inventory_item_types`
+--
+ALTER TABLE `inventory_item_types`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+--
+-- AUTO_INCREMENT for table `issues`
+--
+ALTER TABLE `issues`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+--
+-- AUTO_INCREMENT for table `issue_history`
+--
+ALTER TABLE `issue_history`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+--
+-- AUTO_INCREMENT for table `location_history`
+--
+ALTER TABLE `location_history`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+--
+-- AUTO_INCREMENT for table `room_details`
+--
+ALTER TABLE `room_details`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+--
+-- AUTO_INCREMENT for table `tasks`
+--
+ALTER TABLE `tasks`
+  MODIFY `task_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `used_inventory_items`
+--
+ALTER TABLE `used_inventory_items`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- Constraints for dumped tables
 --
