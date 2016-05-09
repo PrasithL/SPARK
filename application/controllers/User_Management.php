@@ -104,7 +104,7 @@
 		public function change_password()
 		{
 			$emp_id		= $this->input->post('modal_emp_id');
-			$password	= $this->input->post("new_password_show");
+			$password	= $this->input->post("new_password");
 
 			$this->load->model("Users_Model");
 			$change_pass_result = $this->Users_Model->change_password($emp_id, $password);
