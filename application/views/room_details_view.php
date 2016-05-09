@@ -1,5 +1,11 @@
 <!-- @author Prasith Lakshan -->
 
+<style>
+    #form_widget {
+        display: none;
+    }
+</style>
+
 <section class="content-header">
 	<h1 >
 		<i class="fa fa-building-o text-primary"></i>
@@ -316,7 +322,6 @@
 	var current_page = "Room Details"
 
 	$(function () {
-		$('#form_widget').hide();
 
 		$('#table').DataTable({
 		"paging": true,

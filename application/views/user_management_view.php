@@ -1,5 +1,11 @@
 <!-- @author Prasith Lakshan -->
 
+<style>
+    #form_widget {
+        display: none;
+    }
+</style>
+
 <section class="content-header">
 	<h1 >
 		<i class="fa fa-users text-primary"></i>
@@ -297,7 +303,6 @@
     }
 
 	$(function () {
-		$('#form_widget').hide();
 
 		$('#table').DataTable({
 		"paging": true,
