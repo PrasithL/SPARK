@@ -2,6 +2,12 @@
     .top {
         display: inline;
     }
+
+    .open {
+        border-color: red;
+        border-width: 0.2em;
+    }
+
 </style>
 
 <?php
@@ -43,7 +49,7 @@
                 ?>
                     <tr>
                         <td>
-                            <div class="post well" id="<?php echo $issue->id  ?>">
+                            <div class="post well <?php echo $issue->status; ?>" id="<?php echo $issue->id  ?>">
                                 <div class="user-block">
                                     <?php if($viewing_closed) { ?>
                                         <img class="img-thumbnail " src="<?php echo base_url(); ?>assets2/img/ok.png" alt="user image">
@@ -130,7 +136,7 @@
 
                         </td>
                     </tr>
-
+                    
                 <?php
                     }
 
