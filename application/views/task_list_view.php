@@ -11,6 +11,11 @@
 .sorting_desc, .sorting_asc {
     display: none;
 }
+
+#form_widget {
+    display: none;
+}
+
 </style>
 
 <section class="content-header">
@@ -297,7 +302,8 @@
 	var current_page = "To-do Tasks"
 
 	$(function () {
-		$('#form_widget').hide();
+        // now uses CSS to hide this
+		//$('#form_widget').hide();
 
 		$('#table').DataTable({
 
