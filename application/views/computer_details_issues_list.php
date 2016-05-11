@@ -1,3 +1,10 @@
+<style>
+    .open {
+        border-color: red;
+        border-width: 0.2em;
+    }
+</style>
+
 <button type="button" class="btn btn-primary btn-sm" onclick="open_details('<?php echo $computer_id ?>')">
     <i class="fa fa-arrow-left"></i> Back to Details View
 </button>
@@ -19,7 +26,7 @@
         $today       = date_create(date("Y-m-d"));
         $differnce   = date_diff($opened_date, $today);
 ?>
-    <div class="post well" id="<?php echo $issue->id  ?>">
+    <div class="post well <?php echo $issue->status; ?>" id="<?php echo $issue->id  ?>">
         <div class="user-block">
             <?php if($issue->status == 'resolved') { ?>
                 <img class="img-thumbnail " src="<?php echo base_url(); ?>assets2/img/ok.png" alt="user image">

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.5.1
+-- version 4.6.1
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 24, 2016 at 08:22 AM
+-- Generation Time: May 11, 2016 at 03:07 AM
 -- Server version: 10.0.23-MariaDB
--- PHP Version: 5.6.19
+-- PHP Version: 5.6.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -333,7 +333,7 @@ INSERT INTO `room_details` (`id`, `room_code`, `description`, `special_devices`,
 (3, 'LAB02', 'Computer Lab #2', 'sdf', '0', '0', 'active', '2016-01-30', 'admin'),
 (5, 'LEC01', 'Lecture Room 1', '', '0', '0', 'disabled', '2016-01-30', 'admin'),
 (6, 'sdf', 'Lecture Room 5', 'n/a', '1', '0', 'active', '2016-02-20', 'admin'),
-(7, 'sdfsdc', 'asda', 'Router, switch, some other special device, ksdjf lskdjfsl lksdj flksdf', '1', '1', 'active', '2016-02-20', 'admin');
+(7, 'sdfsdc', 'asda', 'Router, switch, some other special device, ksdjf lskdjfsl lksdj flksdf', '', '1', 'active', '2016-02-20', 'admin');
 
 -- --------------------------------------------------------
 
@@ -422,10 +422,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `emp_id`, `username`, `password`, `status`, `created_date`, `removed_date`) VALUES
-(1, '01', 'admin', 'aaa', 'active', '2016-01-20', NULL),
-(5, '121', 'ss', 'sdfsdf', 'active', '2016-01-24', NULL),
-(14, '32', 'test', 'aaa', 'active', '2016-01-25', NULL),
-(15, '11', 'qsa', 'asas', 'active', '2016-01-27', NULL);
+(1, '01', 'admin', '47bce5c74f589f4867dbd57e9ca9f808', 'active', '2016-01-20', NULL),
+(16, '324', 'asdas', '7a2cf6cc7d8477b24fe65b02f76a2227', 'active', '2016-05-09', NULL),
+(18, '34', 'adwa', 'adbf5a778175ee757c34d0eba4e932bc', 'active', '2016-05-09', NULL);
 
 --
 -- Indexes for dumped tables
@@ -556,7 +555,7 @@ ALTER TABLE `used_inventory_items`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 --
 -- Constraints for dumped tables
 --

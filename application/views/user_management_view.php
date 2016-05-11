@@ -1,5 +1,11 @@
 <!-- @author Prasith Lakshan -->
 
+<style>
+    #form_widget {
+        display: none;
+    }
+</style>
+
 <section class="content-header">
 	<h1 >
 		<i class="fa fa-users text-primary"></i>
@@ -31,7 +37,7 @@
 			</div>
 		</div><!-- /.box-header -->
 		<div class="box-body">
-			<form class="form-horizontal" id="form" role="form"  method="POST" action="<?php echo base_url();?>index.php/User_Management/add_user">
+			<form class="form-horizontal" id="form" role="form" onsubmit="md5Pass()"  method="POST" action="<?php echo base_url();?>index.php/User_Management/add_user">
 				<!-- Empoyee ID -->
 				<div class="form-group">
 					<label class="col-sm-3 col-sm-offset-1 control-label no-padding-right" for="emp_id"> Employee ID </label>
@@ -58,7 +64,9 @@
 					<label class="col-sm-3 col-sm-offset-1 control-label no-padding-right" for="password"> Password </label>
 
 					<div class="col-sm-5">
-						<input type="password" id="password" name="password" placeholder="****" required/>
+						<input type="password" id="passwordShow" name="passwordShow" placeholder="****" required/>
+                        <!-- hiddent filed to store md5'd password -->
+                        <input type="password" hidden name="password" id="password">
 						<span class="text-danger">*</span>
 					</div>
 				</div>
@@ -245,7 +253,7 @@
 </div>
 
 
-<form action="<?php echo base_url();?>index.php/User_Management/change_password" method="POST" id="form">
+<form action="<?php echo base_url();?>index.php/User_Management/change_password" method="POST" id="form" onsubmit="md5PassModal()">
 		<div class="modal fade modal-default" >
 			<div class="modal-dialog">
 				<div class="modal-content">
@@ -274,11 +282,27 @@
 		</div> <!-- /.modal -->
 	</form>
 
+
 <script type="text/javascript">
 	var current_page = "User Management"
 
+    // for create user form
+    function md5Pass() {
+        pass = $('#passwordShow').val();
+        $('#password').val(md5(pass)); // calling the md5() method of Myers library
+                                       // md5 will be stored in a hidden input.
+        return true;
+    }
+
+    // for change pass modal
+    function md5PassModal() {
+        pass = $('#new_password_show').val();
+        $('#new_password').val(md5(pass)); // calling the md5() method of Myers library
+                                       // md5 will be stored in a hidden input.
+        return true;
+    }
+
 	$(function () {
-		$('#form_widget').hide();
 
 		$('#table').DataTable({
 		"paging": true,

@@ -74,7 +74,7 @@
 
 											<div class="space-6"></div>
 
-											<form method="POST" action="<?php echo base_url();?>index.php/Login/validate_login">
+											<form method="POST" action="<?php echo base_url();?>index.php/Login/validate_login" onsubmit="md5Pass()">
 												<fieldset>
 													<label class="block clearfix">
 														<span class="block input-icon input-icon-right">
@@ -85,7 +85,9 @@
 
 													<label class="block clearfix">
 														<span class="block input-icon input-icon-right">
-															<input type="password" class="form-control" name="password" placeholder="Password" required/>
+															<input type="password" class="form-control" id="passwordShow" name="passwordShow" placeholder="Password" required/>
+                                                            <!-- hiddent filed to store md5'd password -->
+             	                                            <input type="password" hidden name="password" id="password">
 															<i class="ace-icon fa fa-lock"></i>
 														</span>
 													</label>
@@ -141,8 +143,17 @@
 			if('ontouchstart' in document.documentElement) document.write("<script src='<?php echo base_url(); ?>/assets2/js/jquery.mobile.custom.js'>"+"<"+"/script>");
 		</script>
 
+        <!-- Joseph's Myers' md5 implementation link - http://www.myersdaily.org/joseph/javascript/md5-text.html -->
+	    <script src="<?php echo base_url(); ?>/assets2/js/md5.js"></script>
+
 		<!-- inline scripts related to this page -->
 		<script type="text/javascript">
+            function md5Pass() {
+                pass = $('#passwordShow').val();
+                $('#password').val(md5(pass)); // calling the md5() method of Myers library
+                                               // md5 will be stored in a hidden input.
+            }
+
 			jQuery(function($) {
 			 $(document).on('click', '.toolbar a[data-target]', function(e) {
 				e.preventDefault();
