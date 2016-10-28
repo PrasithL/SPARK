@@ -38,6 +38,15 @@
                         <i class="fa fa-wrench"></i>
                         &nbsp; Use Item
                     </button>
+                    &nbsp;
+                    <form  onsubmit="return confirm('Are you sure you want to delete this record?')" action="<?php echo base_url();?>index.php/Inventory/delete_record" method="post" style="display:inline;">
+            
+                        <button style="margin-top: 1px;" type="submit" class="btn btn-sm btn-danger" data-rel="tooltip" title="Delete Record" style="margin-right:1em; margin-top:-.5em;">
+                            <i class="fa fa-trash fa-lg"></i>
+                            Delete &nbsp;&nbsp;
+                        </button>
+                        <input type="hidden" name="id" value=<?php echo $item->id ?> >
+                    </form>
                 </td>
             </tr>
         <?php

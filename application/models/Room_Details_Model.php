@@ -72,8 +72,13 @@
 				$data['projector_screen'] = "";
 			}
 
+			$current_room_code = $data['current_room_code'];
+			unset($data['current_room_code']);
+
+			echo $data['room_code'];
+			
 			$this->db->set($data);
-			$this->db->where('room_code', $data['room_code']);
+			$this->db->where('room_code', $current_room_code);
 
 			if (!$this->db->update('room_details')) {
 				return -1;

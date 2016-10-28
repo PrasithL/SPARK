@@ -249,7 +249,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </li>
 
                         <li class="" id="Software List">
-                            <a href="#">
+                            <a href="<?php echo base_url();?>index.php/Software_List/">
                                 <i class="menu-icon fa fa-caret-right"></i>
                                 Software List
                             </a>
@@ -277,23 +277,23 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <b class="arrow"></b>
                         </li>
 
-                        <li class="" id="Maintenance History">
-                            <a href="#">
+                        <li class="" id="Add Maintenance Records">
+                            <a href="<?php echo base_url();?>index.php/Computer_Maintenance">
                                 <i class="menu-icon fa fa-caret-right"></i>
-                                Maintenance History
+                                Add Maintenance Records
                             </a>
 
                             <b class="arrow"></b>
                         </li>
 
-                        <li class="" id="Maintenance Schedule">
+                        <!-- <li class="" id="Maintenance Schedule">
                             <a href="#">
                                 <i class="menu-icon fa fa-caret-right"></i>
                                 Maintenance Schedule
                             </a>
 
                             <b class="arrow"></b>
-                        </li>
+                        </li> -->
                     </ul>
                 </li>
 
@@ -306,7 +306,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <b class="arrow"></b>
                 </li>
 
-                <li class="treeview" id="Backups">
+                <!-- <li class="treeview" id="Backups">
                     <a href="#" class="dropdown-toggle">
                         <i class="menu-icon fa fa-hdd-o"></i>
                         <span class="menu-text"> Backups </span>
@@ -333,7 +333,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <b class="arrow"></b>
                         </li>
                     </ul>
-                </li>
+                </li> -->
 
                 <li class="" id="To-do Tasks">
                     <a href="<?php echo base_url();?>index.php/Task_List/">

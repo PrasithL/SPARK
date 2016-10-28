@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 // setting the timezone for the Date() to use
 // if not set, an error is thrown
-date_default_timezone_set("UTC");
+date_default_timezone_set("Asia/Colombo");
 
 /*
 |--------------------------------------------------------------------------

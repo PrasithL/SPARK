@@ -42,6 +42,20 @@ class Inventory extends CI_Controller{
     }
 
     /**
+    * A delete request comes here, with the id of the record to be deleted.
+    *
+    */
+    public function delete_record()
+    {
+        $id = $this->input->post('id'); // $data stores the associative array of inputs
+
+        $this->load->model("Inventory_Model");
+        $this->Inventory_Model->delete_record($id);
+
+        redirect('Inventory','refresh');
+    }
+
+    /**
      *
      * Retrive all inventory item details from the DB and pass it to the inventory_item_list.php
      * and load that page.

@@ -58,12 +58,14 @@ class Computer_Details extends CI_Controller{
         $this->load->model("Room_Details_Model");
         $this->load->model("Issues_Model");
         $this->load->model("Used_Inventory_Items_Model");
+        $this->load->model("Computer_Maintenance_Model");
 
         $data['computer'] = $this->Computer_Details_Model->get_details_of($computer_id);
         $data['history'] = $this->Computer_Details_Model->get_location_history_of($computer_id);
         $data['rooms'] = $this->Room_Details_Model->get_all_active_rooms();
         $data['open_issue_count'] = $this->Issues_Model->get_open_issues_count($computer_id);
         $data['added_parts'] = $this->Used_Inventory_Items_Model->get_added_parts_of($computer_id);
+        $data['maintenance'] = $this->Computer_Maintenance_Model->get_record($computer_id);
 
         $this->load->view('computer_details_form', $data);
 
@@ -107,6 +109,20 @@ class Computer_Details extends CI_Controller{
         $this->Computer_Details_Model->update_computer($data);
 
         $this->show_details_of_one_computer($data['computer_id']); // reload the view
+    }
+
+    /**
+    * A delete request comes here, with the id of the computer to be deleted.
+    *
+    */
+    public function delete_computer()
+    {
+        $id = $this->input->post('id'); // $data stores the associative array of inputs
+
+        $this->load->model("Computer_Details_Model");
+        $this->Computer_Details_Model->delete_computer($id);
+
+        redirect('Computer_Details','refresh');
     }
 
     /**

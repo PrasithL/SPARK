@@ -260,6 +260,8 @@
 				</div>
 				<div class="modal-body">
 					<div class="row">
+						<!-- current room code -->
+						<input type="hidden" id="current_room_code" name="current_room_code">
 						<!-- Room Code -->
 						<div class="form-group">
 							<label class="col-sm-3 col-sm-offset-2 control-label no-padding-right" for="room_code_modal"> Room Code </label>
@@ -337,6 +339,7 @@
 
 	function open_edit_modal(room_code, description, special_devices, projector, projector_screen) {
 		$('#room_code_modal').val(room_code);
+		$('#current_room_code').val(room_code);
 		$('#description_modal').val(description);
 		$('#special_devices_modal').val(special_devices);
 		if (projector == "1") {

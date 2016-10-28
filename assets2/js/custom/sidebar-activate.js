@@ -36,7 +36,7 @@ var menu_list = {
            'parent' : 'Maintenance'
         },
 
-        'Maintenance History' : {
+        'Add Maintenance Records' : {
            'parent' : 'Maintenance'
         },
 

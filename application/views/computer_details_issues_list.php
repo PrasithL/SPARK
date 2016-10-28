@@ -20,100 +20,102 @@
     if (isset($view)) {
         $viewing_closed = true;
     }
-    foreach ($issues as $issue) {
-        // calculating the days elapsed since issues opened
-        $opened_date = date_create($issue->opened_date);
-        $today       = date_create(date("Y-m-d"));
-        $differnce   = date_diff($opened_date, $today);
-?>
-    <div class="post well <?php echo $issue->status; ?>" id="<?php echo $issue->id  ?>">
-        <div class="user-block">
-            <?php if($issue->status == 'resolved') { ?>
-                <img class="img-thumbnail " src="<?php echo base_url(); ?>assets2/img/ok.png" alt="user image">
-            <?php } else {?>
-                <img class="img-thumbnail " src="<?php echo base_url(); ?>assets2/img/issue.png" alt="user image">
-            <?php } ?>
-
-            <span class='username text-primary'>
-                <?php if($issue->status == "open") { ?>
-                    <button class='pull-right btn-link' onclick="show_modal('<?php echo $issue->id  ?>', '<?php echo $computer_id ?>')"><i class='fa fa-check' data-toggle="tooltip" title="Mark this issue as resolved for all affected computers"></i> Close issue</button>
-                <?php } ?>
-
-                #<?php echo $issue->id  ?> - <?php echo $issue->issue  ?>
-            </span>
-            <span class='description'>Opened on <?php echo $issue->opened_date  ?> at <?php echo $issue->opened_time  ?> by <?php echo $issue->opened_by  ?> (<?php echo $differnce->days ?> days ago) <small class='label <?php if($viewing_closed) {echo "bg-green";} else {echo "bg-primary";} ?> <?php echo $issue->id  ?>'><?php echo $issue->status ?></small>
-                <?php
-                    switch ($issue->severity) {
-                        case 'Low':
-                            echo "<small class='label bg-purple'>$issue->severity</small>";
-                            break;
-
-                        case 'Medium':
-                            echo "<small class='label bg-maroon'>$issue->severity</small>";
-                            break;
-
-                        case 'High':
-                            echo "<small class='label bg-red'>$issue->severity</small>";
-                            break;
-
-                        default:
-                            # code...
-                            break;
-                    }
-                ?>
-            </span>
-            <?php
-                if ($issue->status == "resolved") {
-                    echo "<span class='description'>Closed on $issue->closed_date  at $issue->closed_time by $issue->closed_by";
-                }
-            ?>
-
-        </div><!-- /.user-block -->
-        <p>
-            <b>Affected Computer(s)</b>
-            <blockquote style="font-size: 1em;">
-            <ul class="">
-                <?php
-                    foreach ($issue_history_records as $record) {
-                        if ($record->issue_id == $issue->id) {
-                            if ($record->status == "open") { // to change the background color of the labels according to the status
-                                $string = "<li>$record->computer_code &nbsp;&nbsp;&nbsp;";
-                                $string = $string."<small class='label bg-orange <?php echo $issue->id  ?>'>$record->status</small> <button type=\"button\" onclick=\"close_issue_for_computer('$record->computer_code', '$issue->id' )\" class=\"btn btn-link btn-xs \"><i class=\"fa fa-check text-green\"></i> <span class=\"text-green\">Mark as resolved</span></button></li> ";
-
-                                echo $string;
-                            } else {
-                                $string = "<li>$record->computer_code &nbsp;&nbsp;&nbsp;";
-                                $string = $string."<small class='label bg-green $issue->id '>$record->status</small></li> ";
-
-                                echo $string;
-                            }
-
-                        }
-                    }
-                ?>
-            </ul>
-            </blockquote>
-
-            <b>Description</b>
-                <blockquote style="font-size: 1.1em;">
-                    <?php echo $issue->description  ?>
-                </blockquote>
-
-            <b>Actions Taken</b>
-                <blockquote style="font-size: 1.1em;">
-                    <?php echo $issue->actions_taken  ?>
-                </blockquote>
-
-        </p>
-        <br />
-    </div><!-- /.post -->
-
-<?php
-    }
 
     if (sizeof($issues) == 0) {
         echo "<p>No open issues</p>";
+    } else {
+        foreach ($issues as $issue) {
+            // calculating the days elapsed since issues opened
+            $opened_date = date_create($issue->opened_date);
+            $today       = date_create(date("Y-m-d"));
+            $differnce   = date_diff($opened_date, $today);
+    ?>
+        <div class="post well <?php echo $issue->status; ?>" id="<?php echo $issue->id  ?>">
+            <div class="user-block">
+                <?php if($issue->status == 'resolved') { ?>
+                    <img class="img-thumbnail " src="<?php echo base_url(); ?>assets2/img/ok.png" alt="user image">
+                <?php } else {?>
+                    <img class="img-thumbnail " src="<?php echo base_url(); ?>assets2/img/issue.png" alt="user image">
+                <?php } ?>
+
+                <span class='username text-primary'>
+                    <?php if($issue->status == "open") { ?>
+                        <button class='pull-right btn-link' onclick="show_modal('<?php echo $issue->id  ?>', '<?php echo $computer_id ?>')"><i class='fa fa-check' data-toggle="tooltip" title="Mark this issue as resolved for all affected computers"></i> Close issue</button>
+                    <?php } ?>
+
+                    #<?php echo $issue->id  ?> - <?php echo $issue->issue  ?>
+                </span>
+                <span class='description'>Opened on <?php echo $issue->opened_date  ?> at <?php echo $issue->opened_time  ?> by <?php echo $issue->opened_by  ?> (<?php echo $differnce->days ?> days ago) <small class='label <?php if($viewing_closed) {echo "bg-green";} else {echo "bg-primary";} ?> <?php echo $issue->id  ?>'><?php echo $issue->status ?></small>
+                    <?php
+                        switch ($issue->severity) {
+                            case 'Low':
+                                echo "<small class='label bg-purple'>$issue->severity</small>";
+                                break;
+
+                            case 'Medium':
+                                echo "<small class='label bg-maroon'>$issue->severity</small>";
+                                break;
+
+                            case 'High':
+                                echo "<small class='label bg-red'>$issue->severity</small>";
+                                break;
+
+                            default:
+                                # code...
+                                break;
+                        }
+                    ?>
+                </span>
+                <?php
+                    if ($issue->status == "resolved") {
+                        echo "<span class='description'>Closed on $issue->closed_date  at $issue->closed_time by $issue->closed_by";
+                    }
+                ?>
+
+            </div><!-- /.user-block -->
+            <p>
+                <b>Affected Computer(s)</b>
+                <blockquote style="font-size: 1em;">
+                <ul class="">
+                    <?php
+                        foreach ($issue_history_records as $record) {
+                            if ($record->issue_id == $issue->id) {
+                                if ($record->status == "open") { // to change the background color of the labels according to the status
+                                    $string = "<li>$record->computer_code &nbsp;&nbsp;&nbsp;";
+                                    $string = $string."<small class='label bg-orange <?php echo $issue->id  ?>'>$record->status</small> <button type=\"button\" onclick=\"close_issue_for_computer('$record->computer_code', '$issue->id' )\" class=\"btn btn-link btn-xs \"><i class=\"fa fa-check text-green\"></i> <span class=\"text-green\">Mark as resolved</span></button></li> ";
+
+                                    echo $string;
+                                } else {
+                                    $string = "<li>$record->computer_code &nbsp;&nbsp;&nbsp;";
+                                    $string = $string."<small class='label bg-green $issue->id '>$record->status</small></li> ";
+
+                                    echo $string;
+                                }
+
+                            }
+                        }
+                    ?>
+                </ul>
+                </blockquote>
+
+                <b>Description</b>
+                    <blockquote style="font-size: 1.1em;">
+                        <?php echo $issue->description  ?>
+                    </blockquote>
+
+                <b>Actions Taken</b>
+                    <blockquote style="font-size: 1.1em;">
+                        <?php echo $issue->actions_taken  ?>
+                    </blockquote>
+
+            </p>
+            <br />
+        </div><!-- /.post -->
+
+    <?php
+        }
     }
+
 ?>
 
 <div class="modal fade modal-default" >

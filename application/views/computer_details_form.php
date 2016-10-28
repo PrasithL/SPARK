@@ -2,13 +2,14 @@
     $view=false;
     $url = base_url()."index.php/Computer_Details/add_computer";
 
+
     // if viewing a computer's details do these
     if(isset($computer)) {
         $view=true;
         $computer = $computer[0]; // using the first array element of the returned result
 ?>
     <div class="col-md-12" >
-        <button type="button" class="btn btn-danger btn-sm pull-left" onclick="hide_detail_view()" style="margin-right:1em; margin-top:-.5em;">
+        <button type="button" class="btn btn-primary btn-sm pull-left" onclick="hide_detail_view()" style="margin-right:1em; margin-top:-.5em;">
             <i class="fa fa-times fa-lg"></i>
             Close
         </button>
@@ -31,10 +32,24 @@
         </button>
 
         <button type="button" class="btn btn-default btn-sm pull-left" onclick="show_added_parts_modal()" style="margin-right:1em; margin-top:-.5em;">
-            <i class="fa fa-exclamation-circle fa-lg"></i>
+            <i class="fa fa-gears fa-lg"></i>
             Added Parts &nbsp;&nbsp;
             <span class="label label-default"><?php echo count($added_parts); ?></span>
         </button>
+
+        <button type="button" class="btn btn-default btn-sm pull-left" onclick="show_maintenance_modal()" style="margin-right:1em; margin-top:-.5em;">
+            <i class="fa fa-file-text-o fa-lg"></i>
+            Maintenance Record &nbsp;&nbsp;
+        </button>
+
+        <form onsubmit="return confirm('Are you sure you want to delete this computer?')" action="<?php echo base_url();?>index.php/Computer_Details/delete_computer" method="post" style="display:inline;">
+            
+            <button type="submit" class="btn btn-danger btn-sm pull-left" data-rel="tooltip" title="Delete Record" style="margin-right:1em; margin-top:-.5em;">
+                <i class="fa fa-trash fa-lg"></i>
+                Delete &nbsp;&nbsp;
+            </button>
+            <input type="hidden" name="id" value=<?php echo ($computer->computer_id); ?> >
+        </form>
 
     </div>
 <?php
@@ -276,12 +291,279 @@
     }
 ?>
 
+<!-- maintenance reocrd modal -->
+
+        <div id="maintenance_modal" class="modal fade modal-default" >
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title "><i class="fa fa-history text-primary"></i> <?php if($view) echo ($computer->computer_id);  ?> - Last Maintenance Record </h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <?php
+                                    if (isset($maintenance)) {
+                                        $record = $maintenance[0];
+                                ?>
+                                    <form class="form-horizontal" role="form"  method="POST" action="return false">
+                                        <fieldset>
+                                            <legend>System Reboot :</legend>
+                                            <!-- Fresh Boot -->
+                                            <div class="form-group">
+                                                <label class="col-sm-3 col-sm-offset-2 control-label no-padding-right" for="fresh_boot"> Boot System from a fresh start </label>
+
+                                                <div class="col-sm-5">
+                                                    <input type="text" value="<?php echo $record->fresh_boot ?>" class="form-control" id="fresh_boot" name="fresh_boot" placeholder="" readonly />
+
+                                                </div>
+                                                
+                                            </div>
+
+                                            <!-- Boot Errors -->
+                                            <div class="form-group">
+                                                <label class="col-sm-3 col-sm-offset-2 control-label no-padding-right" for="boot_errors"> Monitor for boot errors  </label>
+
+                                                <div class="col-sm-5">
+                                                    <input type="text" value="<?php echo $record->boot_errors ?>" class="form-control" id="boot_errors" name="boot_errors" placeholder="" readonly />
+
+                                                </div>
+                                               
+                                            </div>
+
+                                            <!-- Boot Speed -->
+                                            <div class="form-group">
+                                                <label class="col-sm-3 col-sm-offset-2 control-label no-padding-right" for="boot_speed"> Speed of entire boot process  </label>
+
+                                                <div class="col-sm-5">
+                                                    <input type="text" value="<?php echo $record->boot_speed ?>" class="form-control" id="boot_speed" name="boot_speed" placeholder="" readonly />
+
+                                                </div>
+                                                
+                                            </div>
+                                        </fieldset>
+
+                                        <fieldset>
+                                            <legend>System Log-in :</legend>
+
+                                            <!-- Login Errors -->
+                                            <div class="form-group">
+                                                <label class="col-sm-3 col-sm-offset-2 control-label no-padding-right" for="login_errors"> Monitor for errors  </label>
+
+                                                <div class="col-sm-5">
+                                                    <input type="text" value="<?php echo $record->login_errors ?>" class="form-control" id="login_errors" name="login_errors" placeholder="" readonly />
+
+                                                </div>
+                                                
+                                            </div>
+
+                                            <!-- Login Scripts -->
+                                            <div class="form-group">
+                                                <label class="col-sm-3 col-sm-offset-2 control-label no-padding-right" for="login_script"> Monitor log-in script  </label>
+
+                                                <div class="col-sm-5">
+                                                    <input type="text" value="<?php echo $record->login_script ?>" class="form-control" id="login_script" name="login_script" placeholder="" readonly />
+
+                                                </div>
+                                                
+                                            </div>
+                                        </fieldset>
+
+                                        <fieldset>
+                                            <legend>Network Settings :</legend>
+
+                                            <!-- Domain Name -->
+                                            <div class="form-group">
+                                                <label class="col-sm-3 col-sm-offset-2 control-label no-padding-right" for="domain_name"> Domain Name  </label>
+
+                                                <div class="col-sm-5">
+                                                    <input type="text" value="<?php echo $record->domain_name ?>" class="form-control" id="domain_name" name="domain_name" placeholder="" readonly />
+
+                                                </div>
+                                                
+                                            </div>
+
+                                            <!-- Security Settings -->
+                                            <div class="form-group">
+                                                <label class="col-sm-3 col-sm-offset-2 control-label no-padding-right" for="security_settings"> Security Settings  </label>
+
+                                                <div class="col-sm-5">
+                                                    <input type="text" value="<?php echo $record->security_settings ?>" class="form-control" id="security_settings" name="security_settings" placeholder="" readonly />
+
+                                                </div>
+                                                
+                                            </div>
+
+                                            <!-- Computer Name  -->
+                                            <div class="form-group">
+                                                <label class="col-sm-3 col-sm-offset-2 control-label no-padding-right" for="computer_name"> Computer Name   </label>
+
+                                                <div class="col-sm-5">
+                                                    <input type="text" value="<?php echo $record->computer_name ?>" class="form-control" id="computer_name" name="computer_name" placeholder="" readonly />
+
+                                                </div>
+                                                
+                                            </div>
+                                        </fieldset>
+
+                                        <fieldset>
+                                            <legend>Browser/Proxy Settings :</legend>
+
+                                            <!-- Proxy Settings -->
+                                            <div class="form-group">
+                                                <label class="col-sm-3 col-sm-offset-2 control-label no-padding-right" for="proxy_settings"> Verify proper settings and operations  </label>
+
+                                                <div class="col-sm-5">
+                                                    <input type="text" value="<?php echo $record->proxy_settings ?>" class="form-control" id="proxy_settings" name="proxy_settings" placeholder="" readonly />
+
+                                                </div>
+                                                
+                                            </div>
+
+                                            <!-- Browser Plugins -->
+                                            <div class="form-group">
+                                                <label class="col-sm-3 col-sm-offset-2 control-label no-padding-right" for="browser_plugins"> Remove all unwanted Browser Plugins from Student Login  </label>
+
+                                                <div class="col-sm-5">
+                                                    <input type="text" value="<?php echo $record->browser_plugins ?>" class="form-control" id="browser_plugins" name="browser_plugins" placeholder="" readonly />
+
+                                                </div>
+                                                
+                                            </div>
+                                        </fieldset>
+
+                                        <fieldset>
+                                            <legend>Proper Software Loads :</legend>
+
+                                            <!-- Verify Software -->
+                                            <div class="form-group">
+                                                <label class="col-sm-3 col-sm-offset-2 control-label no-padding-right" for="verify_software"> Verify all required software is installed and operating correctly.  </label>
+
+                                                <div class="col-sm-5">
+                                                    <input type="text" class="form-control" value="<?php echo $record->verify_software ?>" id="verify_software" name="verify_software" placeholder="" readonly />
+
+                                                </div>
+                                                
+                                            </div>
+
+                                            <!-- Unauthorized SW -->
+                                            <div class="form-group">
+                                                <label class="col-sm-3 col-sm-offset-2 control-label no-padding-right" for="remove_unauth_sw"> Remove unauthorized software.  </label>
+
+                                                <div class="col-sm-5">
+                                                    <input type="text" value="<?php echo $record->remove_unauth_sw ?>" class="form-control" id="remove_unauth_sw" name="remove_unauth_sw" placeholder="" readonly />
+
+                                                </div>
+                                                
+                                            </div>
+                                        </fieldset>
+
+                                        <fieldset>
+                                            <legend>Hard Disk :</legend>
+
+                                            <!-- Unwanted Data -->
+                                            <div class="form-group">
+                                                <label class="col-sm-3 col-sm-offset-2 control-label no-padding-right" for="unwanted_data"> Remove Unwanted Data - Use Disk Analyzer  </label>
+
+                                                <div class="col-sm-5">
+                                                    <input type="text" value="<?php echo $record->unwanted_data ?>" class="form-control" id="unwanted_data" name="unwanted_data" placeholder="" readonly />
+
+                                                </div>
+                                                
+                                            </div>
+
+                                            <!-- Disk Checkup -->
+                                            <div class="form-group">
+                                                <label class="col-sm-3 col-sm-offset-2 control-label no-padding-right" for="disk_checkup"> Disk Checkup  </label>
+
+                                                <div class="col-sm-5">
+                                                    <input type="text" value="<?php echo $record->disk_checkup ?>" class="form-control" id="disk_checkup" name="disk_checkup" placeholder="" readonly />
+
+                                                </div>
+                                                
+                                            </div>
+
+                                            <!-- Disk Defrag -->
+                                            <div class="form-group">
+                                                <label class="col-sm-3 col-sm-offset-2 control-label no-padding-right" for="disk_defrag"> Disk Defragmentation  </label>
+
+                                                <div class="col-sm-5">
+                                                    <input type="text" value="<?php echo $record->disk_defrag ?>" class="form-control" id="disk_defrag" name="disk_defrag" placeholder="" readonly />
+
+                                                </div>
+                                                
+                                            </div>
+                                        </fieldset>
+
+                                        <fieldset>
+                                            <legend>Virus Scan :</legend>
+
+                                            <!-- Virus Scan -->
+                                            <div class="form-group">
+                                                <label class="col-sm-3 col-sm-offset-2 control-label no-padding-right" for="virus_scan"> Full System Scan For Virus malware  </label>
+
+                                                <div class="col-sm-5">
+                                                    <input type="text" value="<?php echo $record->virus_scan ?>" class="form-control" id="virus_scan" name="virus_scan" placeholder="" readonly />
+
+                                                </div>
+                                            
+                                            </div>
+                                        </fieldset>
+
+                                        <fieldset>
+                                            <legend>Hardware cleanup :</legend>
+
+                                            <!-- Hardware Cleanup -->
+                                            <div class="form-group">
+                                                <label class="col-sm-3 col-sm-offset-2 control-label no-padding-right" for="hw_cleanup"> Hardware component cleanup  </label>
+
+                                                <div class="col-sm-5">
+                                                    <input type="text" value="<?php echo $record->hw_cleanup ?>" class="form-control" id="hw_cleanup" name="hw_cleanup" placeholder="" readonly />
+
+                                                </div>
+                                               
+                                            </div>
+                                        </fieldset>
+
+                                        <fieldset>
+                                            <legend>Final Verification :</legend>
+
+                                            <!-- Verify -->
+                                            <div class="form-group">
+                                                <label class="col-sm-3 col-sm-offset-2 control-label no-padding-right" for="final_verify"> Verify the System works after the Cleanup Process  </label>
+
+                                                <div class="col-sm-5">
+                                                    <input type="text" value="<?php echo $record->final_verify ?>" class="form-control" id="final_verify" name="final_verify" placeholder="" readonly />
+
+                                                </div>
+                                             
+                                            </div>
+                                        </fieldset>
+
+                                    </form>
+                                <?php 
+                                    } else {
+                                        echo "<p class='text-center'>No Maintenance Record Found! <br/> Please add a record first.</p>";
+                                    }
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-flat btn-default " onclick="hide_location_history_modal()">Close</button>
+                    </div>
+                </div> <!-- /.modal-content -->
+            </div> <!-- /.modal-dialog -->
+        </div> <!-- /.modal -->
+
+<?php var_dump($added_parts); ?>
+
 <!-- Added parts modal -->
 <div id="parts_modal" class="modal fade modal-default" >
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title "><i class="fa fa-wrench text-primary"></i> <?php if($view) echo ($computer->computer_id);  ?> - Added Parts </h4>
+                <h4 class="modal-title "><i class="fa fa-wrench text-primary"></i> <?php echo ($computer->computer_id);  ?> - Added Parts </h4>
             </div>
             <div class="modal-body">
                 <div class="row">
@@ -390,6 +672,11 @@
     // show the location history modal
     function show_location_history_modal() {
         $('#location_modal').modal({backdrop: 'static', keyboard: false});
+    }
+
+    // show the location history modal
+    function show_maintenance_modal() {
+        $('#maintenance_modal').modal({backdrop: 'static', keyboard: false});
     }
 
     function hide_location_history_modal() {

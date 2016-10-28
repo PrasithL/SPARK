@@ -84,6 +84,13 @@ class Computer_Details_Model extends CI_Model{
         }
     }
 
+    public function delete_computer($computer_id)
+    {
+        $this->db->set('is_deleted', '1');
+        $this->db->where('computer_id', $computer_id);
+        $this->db->update('computer_details');
+    }
+
     public function add_location_history_record($data)
     {
         $location_data['computer_id']   = $data["computer_id"];
@@ -105,6 +112,7 @@ class Computer_Details_Model extends CI_Model{
         if ($cols != null) {
             $this->db->select($cols);
         }
+        $this->db->where('is_deleted', '0');
         $result = $this->db->get('computer_details');
         return $result->result();
     }
@@ -123,20 +131,21 @@ class Computer_Details_Model extends CI_Model{
 
     public function computer_count_by_room()
     {
-        $sql = "SELECT location, COUNT(computer_id) AS count FROM `computer_details` GROUP BY location ORDER BY location ASC";
+        $sql = "SELECT location, COUNT(computer_id) AS count FROM `computer_details` where is_deleted = '0' GROUP BY location ORDER BY location ASC";
         $result = $this->db->query($sql);
         return $result->result();
     }
 
     public function computers_count_with_issues()
     {
-        $sql = "SELECT location, SUM(CASE WHEN status = 'Requires Repairs' THEN 1 ELSE 0 END) AS repair_count FROM `computer_details` GROUP BY location ORDER BY location ASC";
+        $sql = "SELECT location, SUM(CASE WHEN status = 'Requires Repairs' THEN 1 ELSE 0 END) AS repair_count FROM `computer_details` where is_deleted = '0' GROUP BY location ORDER BY location ASC";
         $result = $this->db->query($sql);
         return $result->result();
     }
 
     public function get_computers_in($room_code)
     {
+        $this->db->where('is_deleted', '0');
         $result = $this->db->get_where('computer_details', array('location' => $room_code ));
         return $result->result();
     }

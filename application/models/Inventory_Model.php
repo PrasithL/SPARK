@@ -21,6 +21,13 @@ class Inventory_Model extends CI_Model{
         return $result->result();
     }
 
+    public function delete_record($id)
+    {
+        $this->db->set('is_deleted', '1');
+        $this->db->where('id', $id);
+        $this->db->update('inventory_details');
+    }
+
     /**
      *
      * Insert a new item record to DB
@@ -77,6 +84,7 @@ class Inventory_Model extends CI_Model{
      **/
     public function get_all_items()
     {
+        $this->db->where('is_deleted', '0');
         $result = $this->db->get('inventory_details');
         return $result->result();
     }

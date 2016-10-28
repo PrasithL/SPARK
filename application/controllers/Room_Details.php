@@ -65,6 +65,7 @@
 
 			// reload the page with result
 			$this->session->set_flashdata('update_result', $result);
+			
 			redirect('index.php/Room_Details');
 		}
 
